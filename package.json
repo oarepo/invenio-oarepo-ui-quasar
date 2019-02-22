@@ -1,0 +1,41 @@
+{
+  "name": "oarepo-ui-quasar",
+  "version": "1.0.0",
+  "dependencies": {
+    "eslint-config-airbnb-base": "^13.1.0",
+    "quasar-extras": "^2.0.4",
+    "quasar-framework": "^0.17.0",
+    "sanitize-html": "^1.20.0",
+    "vue-class-component": "^6.3.2",
+    "vue-property-decorator": "^7.3.0",
+    "vuex-class-modules": "^1.0.0"
+  },
+  "devDependencies": {
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-imports": "1.5.0",
+    "eslint": "^5.14.0",
+    "eslint-plugin-cypress": "^2.2.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-vue": "^5.2.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "vue-cli-plugin-quasar": "^0.17.1"
+  },
+  "license": "MIT",
+  "main": "src/index.js",
+  "babel": {
+    "plugins": [
+      [
+        "transform-imports",
+        {
+          "quasar": {
+            "transform": "quasar-framework/dist/babel-transforms/imports.mat.js",
+            "preventFullImport": true
+          }
+        }
+      ]
+    ]
+  }
+}
