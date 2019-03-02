@@ -9,21 +9,22 @@ import OARepoQuasarCollectionItem from './components/OARepoQuasarCollectionItem.
 import OARepoQuasarFacetList from './components/OARepoQuasarFacetList.vue';
 import OARepoQuasarValueCell from './components/OARepoQuasarValueCell.vue';
 
+
+const OARepoQuasar = {
+    install(Vue) {
+        Vue.component('oarepo-quasar-collection-list', OARepoQuasarCollectionList);
+        Vue.component('oarepo-quasar-collection', OARepoQuasarCollection);
+        Vue.component('oarepo-quasar-collection-item', OARepoQuasarCollectionItem);
+        Vue.component('oarepo-quasar-facet-list', OARepoQuasarFacetList);
+        Vue.component('oarepo-quasar-value-cell', OARepoQuasarValueCell);
+    },
+};
+
 export {
     OARepoQuasarCollectionList,
     OARepoQuasarCollection,
     OARepoQuasarCollectionItem,
     OARepoQuasarFacetList,
     OARepoQuasarValueCell,
+    OARepoQuasar,
 };
-
-// What should happen if the user installs the library as a plugin
-function install(Vue) {
-    Vue.component('oarepo-quasar-collection-list', OARepoQuasarCollectionList);
-    Vue.component('oarepo-quasar-collection', OARepoQuasarCollection);
-    Vue.component('oarepo-quasar-collection-item', OARepoQuasarCollectionItem);
-    Vue.component('oarepo-quasar-facet-list', OARepoQuasarFacetList);
-    Vue.component('oarepo-quasar-value-cell', OARepoQuasarValueCell);
-}
-
-export default install;
