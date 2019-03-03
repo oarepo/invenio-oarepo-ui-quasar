@@ -1,16 +1,18 @@
 <template>
 <oarepo-collection :collectionCode="collectionCode"
-                   :collectionModule="collectionModule"
                    :locale="locale"
                    ref="oarepoCollection"
                    @dataLoaded="dataLoaded">
 
-    <template slot="content-before" slot-scope=" { collection } ">
+    <template v-slot:default="{ collection, items, aggregations }">
+
+    <slot name="title" v-bind:collection="collection" v-bind:items="items" v-bind:aggregations="aggregations">
+        <h3>{{ collection.title[locale] || collection.title.en }}</h3>
+    </slot>
+
     <slot name="content-before" v-bind:collection="collection">
     </slot>
-    </template>
 
-    <template slot="raw-content" slot-scope=" { collection, items, aggregations } ">
     <div class="row horiz wrap items-stretch">  <!-- use 'row' class to define a container / parent -->
         <div class="col collection-content">
 
@@ -81,11 +83,8 @@
         </div>
     </div>
 
-    <template slot="content-after" slot-scope=" { collection } ">
     <slot name="content-after" v-bind:collection="collection">
     </slot>
-    </template>
-
     </template>
 
 </oarepo-collection>
@@ -101,10 +100,8 @@ import sanitizeHtml from 'sanitize-html';
 export default @Component({
     props: {
         collectionCode: String,
-        collectionModule: Object,
     },
-    components: {
-    },
+    components: {},
     name: 'oarepo-quasar-collection',
 })
 class OARepoCollection extends Vue {
@@ -117,7 +114,7 @@ class OARepoCollection extends Vue {
     }
 
     get scrollDisabled() {
-        return !(this.enabled && this.collectionModule.loaded);
+        return !(this.enabled && this.oarepo$.collectionModule.loaded);
     }
 
     sanitize(html) {
@@ -127,7 +124,7 @@ class OARepoCollection extends Vue {
     onLoad(index, done) {
         setTimeout(() => {
             this.page += 1;
-            this.collectionModule.loadNextPage()
+            this.oarepo$.collectionModule.loadNextPage()
                 .then(({ response }) => {
                     this.enabled = response.hits.hits.length > 0;
                     done();
@@ -138,12 +135,17 @@ class OARepoCollection extends Vue {
     dataLoaded({ append }) {
         if (!append) {
             this.enabled = true;
+            this.loaded();
         }
     }
 
     @Emit('itemSelected')
     itemSelected(item) {
         return item;
+    }
+
+    @Emit('collectionLoaded')
+    loaded() {
     }
 }
 </script>
