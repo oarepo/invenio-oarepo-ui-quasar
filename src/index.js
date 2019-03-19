@@ -8,6 +8,7 @@ import OARepoQuasarCollection from './components/OARepoQuasarCollection.vue';
 import OARepoQuasarCollectionItem from './components/OARepoQuasarCollectionItem.vue';
 import OARepoQuasarFacetList from './components/OARepoQuasarFacetList.vue';
 import OARepoQuasarValueCell from './components/OARepoQuasarValueCell.vue';
+import OARepoQuasarSearch from './components/OARepoQuasarSearch.vue';
 
 
 const OARepoQuasar = {
@@ -17,6 +18,7 @@ const OARepoQuasar = {
         Vue.component('oarepo-quasar-collection-item', OARepoQuasarCollectionItem);
         Vue.component('oarepo-quasar-facet-list', OARepoQuasarFacetList);
         Vue.component('oarepo-quasar-value-cell', OARepoQuasarValueCell);
+        Vue.component('oarepo-quasar-search', OARepoQuasarSearch);
     },
 };
 

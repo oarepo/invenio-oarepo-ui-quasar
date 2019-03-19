@@ -79,6 +79,7 @@
 
         </div>  <!-- children will default to 'col'  -->
         <div class="aggs collection-facets">
+            <oarepo-quasar-search :input="searchString" class="q-mb-lg"></oarepo-quasar-search>
             <oarepo-quasar-facet-list :facets="aggregations"></oarepo-quasar-facet-list>
         </div>
     </div>
@@ -115,6 +116,10 @@ class OARepoCollection extends Vue {
 
     get scrollDisabled() {
         return !(this.enabled && this.oarepo$.collectionModule.loaded);
+    }
+
+    get searchString() {
+        return '';
     }
 
     sanitize(html) {
