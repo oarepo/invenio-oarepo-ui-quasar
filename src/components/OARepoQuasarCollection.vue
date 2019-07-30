@@ -18,7 +18,21 @@
             <slot name="list-before" v-bind:collection="collection">
             </slot>
 
-            <q-list>
+            <div v-if="omitList">
+
+                <slot name="list-header" v-bind:collection="collection">
+                </slot>
+
+                <abstract-item v-for="item in items"
+                               :item="item"
+                               v-bind:key="item.id"
+                               @selected="itemSelected(item)"
+                               :mapping="itemComponents"
+                               :omit-list="omitList"
+                >
+                </abstract-item>
+            </div>
+            <q-list v-else>
 
                 <slot name="list-header" v-bind:collection="collection">
                 </slot>
@@ -73,6 +87,7 @@ export default @Component({
     props: {
         collectionCode: String,
         itemComponents: Object,
+        omitList: Boolean,
     },
     components: {
         'abstract-item': OARepoQuasarCollectionAbstractItem,
