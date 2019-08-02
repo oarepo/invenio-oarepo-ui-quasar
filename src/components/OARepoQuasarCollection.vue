@@ -25,7 +25,7 @@
 
                 <abstract-item v-for="item in items"
                                :item="item"
-                               v-bind:key="item.id"
+                               v-bind:key="`omit-${item.id}`"
                                @selected="itemSelected(item)"
                                :mapping="itemComponents"
                                :omit-list="omitList"
@@ -63,8 +63,14 @@
 
         </div>  <!-- children will default to 'col'  -->
         <div class="aggs collection-facets">
+            <slot name="search-before" v-bind:collection="collection">
+            </slot>
             <oarepo-quasar-search :input="searchString" class="q-mb-lg"></oarepo-quasar-search>
+            <slot name="facets-before" v-bind:collection="collection">
+            </slot>
             <oarepo-quasar-facet-list :facets="aggregations"></oarepo-quasar-facet-list>
+            <slot name="facets-after" v-bind:collection="collection">
+            </slot>
         </div>
     </div>
 

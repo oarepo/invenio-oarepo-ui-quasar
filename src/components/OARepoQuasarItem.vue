@@ -54,6 +54,10 @@ class OARepoCollection extends Vue {
     sanitize(html) {
         return sanitizeHtml(html);
     }
+
+    async patch(data) {
+        return this.$refs.oarepoCollectionItem.patch(data);
+    }
 }
 </script>
 

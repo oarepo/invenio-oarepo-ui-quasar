@@ -10,6 +10,7 @@ export default @Component({
     props: {
         item: Object,
         mapping: Object,
+        omitList: Boolean,
     },
     components: {},
     name: 'oarepo-quasar-collection-abstract-list-item',
