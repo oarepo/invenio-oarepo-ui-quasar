@@ -68,7 +68,9 @@
             <oarepo-quasar-search :input="searchString" class="q-mb-lg"></oarepo-quasar-search>
             <slot name="facets-before" v-bind:collection="collection">
             </slot>
-            <oarepo-quasar-facet-list :facets="aggregations"></oarepo-quasar-facet-list>
+            <slot name="facets" v-bind:collection="collection" v-bind:facets="aggregations">
+                <oarepo-quasar-facet-list :facets="aggregations"></oarepo-quasar-facet-list>
+            </slot>
             <slot name="facets-after" v-bind:collection="collection">
             </slot>
         </div>
