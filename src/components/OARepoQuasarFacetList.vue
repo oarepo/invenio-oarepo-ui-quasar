@@ -1,6 +1,8 @@
 <template>
 <oarepo-facet-list :facets="facets" ref="oarepoFacetList">
+    <template v-slot:default="{ facets }">
     <q-list bordered v-if="facetsOpenedModel !== null">
+
         <q-expansion-item
                 expand-separator
                 icon="explore"
@@ -8,21 +10,26 @@
                 v-model="facetsOpenedModel[key]"
                 @input="facetsOpenedModelChanged()"
         >
+            <slot name="facetCard" v-bind:values="val" v-bind:facetKey="key">
             <q-card>
                 <q-card-section>
                     <div v-for="bucket in val.buckets" v-bind:key="bucket.key">
+                        <slot name="facetSelector" v-bind:bucket="bucket" v-bind:facetKey="key">
                         <q-checkbox :value="bucket.selected"
                                     @input="facetSelected(bucket, !bucket.selected)"
                                     :true-value="true"
                                     :false-value="false"
                                     :toggle-indeterminate="false"
                         ></q-checkbox>
+                        </slot>
                         {{ bucket.label }} ({{ bucket.doc_count }})
                     </div>
                 </q-card-section>
             </q-card>
+            </slot>
         </q-expansion-item>
     </q-list>
+    </template>
 </oarepo-facet-list>
 </template>
 

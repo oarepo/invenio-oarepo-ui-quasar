@@ -1,6 +1,6 @@
 {
   "name": "@oarepo/invenio-oarepo-ui-quasar",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf dist; bili --babelrc --verbose --plugins.vue --format esm && cp package.json dist/"
