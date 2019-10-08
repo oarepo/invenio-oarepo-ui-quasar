@@ -2,7 +2,6 @@
 <oarepo-facet-list :facets="facets" ref="oarepoFacetList">
     <template v-slot:default="{ facets }">
     <q-list bordered v-if="facetsOpenedModel !== null">
-
         <q-expansion-item
                 expand-separator
                 icon="explore"
