@@ -2,7 +2,8 @@
 <oarepo-item :collectionCode="collectionCode"
              :itemId="itemId"
              :locale="locale"
-             ref="oarepoCollectionItem">
+             ref="oarepoCollectionItem"
+             @dataLoaded="dataLoaded">
     <template v-slot:default="{ collection, item }">
 
     <slot name="title" v-bind:collection="collection" v-bind:item="item">
@@ -34,8 +35,7 @@
 
 <script>
 
-import Vue from 'vue';
-import Component from 'vue-class-component';
+import { Component, Emit, Vue } from 'vue-property-decorator';
 import sanitizeHtml from 'sanitize-html';
 
 export default @Component({
@@ -57,6 +57,11 @@ class OARepoCollection extends Vue {
 
     async patch(data) {
         return this.$refs.oarepoCollectionItem.patch(data);
+    }
+
+    @Emit('dataLoaded')
+    dataLoaded() {
+        return this.$refs.oarepoCollectionItem.item;
     }
 }
 </script>
