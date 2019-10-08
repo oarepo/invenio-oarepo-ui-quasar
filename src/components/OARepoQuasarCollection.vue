@@ -9,10 +9,10 @@
         <h3 v-if="collection">{{ collection.title[locale] || collection.title.en }}</h3>
     </slot>
 
-    <slot name="content-before" v-bind:collection="collection">
+    <slot name="content-before" v-bind:collection="collection" v-bind:items="items">
     </slot>
 
-    <div class="row horiz wrap items-stretch">  <!-- use 'row' class to define a container / parent -->
+    <div class="row horiz wrap items-stretch" v-if="items.length > 0">  <!-- use 'row' class to define a container / parent -->
         <div class="col collection-content">
 
             <slot name="list-before" v-bind:collection="collection">
