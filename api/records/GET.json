@@ -1,0 +1,46 @@
+{
+  "aggregations": {
+    "archeologic": {
+      "buckets": [
+        {
+          "doc_count": 35,
+          "key": 1,
+          "key_as_string": "true"
+        },
+        {
+          "doc_count": 165,
+          "key": 0,
+          "key_as_string": "false"
+        }
+      ],
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0
+    },
+    "category": {
+      "buckets": [
+        {
+          "doc_count": 73,
+          "key": "textil"
+        },
+        {
+          "doc_count": 14,
+          "key": "sklo"
+        },
+        {
+          "doc_count": 95,
+          "key": "kovy"
+        },
+        {
+          "doc_count": 18,
+          "key": "keramika"
+        }
+      ],
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0
+    }
+  },
+  "hits": {
+    "hits": [],
+    "total": 20000
+  }
+}
