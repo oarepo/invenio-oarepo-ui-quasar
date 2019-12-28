@@ -1,8 +1,34 @@
-# Invenio OARepo UI for Quasar
+# invenio-quasar
 
-[![NPM version][npm-svg]][npm]
+## Project setup
+```
+yarn install
+```
 
-   [npm]: https://www.npmjs.com/package/@oarepo/invenio-oarepo-ui-quasar
-   [npm-svg]: https://img.shields.io/npm/v/@oarepo/invenio-oarepo-ui-quasar.svg?style=flat
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
 
-Base Quasar UI Components for OpenAccess Repository
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Run your unit tests
+```
+yarn test:unit
+```
+
+### Run your end-to-end tests
+```
+yarn test:e2e
+```
+
+### Lints and fixes files
+```
+yarn lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
