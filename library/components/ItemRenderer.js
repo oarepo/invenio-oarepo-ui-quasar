@@ -1,4 +1,5 @@
 import { JSONPath } from 'jsonpath-plus';
+import { applyFunctionRecursively } from '../utils';
 
 
 export default {
@@ -10,18 +11,7 @@ export default {
         const _vue = this;
 
         function defunc(def, md, x) {
-            if (Array.isArray(x)) {
-                x = x.map(e => defunc(def, md, e));
-            } else if (x === Object(x)) {
-                if (x.tag !== undefined && x.key !== undefined) {
-                    // probably a VNode, just return
-                    return x
-                }
-                x = Object.fromEntries(Object.getOwnPropertyNames(x).map(e => [e, defunc(def, x[e])]))
-            } else if (x instanceof Function) {
-                x = x(md, def, _vue, _vue.record);
-            }
-            return x;
+            return applyFunctionRecursively(def, md, x, _vue, _vue.record);
         }
 
         function createHtmlElement(def, md, element, elementDefault, elementClass,

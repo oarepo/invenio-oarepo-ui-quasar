@@ -17,13 +17,14 @@ export default {
             values: [
                 {
                     path: 'title',
+                    valueClass: 'text-weight-bolder'
                 },
                 {
                     path: 'creator',
                     label: 'Creator: '
                 },
                 {
-                    label: 'nested: ',
+                    label: 'nested padded content: ',
                     elementStyle: 'background-color: rgba(200,200,200,.5); padding: 10px;',
                     childrenStyle: 'padding-left: 20px',
                     children: [
@@ -33,24 +34,31 @@ export default {
                         },
                         {
                             // custom element with custom content
-                            label: 'Value as image: ',
-                            valueElement: 'image',
+                            label: 'Thumbnail value rendered as image: ',
+                            valueElement: 'img',
                             valueAttrs: {
                                 src: (md) => {
-                                    console.log(md)
-                                }
+                                    return md.thumbnail
+                                },
+                                width: '32'
                             }
                         },
                         {
-                            // custom element with custom content
-                            element: 'image',
-                            elementAttrs: {
-                                title: 'Whole label + value replaced with an image',
-                                src: (md) => {
-                                    console.log(md)
-                                }
-                            }
-                        },
+                            label: 'Completely replaced element with q-img: ',
+                            children: [
+                                {
+                                    // custom element with custom content
+                                    element: 'q-img',
+                                    elementStyle: 'margin-top: 20px; width: 32px; height: 32px;',
+                                    elementAttrs: {
+                                        title: 'Whole label + value replaced with an image',
+                                        src: (md) => {
+                                            return md.thumbnail
+                                        }
+                                    }
+                                },
+                            ]
+                        }
                     ]
                 }
             ]
