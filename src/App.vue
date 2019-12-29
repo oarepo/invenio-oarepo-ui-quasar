@@ -28,7 +28,7 @@ q-layout(view='lHh Lpr lFf')
                 q-item-section(avatar='')
                     q-icon(name='school')
                 q-item-section
-                    q-item-label List with items given by paths without custom component
+                    q-item-label List with item rendering given by paths without custom component
     q-page-container
         router-view
 </template>
