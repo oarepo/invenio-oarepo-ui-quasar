@@ -30,7 +30,7 @@ export default {
             default: () => [
                 {
                     path: 'title',
-                    cssClass: 'text-weight-bolder'
+                    valueClass: 'text-weight-bolder'
                 },
                 {
                     path: 'creator'

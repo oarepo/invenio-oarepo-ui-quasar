@@ -24,6 +24,11 @@ q-layout(view='lHh Lpr lFf')
                     q-icon(name='school')
                 q-item-section
                     q-item-label List with icon given by a function
+            q-item(clickable='' :to="{name: 'list-no-component'}")
+                q-item-section(avatar='')
+                    q-icon(name='school')
+                q-item-section
+                    q-item-label List with items given by paths without custom component
     q-page-container
         router-view
 </template>

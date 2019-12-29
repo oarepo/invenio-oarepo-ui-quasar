@@ -129,7 +129,7 @@ There are three alternatives for custom rendering of record item:
 
 ###### Icon
 
-Tpo change the icon, set the ``:icon`` property:
+To change the icon, set the ``:icon`` property:
 
 ```jade
 <template lang="pug">
@@ -146,9 +146,9 @@ a function accepting record and returning the object
 iconObject = {
     // only one of the following properties should be contained
     name: 'iconName',
-    namePath: 'xpath to metadata that gives icon name',
+    namePath: 'jsonpath to metadata that gives icon name',
     url: 'url of the image that should be used as an icon',
-    urlPath: 'xpath to the record metadata that gives icon image',
+    urlPath: 'jsonpath to the record metadata that gives icon image',
     // the following props can be added as well
     iconClass: 'list of css classes to be set on the icon element',
     iconStyle: 'extra css style for the icon',
@@ -166,6 +166,65 @@ an icon given as a result of a function.
 
 ###### Shown data
 
+To change the presented data, set the ``:values`` property:
+
+```jade
+<template lang="pug">
+q-page.flex.q-ma-lg
+    oarepo-collection-list(:query="query", :values="valuesDefinition")
+</template>
+```
+
+The ``valuesDefinition`` is a list of ``definitionObject`` or ``definitionContainer``
+or a function accepting record and returning the list
+``valuesDefinition(record, thisVue) -> List[definitionObject|definitionContainer]``:
+
+```javascript
+definitionObject = {
+   element: 'wrapper element name, defaults to div; set to null to not use wrapper',
+   elementClass: 'extra class(es)',
+   elementStyle: 'extra style',
+   elementAttrs: {}, // extra html attrs
+   label: 'the label to be shown',
+   labelElement: 'the label element, defaults to label',
+   labelClass: 'extra label class(es)',
+   labelStyle: 'extra label style',
+   labelAttrs: {},  // extra html attrs
+   valueClass: 'extra value class',
+   valueStyle: 'extra value style',
+   valueAttrs: {},  // extra html attrs
+   valueElement: 'the value element, defaults to span. Set to null to disable value display',
+   path: 'jsonpath to the record metadata that gives the value',
+   component: 'custom component to display the value, if not set valueElement will be used',
+}
+```
+
+Every property except component can be a function ``func(metadata, definitionObject, vue_inst, record)``
+where metadata are metadata at the actual path
+
+An example of definition object with attrs but without component is at 
+[CollectionValuesNoComponentPage.vue](src/components/CollectionValuesNoComponentPage.vue)
+
+The custom component gets ``:part`` containing the ``definitionObject`` 
+with an extra ``value`` property.
+
+```javascript
+definitionContainer = {
+   element: 'element name',
+   elementClass: 'extra class(es)',
+   elementStyle: 'extra style',
+   elementAttrs: {}, // extra html attrs
+   label: 'the label to be shown',
+   labelClass: 'extra label class(es)',
+   labelStyle: 'extra label style',
+   labelAttrs: {},  // extra html attrs
+   path: 'jsonpath to the record metadata that gives the base value for children',
+   children: [definitionObject, definitionContainer],   
+   childrenClass: 'extra class(es) to be prepended for each child',
+   childrenStyle: 'extra style to be prepended for each child',
+   childrenAttrs: {}, // extra html attrs
+}
+```
 
 #### Clickable URLs
 

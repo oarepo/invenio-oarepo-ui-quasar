@@ -6,11 +6,7 @@ q-item(clickable :to="url" exact)
         q-img(:src="displayedIcon.url" v-if="displayedIcon.url"
             :class="displayedIcon.imageClass" :style="displayedIcon.imageStyle")
     q-item-section
-        div(v-for="(part, idx) of displayedParts" :key="idx" :class="part.cssClass" :style="part.style")
-            component(v-if="part.valueComponent" :is="part.valueComponent" :part="part")
-            template(v-else)
-                span(v-if="part.label" :class="part.labelCssClass || {}" :style="part.labelStyle") {{ part.label }}
-                span(:class="part.valueCssClass || {}" :style="part.valueStyle") {{ part.text }} {{ part.value }}
+        component(:is="renderer" :record="record" :definition="values")
 </template>
 
 <style>
@@ -19,13 +15,18 @@ q-item(clickable :to="url" exact)
 <script>
 
 import { JSONPath } from 'jsonpath-plus';
+import ItemRenderer from './ItemRenderer';
 
 export default {
     props: {
         record: Object,
         url: String,
         values: Array,
-        icon: Object
+        icon: Object,
+        renderer: {
+            type: Object,
+            default: () => ItemRenderer
+        }
     },
     computed: {
         md() {
@@ -51,15 +52,15 @@ export default {
                 ret.name = JSONPath({
                     path: ret.iconPath,
                     json: this.md
-                })[0]
+                })[0];
             }
             if (ret.urlPath) {
                 ret.url = JSONPath({
                     path: ret.urlPath,
                     json: this.md
-                })[0]
+                })[0];
             }
-            return ret
+            return ret;
         }
     }
 };

@@ -5,6 +5,7 @@ import { query } from '@oarepo/vue-query-synchronizer';
 import CollectionPage from '../components/CollectionPage';
 import CollectionPageImageIcon from '../components/CollectionPageImageIcon';
 import CollectionPageFunctionIcon from '../components/CollectionPageFunctionIcon';
+import CollectionValuesNoComponentPage from '../components/CollectionValuesNoComponentPage';
 
 Vue.use(VueRouter);
 
@@ -30,7 +31,13 @@ const routes = [
         path: '/list-function-icon',
         component: CollectionPageFunctionIcon,
         props: query([], { collectionId: 'records' })
-    })
+    }),
+    routerCollection({
+        name: 'list-no-component',
+        path: '/list-no-component',
+        component: CollectionValuesNoComponentPage,
+        props: query([], { collectionId: 'records' })
+    }),
 ];
 
 const router = new VueRouter({
