@@ -1,8 +1,10 @@
 <template lang="pug">
 q-item(clickable :to="url" exact)
-    q-item-section(avatar)
-        q-icon(:name="displayedIcon.name" v-if="displayedIcon.name && !displayedIcon.url" :class="displayedIcon.cssClass")
-        q-img(:src="displayedIcon.url" v-if="displayedIcon.url" :class="displayedIcon.cssClass")
+    q-item-section(avatar :class="displayedIcon.avatarClass" :style="displayedIcon.avatarStyle")
+        q-icon(:name="displayedIcon.name" v-if="displayedIcon.name && !displayedIcon.url"
+            :class="displayedIcon.iconClass" :style="displayedIcon.iconStyle")
+        q-img(:src="displayedIcon.url" v-if="displayedIcon.url"
+            :class="displayedIcon.imageClass" :style="displayedIcon.imageStyle")
     q-item-section
         div(v-for="(part, idx) of displayedParts" :key="idx" :class="part.cssClass" :style="part.style")
             component(v-if="part.valueComponent" :is="part.valueComponent" :part="part")

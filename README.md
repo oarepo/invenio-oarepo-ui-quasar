@@ -150,7 +150,12 @@ iconObject = {
     url: 'url of the image that should be used as an icon',
     urlPath: 'xpath to the record metadata that gives icon image',
     // the following props can be added as well
-    cssClass: 'list of css classes to be set on the icon/image element'
+    iconClass: 'list of css classes to be set on the icon element',
+    iconStyle: 'extra css style for the icon',
+    imageClass: 'list of css classes to be set on the image element',
+    imageStyle: 'extra css style for the image',
+    avatarClass: 'list of css classes to be set on the avatar wrapper',
+    avatarStyle: 'extra css style for the avatar wrapper',
 }
 ```
 See [CollectionPage.vue](src/components/CollectionPage.vue) for a custom icon name,

@@ -17,11 +17,13 @@ export default {
             return [
                 {
                     name: 'launch',
-                    cssClass: 'test-icon'
+                    iconClass: 'test-icon',
+                    iconStyle: 'color: red',
+                    avatarStyle: 'display: flex; justify-content: center; align-items: flex-end'
                 },
                 {
                     url: 'https://cis-login.vscht.cz/static/web/logo_small.png',
-                    cssClass: 'test-image'
+                    imageClass: 'test-image'
                 }
             ][id % 2];
         }
