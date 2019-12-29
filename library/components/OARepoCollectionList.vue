@@ -7,7 +7,7 @@ q-list
                 :is="recordComponent(record)"
                 :record="record"
                 :url="recordUrl(record)"
-                :values="recordValues(record)"
+                :values="values"
                 :icon="recordIcon(record)")
 </template>
 
@@ -68,12 +68,6 @@ export default {
                 }
             }
             return record.links.ui;
-        },
-        recordValues(record) {
-            if (this.values instanceof Function) {
-                return this.values(record);
-            }
-            return this.values;
         },
         recordIcon(record) {
             if (this.icon instanceof Function) {

@@ -6,6 +6,7 @@ import CollectionPage from '../components/CollectionPage';
 import CollectionPageImageIcon from '../components/CollectionPageImageIcon';
 import CollectionPageFunctionIcon from '../components/CollectionPageFunctionIcon';
 import CollectionValuesNoComponentPage from '../components/CollectionValuesNoComponentPage';
+import CollectionValuesTablePage from '../components/CollectionValuesTablePage';
 
 Vue.use(VueRouter);
 
@@ -36,6 +37,12 @@ const routes = [
         name: 'list-no-component',
         path: '/list-no-component',
         component: CollectionValuesNoComponentPage,
+        props: query([], { collectionId: 'records' })
+    }),
+    routerCollection({
+        name: 'list-table',
+        path: '/list-table',
+        component: CollectionValuesTablePage,
         props: query([], { collectionId: 'records' })
     }),
 ];

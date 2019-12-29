@@ -20,7 +20,10 @@ export default {
                 key,
                 class: defunc(def, md, elementClass),
                 style: defunc(def, md, elementStyle),
-                attrs: defunc(def, md, elementAttrs || {}),
+                attrs: {
+                    ...defunc(def, md, elementAttrs || {}),
+                    id: key
+                },
             }, defunc(def, md, value));
         }
 
@@ -32,7 +35,10 @@ export default {
             return h(def.component, {
                 class: defunc(def, md, def.valueClass),
                 style: defunc(def, md, def.valueStyle),
-                attrs: defunc(def, md, def.valueAttrs || {}),
+                attrs: {
+                    ...defunc(def, md, def.valueAttrs || {}),
+                    id: key
+                },
                 props: {
                     part: def
                 },
@@ -44,7 +50,10 @@ export default {
             return h(defunc(def, md, def.valueElement) || 'span', {
                 class: defunc(def, md, def.valueClass),
                 style: defunc(def, md, def.valueStyle),
-                attrs: defunc(def, md, def.valueAttrs || {}),
+                attrs: {
+                    ...defunc(def, md, def.valueAttrs || {}),
+                    id: key
+                },
                 key
             }, defunc(def, md, value));
         }
@@ -71,6 +80,10 @@ export default {
         }
 
         function renderDefinition(def, metadata, key) {
+            if (def instanceof Function) {
+                def = def(metadata, _vue.record, _vue);
+            }
+
             let values = [metadata];
             let localKey = key;
             if (def.path) {
@@ -84,7 +97,8 @@ export default {
 
             if (def.label) {
                 ret.push(createHtmlElement(def, metadata, def.labelElement, 'label',
-                    def.labelClass, def.labelStyle, def.labelAttrs, def.label, localKey));
+                    def.labelClass, def.labelStyle, def.labelAttrs, def.label,
+                    `${localKey}.label`));
             }
 
             if (def.component) {
@@ -127,6 +141,10 @@ export default {
         }
 
         function renderDefinitionList(dl, metadata, key) {
+            if (dl instanceof Function) {
+                dl = dl(metadata, _vue.record, _vue);
+            }
+
             return dl.map((def, idx) => renderDefinition(def, metadata, `${key}{${idx}}`))
                 .flat();
         }

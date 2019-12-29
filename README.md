@@ -199,11 +199,15 @@ definitionObject = {
 }
 ```
 
-Every property except component can be a function ``func(metadata, definitionObject, vue_inst, record)``
+Every property except component can be a function ``func(metadata, definitionObject, record, vue_inst)``
 where metadata are metadata at the actual path
 
 An example of definition object with attrs but without component is at 
 [CollectionValuesNoComponentPage.vue](src/components/CollectionValuesNoComponentPage.vue)
+
+Tabular layout of props is at 
+[CollectionValuesTablePage.vue](src/components/CollectionValuesTablePage.vue).
+This example also shows that a child value might be a callable as well.
 
 The custom component gets ``:part`` containing the ``definitionObject`` 
 with an extra ``value`` property.
