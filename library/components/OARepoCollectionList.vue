@@ -77,7 +77,7 @@ export default {
         },
         recordIcon(record) {
             if (this.icon instanceof Function) {
-                return this.icon(record);
+                return this.icon(record, this);
             }
             return this.icon;
         }

@@ -2,7 +2,7 @@
 q-item(clickable :to="url" exact)
     q-item-section(avatar)
         q-icon(:name="displayedIcon.name" v-if="displayedIcon.name && !displayedIcon.url" :class="displayedIcon.cssClass")
-        q-image(:src="displayedIcon.url" v-if="displayedIcon.url" :class="displayedIcon.cssClass")
+        q-img(:src="displayedIcon.url" v-if="displayedIcon.url" :class="displayedIcon.cssClass")
     q-item-section
         div(v-for="(part, idx) of displayedParts" :key="idx" :class="part.cssClass" :style="part.style")
             component(v-if="part.valueComponent" :is="part.valueComponent" :part="part")

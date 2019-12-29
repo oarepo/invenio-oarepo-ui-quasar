@@ -30,6 +30,7 @@ module.exports = {
                                     '$schema': 'https://restaurovani.vscht.cz/schemas/draft/krokd/restoration-object-v1.0.0.json',
                                     'id': x,
                                     'title': 'Object ' + x,
+                                    'thumbnail': 'https://cis-login.vscht.cz/static/web/logo_small.png',
                                     'creator': ["John", "Mary", "Peter", "Jane"][parseInt(x)%4] + " " + ["Brown", "Black", "White", "Red", "Yellow", "Blue", "Green", "Gray", "Violet"][parseInt(x)%9]
                                 }
                             }));

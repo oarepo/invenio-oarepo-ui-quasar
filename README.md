@@ -134,12 +134,13 @@ Tpo change the icon, set the ``:icon`` property:
 ```jade
 <template lang="pug">
 q-page.flex.q-ma-lg
-    oarepo-collection-list(:query="query", :icon="iconData")
+    oarepo-collection-list(:query="query", :icon="iconObject")
 </template>
 ```
 
-The ``iconData`` can be either an object with the following structure or 
-``iconData(record) -> iconObject``. 
+The ``iconObject`` can be either an object with the following structure or 
+a function accepting record and returning the object
+``iconData(record, thisVue) -> iconObject``. 
 
 ```javascript
 iconObject = {
@@ -152,8 +153,14 @@ iconObject = {
     cssClass: 'list of css classes to be set on the icon/image element'
 }
 ```
+See [CollectionPage.vue](src/components/CollectionPage.vue) for a custom icon name,
+[CollectionPageImageIcon.vue](src/components/CollectionPageImageIcon.vue) for 
+an icon taken from the data, 
+[CollectionPageFunctionIcon.vue](src/components/CollectionPageFunctionIcon.vue) for
+an icon given as a result of a function.
 
-Set the ``:values`` and ``:icon`` properties
+###### Shown data
+
 
 #### Clickable URLs
 

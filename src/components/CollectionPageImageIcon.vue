@@ -1,6 +1,6 @@
 <template lang="pug">
 q-page.flex.q-ma-lg
-    oarepo-collection-list(:query="query" :icon="{name: 'launch'}")
+    oarepo-collection-list(:query="query" :icon="{urlPath: 'thumbnail'}")
 </template>
 
 <style>
@@ -8,7 +8,6 @@ q-page.flex.q-ma-lg
 
 <script>
 export default {
-    name: 'CollectionPage',
     props: {
         query: Object
     }
