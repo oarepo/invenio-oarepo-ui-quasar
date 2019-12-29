@@ -74,7 +74,9 @@ routes = [
 ]
 ``` 
 
-Inside the component, use either ``<oarepo-collection-card-list>`` or ``<oarepo-collection-table>``.
+Inside the component, use either ``<oarepo-collection-list>``,
+``<oarepo-collection-cards>`` 
+or ``<oarepo-collection-table>``.
 See the Components section below for the configuration, slots and signals.
 
 
@@ -82,36 +84,86 @@ See the Components section below for the configuration, slots and signals.
 
 The library provides the following components:
 
-``OARepoFacets``<br>
+### ``OARepoFacets``
 ``<oarepo-facets>``
 
 A list of facets using QExpansionList
 
-``OARepoCollectionCardList``<br>
-``<oarepo-collection-card-list>``
+### ``OARepoCollectionList``
+``<oarepo-collection-list>``
 
-A renderer for a single collection that presents the records as a list of QCards
+A renderer for a single collection that presents the records as a list.
 
-``OARepoCollectionTable``<br>
+```jade
+<template lang="pug">
+q-page.flex.q-ma-lg
+    oarepo-collection-list(:query="query")
+</template>
+```
+
+#### Custom Rendering
+
+There are three alternatives for custom rendering of record item:
+
+* Configuring which properties should be shown
+* Supplying your own component or component factory
+* Using slot to set your own rendering code
+
+##### Configuring shown properties
+
+###### Icon
+
+Tpo change the icon, set the ``:icon`` property:
+
+```jade
+<template lang="pug">
+q-page.flex.q-ma-lg
+    oarepo-collection-list(:query="query", :icon="iconData")
+</template>
+```
+
+The ``iconData`` can be either an object with the following structure or 
+``iconData(record) -> iconObject``. 
+
+```javascript
+iconObject = {
+    // only one of the following properties should be contained
+    name: 'iconName',
+    namePath: 'xpath to metadata that gives icon name',
+    url: 'url of the image that should be used as an icon',
+    urlPath: 'xpath to the record metadata that gives icon image',
+    // the following props can be added as well
+    cssClass: 'list of css classes to be set on the icon/image element'
+}
+```
+
+Set the ``:values`` and ``:icon`` properties
+
+#### Clickable URLs
+
+
+### ``OARepoCollectionCards``
+``<oarepo-collection-cards>``
+
+A renderer for a single collection that presents the records as a grid of QCards
+
+### ``OARepoCollectionTable``
 ``<oarepo-collection-table>``
 
 A rendered for a single collection that presents the records as QTable
 
-``OARepoRecord``<br>
+### ``OARepoRecord``
 ``<oarepo-record>``
 
 A renderer for a single record
 
-``OARepoRecordInplaceEditor``<br>
+### ``OARepoRecordInplaceEditor``
 ``<oarepo-record-inplace-editor>``
 
 A renderer of an in-place single-property record editor
 
-``OARepoRecordFormEditor``<br>
+### ``OARepoRecordFormEditor``
 ``<oarepo-record-form-editor>``
 
 An editor component for a single record
-
-### ``OARepoFacets``
-
 

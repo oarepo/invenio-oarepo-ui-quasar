@@ -29,7 +29,8 @@ module.exports = {
                                 'metadata': {
                                     '$schema': 'https://restaurovani.vscht.cz/schemas/draft/krokd/restoration-object-v1.0.0.json',
                                     'id': x,
-                                    'title': 'Object ' + x
+                                    'title': 'Object ' + x,
+                                    'creator': ["John", "Mary", "Peter", "Jane"][parseInt(x)%4] + " " + ["Brown", "Black", "White", "Red", "Yellow", "Blue", "Green", "Gray", "Violet"][parseInt(x)%9]
                                 }
                             }));
                         res

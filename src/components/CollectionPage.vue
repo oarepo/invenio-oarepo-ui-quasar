@@ -1,6 +1,6 @@
 <template lang="pug">
-q-page.flex.flex-center
-    img(alt="Quasar logo" src="../assets/logo.png")
+q-page.flex.q-ma-lg
+    oarepo-collection-list(:query="query")
 </template>
 
 <style>
@@ -8,6 +8,9 @@ q-page.flex.flex-center
 
 <script>
 export default {
-    name: 'CollectionPage'
+    name: 'CollectionPage',
+    props: {
+        query: Object
+    }
 }
 </script>
