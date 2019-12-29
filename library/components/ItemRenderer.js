@@ -11,7 +11,7 @@ export default {
         const _vue = this;
 
         function defunc(def, md, x) {
-            return applyFunctionRecursively(def, md, x, _vue, _vue.record);
+            return applyFunctionRecursively(def, md, x, _vue.record, _vue);
         }
 
         function createHtmlElement(def, md, element, elementDefault, elementClass,

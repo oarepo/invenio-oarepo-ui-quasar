@@ -1,5 +1,8 @@
 <template lang="pug">
-q-page.flex.q-ma-lg
+q-page.q-ma-lg
+    q-btn.float-right(icon="launch"
+        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/master/src/components/CollectionValuesTablePage.vue"
+        type="a" target="_blank" flat) View source
     oarepo-collection-list(:query="query" :values="values")
 </template>
 
@@ -25,7 +28,9 @@ export default {
                     children: [
                         // child might be a callable
                         (_metadata, _record, _vue) => {
-                            console.log('Called with', _metadata, _record, _vue)
+                            console.log('Child definition called with',
+                                "metadata", _metadata, "whole record", _record,
+                                "vue instance", _vue)
                             return {
                                 element: 'tr',
                                 path: 'creator',
@@ -37,7 +42,12 @@ export default {
                         },
                         {
                             element: 'tr',
-                            label: 'Thumbnail: ',
+                            label: (metadata, def, record, vue) => {
+                                console.log('Anything can be a callable: definition',
+                                    def, "metadata", metadata, "whole record", record,
+                                    "vue instance", vue)
+                                return 'Thumbnail: '
+                            },
                             labelElement: 'td',
                             labelStyle: 'padding-right: 20px;',
                             children: [{
