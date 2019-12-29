@@ -2,6 +2,22 @@
 
 A library for providing simple (but configurable) UI for ``@oarepo/invenio-api-vuex``
 
+<!-- toc -->
+
+- [Installation](#installation)
+- [Usage](#usage)
+  * [Collection](#collection)
+- [Components](#components)
+  * [``OARepoFacets``](#oarepofacets)
+  * [``OARepoCollectionList``](#oarepocollectionlist)
+  * [``OARepoCollectionCards``](#oarepocollectioncards)
+  * [``OARepoCollectionTable``](#oarepocollectiontable)
+  * [``OARepoRecord``](#oareporecord)
+  * [``OARepoRecordInplaceEditor``](#oareporecordinplaceeditor)
+  * [``OARepoRecordFormEditor``](#oareporecordformeditor)
+
+<!-- tocstop -->
+
 ## Installation
 ```
 yarn add @oarepo/invenio-quasar \
