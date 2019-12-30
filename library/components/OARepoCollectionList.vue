@@ -23,7 +23,7 @@ export default {
     props: {
         query: Object,
         component: [Object, Promise],
-        componentGetter: Function,
+        componentFactory: Function,
         urlGetter: Function,
         values: {
             type: [Array, Function],
@@ -52,8 +52,8 @@ export default {
     },
     methods: {
         recordComponent(record) {
-            if (this.componentGetter !== undefined) {
-                const ret = this.componentGetter(record);
+            if (this.componentFactory !== undefined) {
+                const ret = this.componentFactory(record);
                 if (ret !== undefined) {
                     return ret;
                 }

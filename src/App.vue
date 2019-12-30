@@ -11,39 +11,49 @@ q-layout(view='lHh Lpr lFf')
             q-item-label(header='') Lists
             q-item(clickable='' :to="{name: 'list-simple'}")
                 q-item-section(avatar='')
-                    q-icon(name='school')
+                    q-icon(name='list')
                 q-item-section
                     q-item-label Simple list
             q-item(clickable='' :to="{name: 'list-image-icon'}")
                 q-item-section(avatar='')
-                    q-icon(name='school')
+                    q-icon(name='list')
                 q-item-section
                     q-item-label List with image icon
             q-item(clickable='' :to="{name: 'list-function-icon'}")
                 q-item-section(avatar='')
-                    q-icon(name='school')
+                    q-icon(name='list')
                 q-item-section
                     q-item-label List with icon given by a function
             q-item(clickable='' :to="{name: 'list-no-component'}")
                 q-item-section(avatar='')
-                    q-icon(name='school')
+                    q-icon(name='list')
                 q-item-section
                     q-item-label List with item rendering given by paths without custom component
             q-item(clickable='' :to="{name: 'list-table'}")
                 q-item-section(avatar='')
-                    q-icon(name='school')
+                    q-icon(name='list')
                 q-item-section
                     q-item-label List with props rendered as table
             q-item(clickable='' :to="{name: 'list-prop-value-component'}")
                 q-item-section(avatar='')
-                    q-icon(name='school')
+                    q-icon(name='list')
                 q-item-section
                     q-item-label List with a prop value handled by a component
             q-item(clickable='' :to="{name: 'list-prop-component'}")
                 q-item-section(avatar='')
-                    q-icon(name='school')
+                    q-icon(name='list')
                 q-item-section
                     q-item-label List with a prop handled by a component
+            q-item(clickable='' :to="{name: 'list-component'}" exact)
+                q-item-section(avatar='')
+                    q-icon(name='list')
+                q-item-section
+                    q-item-label List with a record handled by a component
+            q-item(clickable='' :to="{name: 'list-component-factory'}" exact)
+                q-item-section(avatar='')
+                    q-icon(name='list')
+                q-item-section
+                    q-item-label List with a record handled by a component factory
     q-page-container
         router-view
 </template>

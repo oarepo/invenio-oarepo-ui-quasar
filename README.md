@@ -11,7 +11,9 @@ A library for providing simple (but configurable) UI for ``@oarepo/invenio-api-v
   * [``OARepoFacets``](#oarepofacets)
   * [``OARepoCollectionList``](#oarepocollectionlist)
     + [Custom Rendering](#custom-rendering)
-      - [Configuring shown properties](#configuring-shown-properties)
+      - [Default record renderer](#default-record-renderer)
+      - [Supplying your own component or component factory](#supplying-your-own-component-or-component-factory)
+      - [Using slot to set your own rendering code](#using-slot-to-set-your-own-rendering-code)
     + [Clickable URLs](#clickable-urls)
   * [``OARepoCollectionCards``](#oarepocollectioncards)
   * [``OARepoCollectionTable``](#oarepocollectiontable)
@@ -128,7 +130,7 @@ There are three alternatives for custom rendering of record item:
 * Supplying your own component or component factory
 * Using slot to set your own rendering code
 
-##### Configuring shown properties
+##### Default record renderer
 
 ###### Icon
 
@@ -167,7 +169,7 @@ an icon taken from the data,
 [CollectionPageFunctionIcon.vue](src/components/CollectionPageFunctionIcon.vue) for
 an icon given as a result of a function.
 
-###### Shown data
+###### Record properties
 
 To change the presented data, set the ``:values`` property:
 
@@ -237,6 +239,49 @@ The component gets ``:part`` containing the ``definitionObject`` with an added `
 
 Example at [CollectionValuesCustomComponentElementPage.vue](src/components/CollectionValuesCustomComponentElementPage.vue)
 shows the way of using a custom component for rendering the whole property component, without labels nor other decorations
+
+##### Supplying your own component or component factory
+
+A custom component can be passed via the ``:component`` property.
+The component will receive ``:record`` prop.
+
+```jade
+<template lang="pug">
+q-page.flex.q-ma-lg
+    oarepo-collection-list(:query="query" :component="CustomComponent")
+</template>
+```
+
+See example at [CollectionRecordComponentPage.vue](src/components/CollectionRecordComponentPage.vue)
+
+###### ComponentFactory
+
+A factory can be supplied with a signature ``factory(record, _vueList) -> Component``
+
+```vue
+<template lang="pug">
+q-page.flex.q-ma-lg
+    oarepo-collection-list(:query="query" :componentFactory="componentFactory")
+</template>
+
+<script>
+import CustomComponent from './CustomComponent.vue'
+
+export default {
+    methods: {
+        componentFactory(record, _vueList) {
+            // do some decision and 
+            return CustomComponent
+        }
+    }
+}
+</script>
+```
+
+See example at [CollectionRecordComponentFactoryPage.vue](src/components/CollectionRecordComponentFactoryPage.vue)
+
+##### Using slot to set your own rendering code
+
 
 #### Clickable URLs
 
