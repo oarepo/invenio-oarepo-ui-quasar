@@ -8,12 +8,12 @@ module.exports = {
             rtlSupport: false
         },
         'serve-api-mocks': {
-            base: '/api',
+            base: '/demo-invenio-quasar/api',
             routes: [
                 {
                     path: '/records',
                     callback(req, res) {
-                        const data = JSON.parse(fs.readFileSync(path.join(__dirname, 'api/records/GET.json'),
+                        const data = JSON.parse(fs.readFileSync(path.join(__dirname, 'demo-invenio-quasar/api/records/GET.json'),
                             { encoding: 'utf-8' }));
                         const page = parseInt(req.query.page || 1);
                         const pagesize = parseInt(req.query.size || 10);

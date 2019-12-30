@@ -15,7 +15,7 @@ Vue.config.productionTip = false;
 Vue.use(InvenioApi, {
     store,
     router,
-    apiUrl: '/demo-invenio-quasar/api'
+    apiURL: '/demo-invenio-quasar/api'
 });
 Vue.use(VueUid);
 
