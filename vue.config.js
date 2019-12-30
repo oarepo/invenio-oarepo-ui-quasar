@@ -53,7 +53,11 @@ module.exports = {
     devServer: {
         host: '0.0.0.0',
         port: 8080,
-        disableHostCheck: true
+        disableHostCheck: true,
+        before: function(app/*, server, compiler*/) {
+            const morgan = require("morgan");
+            app.use(morgan('dev'));
+        }
     },
     publicPath: './'
 };
