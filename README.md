@@ -23,6 +23,10 @@ A library for providing simple (but configurable) UI for ``@oarepo/invenio-api-v
 
 <!-- tocstop -->
 
+## Demo
+
+See the demo running at [http://mesemus.no-ip.org/demo-invenio-quasar](http://mesemus.no-ip.org/demo-invenio-quasar)
+
 ## Installation
 ```
 yarn add @oarepo/invenio-quasar \
