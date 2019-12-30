@@ -9,7 +9,7 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "toc": "markdown-toc --maxdepth 3 -i README.md"
+    "toc": "markdown-toc --maxdepth 5 -i README.md"
   },
   "dependencies": {
     "@oarepo/invenio-api-vuex": "^2.1.9",
