@@ -34,6 +34,11 @@ q-layout(view='lHh Lpr lFf')
                     q-icon(name='school')
                 q-item-section
                     q-item-label List with props rendered as table
+            q-item(clickable='' :to="{name: 'list-prop-value-component'}")
+                q-item-section(avatar='')
+                    q-icon(name='school')
+                q-item-section
+                    q-item-label List with a prop value handled by a component
             q-item(clickable='' :to="{name: 'list-prop-component'}")
                 q-item-section(avatar='')
                     q-icon(name='school')

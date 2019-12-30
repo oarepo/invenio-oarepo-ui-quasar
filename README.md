@@ -196,23 +196,11 @@ definitionObject = {
    valueElement: 'the value element, defaults to span. Set to null to disable value display',
    path: 'jsonpath to the record metadata that gives the value',
    component: 'custom component to display the value, if not set valueElement will be used',
+   groupValues: '' // if the result of jsonpath is array with multiple values and custom component is used, 
+                   // setting this to true will supply the component with part.value=array.
+                   // Otherwise the component is called multiple times with each value
 }
-```
 
-Every property except component can be a function ``func(metadata, definitionObject, record, vue_inst)``
-where metadata are metadata at the actual path
-
-An example of definition object with attrs but without component is at 
-[CollectionValuesNoComponentPage.vue](src/components/CollectionValuesNoComponentPage.vue)
-
-Tabular layout of props is at 
-[CollectionValuesTablePage.vue](src/components/CollectionValuesTablePage.vue).
-This example also shows that a child value might be a callable as well.
-
-The custom component gets ``:part`` containing the ``definitionObject`` 
-with an extra ``value`` property.
-
-```javascript
 definitionContainer = {
    element: 'element name',
    elementClass: 'extra class(es)',
@@ -229,6 +217,23 @@ definitionContainer = {
    childrenAttrs: {}, // extra html attrs
 }
 ```
+
+Every property except component can be a function ``func(metadata, definitionObject, record, vue_inst)``
+where metadata are metadata at the actual path
+
+An example of definition object with attrs but without component is at 
+[CollectionValuesNoComponentPage.vue](src/components/CollectionValuesNoComponentPage.vue)
+
+Tabular layout of props is at 
+[CollectionValuesTablePage.vue](src/components/CollectionValuesTablePage.vue).
+This example also shows that a child value might be a callable as well.
+
+Example at [CollectionValuesCustomComponentPage.vue](src/components/CollectionValuesCustomComponentPage.vue)
+shows the way of using a custom component for rendering values.
+The component gets ``:part`` containing the ``definitionObject`` with an added ``value`` property.
+
+Example at [CollectionValuesCustomComponentElementPage.vue](src/components/CollectionValuesCustomComponentElementPage.vue)
+shows the way of using a custom component for rendering the whole property component, without labels nor other decorations
 
 #### Clickable URLs
 

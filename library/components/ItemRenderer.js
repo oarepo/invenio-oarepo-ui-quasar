@@ -102,9 +102,15 @@ export default {
             }
 
             if (def.component) {
-                ret.push(...values.map(
-                    (value, idx) => createComponent(def, value, value, `${localKey}[${idx}]`))
-                );
+                if (def.groupValues) {
+                    ret.push(
+                        createComponent(def, values, values, `${localKey}.multiple`)
+                    )
+                } else {
+                    ret.push(...values.map(
+                        (value, idx) => createComponent(def, value, value, `${localKey}[${idx}]`))
+                    );
+                }
             } else {
                 if (!def.children || defunc(def, metadata, def.valueElement)) {
                     ret.push(...values.map(

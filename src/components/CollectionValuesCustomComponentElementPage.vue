@@ -14,7 +14,7 @@ q-page.q-ma-lg
 </style>
 
 <script>
-import SampleValueComponent from './SampleValueComponent.vue';
+import SamplePropertyComponent from './SamplePropertyComponent.vue';
 
 export default {
     props: {
@@ -29,8 +29,10 @@ export default {
                 },
                 {
                     path: 'creator',
-                    component: SampleValueComponent,
-                    extra: "value of extra field"
+                    element: null,      // do not render wrapper element
+                    component: SamplePropertyComponent,
+                    extra: "value of extra field",
+                    groupValues: true
                 },
             ]
         };
