@@ -59,6 +59,11 @@ q-layout(view='lHh Lpr lFf')
                     q-icon(name='list')
                 q-item-section
                     q-item-label List with a slot
+            q-item(clickable='' :to="{name: 'list-ui-link'}" exact)
+                q-item-section(avatar='')
+                    q-icon(name='list')
+                q-item-section
+                    q-item-label List with clickable items opening a detail page
     q-page-container
         router-view
 </template>

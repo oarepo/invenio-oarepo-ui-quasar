@@ -4,6 +4,7 @@ A library for providing simple (but configurable) UI for ``@oarepo/invenio-api-v
 
 <!-- toc -->
 
+- [Demo](#demo)
 - [Installation](#installation)
 - [Usage](#usage)
   * [Collection](#collection)
@@ -14,7 +15,7 @@ A library for providing simple (but configurable) UI for ``@oarepo/invenio-api-v
       - [Default record renderer](#default-record-renderer)
       - [Supplying your own component or component factory](#supplying-your-own-component-or-component-factory)
       - [Using slot to set your own rendering code](#using-slot-to-set-your-own-rendering-code)
-    + [Clickable records](#clickable-records)
+    + [Record UI url](#record-ui-url)
   * [``OARepoCollectionCards``](#oarepocollectioncards)
   * [``OARepoCollectionTable``](#oarepocollectiontable)
   * [``OARepoRecord``](#oareporecord)
@@ -288,7 +289,7 @@ See example at [CollectionRecordComponentFactoryPage.vue](src/components/Collect
 
 If you want to have a complete control over the rendering and do not want to create an extra component,
 you can use the default slot of the ``oarepo-collection-list``. The slot gets ``{record, url}`` in the 
-context (the url being the url of the _ui_ page of the record). See [Clickable records](#clickable-records)
+context (the url being the url of the _ui_ page of the record). See [Record UI url](#record-ui-url)
 section for details.
 
 Please note that the template is rendered as a direct child of ``q-list``, so it is best to use ``q-item``
@@ -317,9 +318,53 @@ export default {
 </script>
 ```
 
-#### Clickable records
+#### Record UI url
 
+This library counts on ``ui`` key present in ``links`` section of the record. It can be added there via:
 
+**server side** 
+
+using a custom link serializer. This might be the preferred solution as even machine client getting the json
+can get the URL of the user representation of the record.
+
+**@oarepo/invenio-api-vuex** configuration
+
+You can supply ``@oarepo/invenio-api-vuex`` with a handler function (``defaultListRecordPreprocessors``, 
+``listRecordPreprocessors``) that is called after a list of records is fetched from the server.
+This function can infer the UI url (for example, from ``$schema`` or ``collectionId``) and place it in links
+
+See [https://github.com/oarepo/invenio-api-vuex#configuration](https://github.com/oarepo/invenio-api-vuex#configuration)
+for more info on that. 
+
+**Handler as a prop to ``oarepo-collection-list``
+
+You can also supply the handler directly on ``oarepo-collection-list``:
+
+```vue
+<template lang="pug">
+q-page.q-ma-lg
+    oarepo-collection-list(:query="query" :url-getter="urlGetter")
+</template>
+
+<style>
+</style>
+
+<script>
+
+export default {
+    props: {
+        query: Object
+    },
+    methods: {
+        urlGetter (record) {
+            return `/records/${record.metadata.id}`
+        }
+    }
+};
+</script>
+```
+
+If the handler is supplied, it takes preference over the ``record.links.ui`` value.
 
 ### ``OARepoCollectionCards``
 ``<oarepo-collection-cards>``

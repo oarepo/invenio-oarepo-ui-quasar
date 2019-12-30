@@ -12,6 +12,7 @@ import CollectionValuesCustomComponentElementPage from '../components/Collection
 import CollectionRecordComponentPage from '../components/CollectionRecordComponentPage';
 import CollectionRecordComponentFactoryPage from '../components/CollectionRecordComponentFactoryPage';
 import CollectionRecordSlotPage from '../components/CollectionRecordSlotPage';
+import CollectionRecordUILinkPage from '../components/CollectionRecordUILinkPage';
 
 Vue.use(VueRouter);
 
@@ -78,6 +79,12 @@ const routes = [
         name: 'list-slot',
         path: '/list-slot',
         component: CollectionRecordSlotPage,
+        props: query([], { collectionId: 'records' })
+    }),
+    routerCollection({
+        name: 'list-ui-link',
+        path: '/list-ui-link',
+        component: CollectionRecordUILinkPage,
         props: query([], { collectionId: 'records' })
     }),
 
