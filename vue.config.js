@@ -56,7 +56,7 @@ module.exports = {
         disableHostCheck: true,
         before: function(app/*, server, compiler*/) {
             const morgan = require("morgan");
-            app.use(morgan('dev'));
+            app.use(morgan('combined'));
         }
     },
     publicPath: process.env.DEMO_DEPLOY_PATH || './'
