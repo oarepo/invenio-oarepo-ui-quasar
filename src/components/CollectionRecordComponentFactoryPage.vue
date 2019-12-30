@@ -2,10 +2,10 @@
 q-page.q-ma-lg
     .float-right
         q-btn.block(icon="launch"
-            href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/master/src/components/CollectionRecordComponentFactoryPage.vue"
+            href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/CollectionRecordComponentFactoryPage.vue"
             type="a" target="_blank" flat) Page source
         q-btn.block(icon="launch"
-            href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/master/src/components/CollectionRecordComponent.vue"
+            href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/CollectionRecordComponent.vue"
             type="a" target="_blank" flat) Component
     oarepo-collection-list(:query="query" :componentFactory="getComponent")
 </template>

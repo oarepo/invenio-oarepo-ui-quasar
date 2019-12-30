@@ -54,6 +54,11 @@ q-layout(view='lHh Lpr lFf')
                     q-icon(name='list')
                 q-item-section
                     q-item-label List with a record handled by a component factory
+            q-item(clickable='' :to="{name: 'list-slot'}" exact)
+                q-item-section(avatar='')
+                    q-icon(name='list')
+                q-item-section
+                    q-item-label List with a slot
     q-page-container
         router-view
 </template>

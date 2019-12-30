@@ -14,7 +14,7 @@ A library for providing simple (but configurable) UI for ``@oarepo/invenio-api-v
       - [Default record renderer](#default-record-renderer)
       - [Supplying your own component or component factory](#supplying-your-own-component-or-component-factory)
       - [Using slot to set your own rendering code](#using-slot-to-set-your-own-rendering-code)
-    + [Clickable URLs](#clickable-urls)
+    + [Clickable records](#clickable-records)
   * [``OARepoCollectionCards``](#oarepocollectioncards)
   * [``OARepoCollectionTable``](#oarepocollectiontable)
   * [``OARepoRecord``](#oareporecord)
@@ -282,8 +282,39 @@ See example at [CollectionRecordComponentFactoryPage.vue](src/components/Collect
 
 ##### Using slot to set your own rendering code
 
+If you want to have a complete control over the rendering and do not want to create an extra component,
+you can use the default slot of the ``oarepo-collection-list``. The slot gets ``{record, url}`` in the 
+context (the url being the url of the _ui_ page of the record). See [Clickable records](#clickable-records)
+section for details.
 
-#### Clickable URLs
+Please note that the template is rendered as a direct child of ``q-list``, so it is best to use ``q-item``
+as the template's element:
+
+```vue
+<template lang="pug">
+q-page.q-ma-lg
+    oarepo-collection-list(:query="query")
+        template(v-slot:default="{record, url}")
+            q-item(:to="url" clickable)
+                q-item-section
+                    pre {{ record.metadata }}
+</template>
+
+<style>
+</style>
+
+<script>
+
+export default {
+    props: {
+        query: Object
+    }
+};
+</script>
+```
+
+#### Clickable records
+
 
 
 ### ``OARepoCollectionCards``

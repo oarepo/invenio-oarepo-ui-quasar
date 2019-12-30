@@ -1,7 +1,7 @@
 <template lang="pug">
 q-list
     template(v-for="record of records")
-        slot(name="record" v-bind:record="record" v-bind:url="recordUrl(record)")
+        slot(v-bind:record="record" v-bind:url="recordUrl(record)")
             component(
                 :key="record.id"
                 :is="recordComponent(record)"
