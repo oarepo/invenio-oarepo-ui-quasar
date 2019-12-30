@@ -59,6 +59,6 @@ module.exports = {
             app.use(morgan('dev'));
         }
     },
-    publicPath: './'
+    publicPath: process.env.DEMO_DEPLOY_PATH || './'
 };
 
