@@ -28,6 +28,7 @@ export default {
                     children: [
                         // child might be a callable
                         (_metadata, _record, _vue) => {
+                            /* eslint-disable no-console */
                             console.log('Child definition called with',
                                 "metadata", _metadata, "whole record", _record,
                                 "vue instance", _vue)
@@ -43,6 +44,7 @@ export default {
                         {
                             element: 'tr',
                             label: (metadata, def, record, vue) => {
+                                /* eslint-disable no-console */
                                 console.log('Anything can be a callable: definition',
                                     def, "metadata", metadata, "whole record", record,
                                     "vue instance", vue)
