@@ -7,7 +7,7 @@ q-list
                 :is="recordComponent(record)"
                 :record="record"
                 :url="recordUrl(record)"
-                :values="values"
+                :display="display"
                 :icon="recordIcon(record)")
 </template>
 
@@ -25,7 +25,7 @@ export default {
         component: [Object, Promise],
         componentFactory: Function,
         urlGetter: Function,
-        values: {
+        display: {
             type: [Array, Function],
             default: () => [
                 {

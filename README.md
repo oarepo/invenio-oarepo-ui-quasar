@@ -176,12 +176,12 @@ an icon given as a result of a function.
 
 ###### Record properties
 
-To change the presented data, set the ``:values`` property:
+To change the presented data, set the ``:display`` property:
 
 ```jade
 <template lang="pug">
 q-page.flex.q-ma-lg
-    oarepo-collection-list(:query="query", :values="valuesDefinition")
+    oarepo-collection-list(:query="query", :display="valuesDefinition")
 </template>
 ```
 
@@ -368,6 +368,8 @@ If the handler is supplied, it takes preference over the ``record.links.ui`` val
 
 ### ``OARepoCollectionCards``
 ``<oarepo-collection-cards>``
+
+
 
 A renderer for a single collection that presents the records as a grid of QCards
 

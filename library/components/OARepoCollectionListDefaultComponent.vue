@@ -6,7 +6,7 @@ q-item(clickable :to="url" exact)
         q-img(:src="displayedIcon.url" v-if="displayedIcon.url"
             :class="displayedIcon.imageClass" :style="displayedIcon.imageStyle")
     q-item-section
-        component(:is="renderer" :record="record" :definition="values")
+        component(:is="renderer" :record="record" :definition="display")
 </template>
 
 <style>
@@ -21,7 +21,7 @@ export default {
     props: {
         record: Object,
         url: String,
-        values: Array,
+        display: Array,
         icon: Object,
         renderer: {
             type: Object,
@@ -31,20 +31,6 @@ export default {
     computed: {
         md() {
             return this.record.metadata;
-        },
-        displayedParts() {
-            return this.values.map(partDesc => {
-                return JSONPath({
-                    path: partDesc.path,
-                    json: this.md
-                })
-                    .map(value => ({
-                        ...partDesc,
-                        value
-                    }));
-            })
-                .flat()
-                .filter(x => x.value !== undefined);
         },
         displayedIcon() {
             const ret = { ...this.icon };
