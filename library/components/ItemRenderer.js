@@ -5,7 +5,8 @@ import { applyFunctionRecursively } from '../utils';
 export default {
     props: {
         record: Object,
-        definition: Array
+        definition: Array,
+        url: String
     },
     render(h) {
         const _vue = this;
@@ -47,7 +48,7 @@ export default {
         }
 
         function createValue(def, md, value, key) {
-            return h(defunc(def, md, def.valueElement) || 'span', {
+            const ret = h(defunc(def, md, def.valueElement) || 'span', {
                 class: defunc(def, md, def.valueClass),
                 style: defunc(def, md, def.valueStyle),
                 attrs: {
@@ -56,25 +57,40 @@ export default {
                 },
                 key
             }, defunc(def, md, value));
+            const link = defunc(def, md, def.link)
+            const attrs = {
+                to: _vue.url || '/',
+                ...(Object(link) === def.link ? def.link : {}),
+            }
+            if (link) {
+                return h('router-link', {
+                        attrs
+                    },
+                    [ret]
+                );
+            }
+            return ret;
         }
 
         function merge(a, b, separator) {
             if (a === Object(a)) {
                 if (b === Object(b)) {
-                    return {...b, ...a}
+                    return { ...b, ...a };
                 } else {
-                    b = Object.fromEntries((b || '').split(separator).map(x => [x, true]))
-                    return {...b, ...a}
+                    b = Object.fromEntries((b || '').split(separator)
+                        .map(x => [x, true]));
+                    return { ...b, ...a };
                 }
             } else {
                 if (b === Object(b)) {
-                    a = Object.fromEntries((a || '').split(separator).map(x => [x, true]))
-                    return {...b, ...a}
+                    a = Object.fromEntries((a || '').split(separator)
+                        .map(x => [x, true]));
+                    return { ...b, ...a };
                 }
                 if (a !== undefined) {
-                    return `${b}${separator}${a}`
+                    return `${b}${separator}${a}`;
                 } else {
-                    return b
+                    return b;
                 }
             }
         }
@@ -105,7 +121,7 @@ export default {
                 if (def.groupValues) {
                     ret.push(
                         createComponent(def, values, values, `${localKey}.multiple`)
-                    )
+                    );
                 } else {
                     ret.push(...values.map(
                         (value, idx) => createComponent(def, value, value, `${localKey}[${idx}]`))
@@ -125,19 +141,18 @@ export default {
                     const childrenAttrs = defunc(def, metadata, def.childrenAttrs);
                     rr.forEach(vnode => {
                         if (childrenClass) {
-                            vnode.data.class = merge(vnode.data.class, childrenClass, ' ')
+                            vnode.data.class = merge(vnode.data.class, childrenClass, ' ');
                         }
                         if (childrenStyle) {
-                            vnode.data.style = merge(vnode.data.style, childrenStyle, ';')
+                            vnode.data.style = merge(vnode.data.style, childrenStyle, ';');
                         }
                         if (childrenAttrs) {
-                            vnode.data.attrs = merge(vnode.data.attrs, childrenAttrs, ' ')
+                            vnode.data.attrs = merge(vnode.data.attrs, childrenAttrs, ' ');
                         }
-                    })
+                    });
                     ret.push(...rr);
                 }
             }
-
             if (def.element !== null) {
                 return createHtmlElement(def, metadata, def.element, 'div',
                     def.elementClass, def.elementStyle, def.elementAttrs, ret, localKey);

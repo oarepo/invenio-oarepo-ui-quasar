@@ -4,7 +4,7 @@ function applyFunctionRecursively(def, md, x, ...args) {
     } else if (x instanceof Function) {
         x = x(md, def, ...args);
     } else if (x === Object(x)) {
-        if (x.tag !== undefined && x.key !== undefined) {
+        if (x.tag !== undefined || x.key !== undefined) {
             // probably a VNode, just return
             return x
         }

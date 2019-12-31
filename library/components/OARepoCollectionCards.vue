@@ -1,16 +1,15 @@
 <template lang="pug">
-q-list
+.row.items-start
     template(v-for="record of records")
-        slot(v-bind:record="record" v-bind:url="recordUrl(record)")
-            component(
-                :key="record.id"
-                :is="recordComponent(record)"
-                :record="record"
-                :url="recordUrl(record)"
-                :display="display"
-                :icon="recordIcon(record)"
-                :class="itemClass"
-                :style="itemStyle")
+        div(:class="itemClass" :style="itemStyle")
+            slot(v-bind:record="record" v-bind:url="recordUrl(record)")
+                component(
+                    :key="record.id"
+                    :is="recordComponent(record)"
+                    :record="record"
+                    :url="recordUrl(record)"
+                    :display="display"
+                    :icon="recordIcon(record)")
 </template>
 
 <style>
@@ -18,10 +17,10 @@ q-list
 
 <script>
 
-import OARepoCollectionListDefaultComponent from './OARepoCollectionListDefaultComponent';
+import OARepoCollectionCardsDefaultComponent from './OARepoCollectionCardsDefaultComponent';
 
 export default {
-    name: 'oarepo-collection-list',
+    name: 'oarepo-collection-cards',
     props: {
         query: Object,
         component: [Object, Promise],
@@ -32,7 +31,8 @@ export default {
             default: () => [
                 {
                     path: 'title',
-                    valueClass: 'text-weight-bolder'
+                    valueClass: 'text-weight-bolder',
+                    link: true
                 },
                 {
                     path: 'creator'
@@ -62,7 +62,7 @@ export default {
                     return ret;
                 }
             }
-            return this.component || OARepoCollectionListDefaultComponent;
+            return this.component || OARepoCollectionCardsDefaultComponent;
         },
         recordUrl(record) {
             if (this.urlGetter !== undefined) {

@@ -2,17 +2,19 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { routerCollection } from '@oarepo/invenio-api-vuex';
 import { query } from '@oarepo/vue-query-synchronizer';
-import CollectionPage from '../components/CollectionPage';
-import CollectionPageImageIcon from '../components/CollectionPageImageIcon';
-import CollectionPageFunctionIcon from '../components/CollectionPageFunctionIcon';
-import CollectionValuesNoComponentPage from '../components/CollectionValuesNoComponentPage';
-import CollectionValuesTablePage from '../components/CollectionValuesTablePage';
-import CollectionValuesCustomComponentPage from '../components/CollectionValuesCustomComponentPage';
-import CollectionValuesCustomComponentElementPage from '../components/CollectionValuesCustomComponentElementPage';
-import CollectionRecordComponentPage from '../components/CollectionRecordComponentPage';
-import CollectionRecordComponentFactoryPage from '../components/CollectionRecordComponentFactoryPage';
-import CollectionRecordSlotPage from '../components/CollectionRecordSlotPage';
-import CollectionRecordUILinkPage from '../components/CollectionRecordUILinkPage';
+import CollectionPage from '../components/lists/CollectionPage';
+import CollectionPageImageIcon from '../components/lists/CollectionPageImageIcon';
+import CollectionPageFunctionIcon from '../components/lists/CollectionPageFunctionIcon';
+import CollectionValuesNoComponentPage from '../components/lists/CollectionValuesNoComponentPage';
+import CollectionValuesTablePage from '../components/lists/CollectionValuesTablePage';
+import CollectionValuesCustomComponentPage from '../components/lists/CollectionValuesCustomComponentPage';
+import CollectionValuesCustomComponentElementPage from '../components/lists/CollectionValuesCustomComponentElementPage';
+import CollectionRecordComponentPage from '../components/lists/CollectionRecordComponentPage';
+import CollectionRecordComponentFactoryPage from '../components/lists/CollectionRecordComponentFactoryPage';
+import CollectionRecordSlotPage from '../components/lists/CollectionRecordSlotPage';
+import CollectionRecordUILinkPage from '../components/lists/CollectionRecordUILinkPage';
+import CollectionCardsPage from '../components/cards/CollectionCardsPage';
+import CollectionCardsGridPage from '../components/cards/CollectionCardsGridPage';
 
 Vue.use(VueRouter);
 
@@ -79,6 +81,18 @@ const routes = [
         name: 'list-slot',
         path: '/list-slot',
         component: CollectionRecordSlotPage,
+        props: query([], { collectionId: 'records' })
+    }),
+    routerCollection({
+        name: 'cards-simple',
+        path: '/cards-simple',
+        component: CollectionCardsPage,
+        props: query([], { collectionId: 'records' })
+    }),
+    routerCollection({
+        name: 'cards-grid',
+        path: '/cards-grid',
+        component: CollectionCardsGridPage,
         props: query([], { collectionId: 'records' })
     }),
     routerCollection({

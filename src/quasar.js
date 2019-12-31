@@ -19,6 +19,10 @@ import {
     QItemSection,
     QItemLabel,
     QImg,
+    QExpansionItem,
+    QCard,
+    QCardSection,
+    QCardActions
 } from 'quasar';
 
 Vue.use(Quasar, {
@@ -37,7 +41,11 @@ Vue.use(Quasar, {
         QItem,
         QItemSection,
         QItemLabel,
-        QImg
+        QImg,
+        QExpansionItem,
+        QCard,
+        QCardSection,
+        QCardActions
     },
     directives: {},
     plugins: {}

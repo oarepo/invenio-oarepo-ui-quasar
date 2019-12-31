@@ -1,0 +1,19 @@
+<template lang="pug">
+q-page.q-ma-lg
+    q-btn.float-right(icon="launch"
+        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/cards/CollectionCardsGridPage.vue"
+        type="a" target="_blank" flat) View source
+    oarepo-collection-cards.q-col-gutter-md(:query="query" :icon="{name: 'launch'}"
+        item-class='col-3')
+</template>
+
+<style>
+</style>
+
+<script>
+export default {
+    props: {
+        query: Object
+    }
+}
+</script>

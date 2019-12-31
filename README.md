@@ -11,7 +11,7 @@ A library for providing simple (but configurable) UI for ``@oarepo/invenio-api-v
 - [Components](#components)
   * [``OARepoFacets``](#oarepofacets)
   * [``OARepoCollectionList``](#oarepocollectionlist)
-    + [Custom Rendering](#custom-rendering)
+    + [Record Rendering](#record-rendering)
       - [Default record renderer](#default-record-renderer)
       - [Supplying your own component or component factory](#supplying-your-own-component-or-component-factory)
       - [Using slot to set your own rendering code](#using-slot-to-set-your-own-rendering-code)
@@ -123,11 +123,11 @@ A renderer for a single collection that presents the records as a list.
 ```jade
 <template lang="pug">
 q-page.flex.q-ma-lg
-    oarepo-collection-list(:query="query")
+    oarepo-collection-list(:query="query" itemClass="" itemStyle="")
 </template>
 ```
 
-#### Custom Rendering
+#### Record Rendering
 
 There are three alternatives for custom rendering of record item:
 
@@ -168,10 +168,10 @@ iconObject = {
     avatarStyle: 'extra css style for the avatar wrapper',
 }
 ```
-See [CollectionPage.vue](src/components/CollectionPage.vue) for a custom icon name,
-[CollectionPageImageIcon.vue](src/components/CollectionPageImageIcon.vue) for 
+See [CollectionPage.vue](src/components/lists/CollectionPage.vue) for a custom icon name,
+[CollectionPageImageIcon.vue](src/components/lists/CollectionPageImageIcon.vue) for 
 an icon taken from the data, 
-[CollectionPageFunctionIcon.vue](src/components/CollectionPageFunctionIcon.vue) for
+[CollectionPageFunctionIcon.vue](src/components/lists/CollectionPageFunctionIcon.vue) for
 an icon given as a result of a function.
 
 ###### Record properties
@@ -206,6 +206,7 @@ definitionObject = {
    valueElement: 'the value element, defaults to span. Set to null to disable value display',
    path: 'jsonpath to the record metadata that gives the value',
    component: 'custom component to display the value, if not set valueElement will be used',
+   link: false,    // set to true to wrap the value with an 'a' element pointing to record.links.ui
    groupValues: '' // if the result of jsonpath is array with multiple values and custom component is used, 
                    // setting this to true will supply the component with part.value=array.
                    // Otherwise the component is called multiple times with each value
@@ -232,17 +233,17 @@ Every property except component can be a function ``func(metadata, definitionObj
 where metadata are metadata at the actual path
 
 An example of definition object with attrs but without component is at 
-[CollectionValuesNoComponentPage.vue](src/components/CollectionValuesNoComponentPage.vue)
+[CollectionValuesNoComponentPage.vue](src/components/lists/CollectionValuesNoComponentPage.vue)
 
 Tabular layout of props is at 
-[CollectionValuesTablePage.vue](src/components/CollectionValuesTablePage.vue).
+[CollectionValuesTablePage.vue](src/components/lists/CollectionValuesTablePage.vue).
 This example also shows that a child value might be a callable as well.
 
-Example at [CollectionValuesCustomComponentPage.vue](src/components/CollectionValuesCustomComponentPage.vue)
+Example at [CollectionValuesCustomComponentPage.vue](src/components/lists/CollectionValuesCustomComponentPage.vue)
 shows the way of using a custom component for rendering values.
 The component gets ``:part`` containing the ``definitionObject`` with an added ``value`` property.
 
-Example at [CollectionValuesCustomComponentElementPage.vue](src/components/CollectionValuesCustomComponentElementPage.vue)
+Example at [CollectionValuesCustomComponentElementPage.vue](src/components/lists/CollectionValuesCustomComponentElementPage.vue)
 shows the way of using a custom component for rendering the whole property component, without labels nor other decorations
 
 ##### Supplying your own component or component factory
@@ -257,7 +258,7 @@ q-page.flex.q-ma-lg
 </template>
 ```
 
-See example at [CollectionRecordComponentPage.vue](src/components/CollectionRecordComponentPage.vue)
+See example at [CollectionRecordComponentPage.vue](src/components/lists/CollectionRecordComponentPage.vue)
 
 ###### ComponentFactory
 
@@ -283,7 +284,7 @@ export default {
 </script>
 ```
 
-See example at [CollectionRecordComponentFactoryPage.vue](src/components/CollectionRecordComponentFactoryPage.vue)
+See example at [CollectionRecordComponentFactoryPage.vue](src/components/lists/CollectionRecordComponentFactoryPage.vue)
 
 ##### Using slot to set your own rendering code
 
@@ -336,7 +337,7 @@ This function can infer the UI url (for example, from ``$schema`` or ``collectio
 See [https://github.com/oarepo/invenio-api-vuex#configuration](https://github.com/oarepo/invenio-api-vuex#configuration)
 for more info on that. 
 
-**Handler as a prop to ``oarepo-collection-list``
+**Handler as a prop to ``oarepo-collection-list``**
 
 You can also supply the handler directly on ``oarepo-collection-list``:
 
@@ -364,14 +365,27 @@ export default {
 </script>
 ```
 
-If the handler is supplied, it takes preference over the ``record.links.ui`` value.
+If the handler is supplied, its return value is used instead of the ``record.links.ui`` value.
 
 ### ``OARepoCollectionCards``
 ``<oarepo-collection-cards>``
 
+A renderer for a single collection that presents the records as a grid of QCards. Similarly to 
+``OARepoCollectionList`` this component can display the record with the help of display definition, 
+custom component or factory or a filled slot. See the section above for details.
 
+```pug
+oarepo-collection-cards(:query="query" :display='displayDefinition' itemClass="" itemStyle="")
 
-A renderer for a single collection that presents the records as a grid of QCards
+oarepo-collection-cards(:query="query" :component='MyComponent')
+
+oarepo-collection-cards(:query="query" :componentFactory='createComponent')
+
+oarepo-collection-cards(:query="query")
+    template(v-slot:default="{record, url}")
+        q-card ...
+``` 
+
 
 ### ``OARepoCollectionTable``
 ``<oarepo-collection-table>``

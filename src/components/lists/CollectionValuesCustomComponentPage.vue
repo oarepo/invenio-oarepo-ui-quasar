@@ -2,10 +2,10 @@
 q-page.q-ma-lg
     .float-right
         q-btn.block(icon="launch"
-            href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/CollectionValuesCustomComponentElementPage.vue"
+            href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/lists/CollectionValuesCustomComponentPage.vue"
             type="a" target="_blank" flat) Page source
         q-btn.block(icon="launch"
-            href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/SamplePropertyComponent.vue"
+            href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/lists/SampleValueComponent.vue"
             type="a" target="_blank" flat) Component
     oarepo-collection-list(:query="query" :display="values")
 </template>
@@ -14,7 +14,7 @@ q-page.q-ma-lg
 </style>
 
 <script>
-import SamplePropertyComponent from './SamplePropertyComponent.vue';
+import SampleValueComponent from './SampleValueComponent.vue';
 
 export default {
     props: {
@@ -29,10 +29,8 @@ export default {
                 },
                 {
                     path: 'creator',
-                    element: null,      // do not render wrapper element
-                    component: SamplePropertyComponent,
-                    extra: "value of extra field",
-                    groupValues: true
+                    component: SampleValueComponent,
+                    extra: "value of extra field"
                 },
             ]
         };
