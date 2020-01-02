@@ -100,11 +100,12 @@ export default {
                     value: {},
                     childrenWrapper: {
                         element: 'table',
+                        style: {'border-collapse': 'collapse'},
                     },
                     root: {
                         element: 'table',
                         class: '',
-                        style: '',
+                        style: {'border-collapse': 'collapse'},
                         attrs: ''
                     },
                     layoutCallback: (layout) => {

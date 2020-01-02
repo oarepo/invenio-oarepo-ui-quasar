@@ -126,6 +126,14 @@ q-page.q-ma-lg
                     data-renderer(:data="data" :url="url" :schema="query.schema"
                         :nestedChildren="true" :pathDefinitions="contactDefinition")
 
+        .div.col-4
+            .q-card.full-height
+                q-card-section
+                    .text-weight-medium Dynamic definition with removed Contact
+                    q-separator.q-mb-md
+                    data-renderer(:data="data" :url="url" :schema="query.schema"
+                        :nestedChildren="true" :pathDefinitions="noContactDefinition")
+
 </template>
 
 <script>
@@ -346,6 +354,9 @@ export default {
                         }
                     ]
                 }
+            },
+            noContactDefinition: {
+                'contact': null
             }
         };
     }

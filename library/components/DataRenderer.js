@@ -61,7 +61,10 @@ export default {
             const layout = {};
 
             // create the definition of wrapper
-            const wrapperDef = this.defunc(definition.wrapper, data, definition, paths, false) || this.currentSchema['wrapper'];
+            const wrapperDef = {
+                ...this.currentSchema['wrapper'],
+                ...(this.defunc(definition.wrapper, data, definition, paths, false) || {})
+            };
             const wrapper = this.renderElement(h, data, definition,
                 'wrapper', 'div',
                 wrapperDef, key, paths, values);
@@ -80,6 +83,11 @@ export default {
                     ...this.currentSchema['label'],
                     value: labelDef,
                 };
+            } else {
+                labelDef = {
+                    ...this.currentSchema['label'],
+                    labelDef
+                }
             }
             const labelValue = this.currentLabelTranslator(
                 {
@@ -109,7 +117,10 @@ export default {
             }
 
             const childrenWrapperTree = [];
-            const childrenWrapperDef = this.defunc(definition.childrenWrapper, data, definition, paths, false) || this.currentSchema['childrenWrapper'];
+            const childrenWrapperDef = {
+                ...this.currentSchema['childrenWrapper'],
+                ...(this.defunc(definition.childrenWrapper, data, definition, paths, false) || {})
+            };
             const childrenWrapper = this.renderElement(h, data, definition,
                 'children-wrapper', 'div',
                 childrenWrapperDef, key, paths, values);
@@ -135,7 +146,10 @@ export default {
             }
             const nestedChildren = this.defunc(definition.nestedChildren, data, definition, paths) || this.defunc(this.nestedChildren, data, definition, paths);
 
-            const valueWrapperDef = this.defunc(definition.valueWrapper, data, definition, paths, false) || this.currentSchema['valueWrapper'];
+            const valueWrapperDef = {
+                ...this.currentSchema['valueWrapper'],
+                ...(this.defunc(definition.valueWrapper, data, definition, paths, false) || {})
+            };
             const valueWrapper = this.renderElement(h, data, definition,
                 'value-wrapper', 'div',
                 valueWrapperDef, key, paths, values);
@@ -148,7 +162,10 @@ export default {
                 // render values by default only if there are no children
                 if (!childrenWrapperTree.length) {
                     values.forEach(value => {
-                        const renderedValueDef = this.defunc(definition.value, data, definition, paths, false) || this.currentSchema['value'];
+                        const renderedValueDef = {
+                            ...this.currentSchema['value'],
+                            ...(this.defunc(definition.value, data, definition, paths, false) || {})
+                        };
                         const renderedValue = this.renderElement(h, data, definition,
                             'value', 'div',
                             renderedValueDef, key, paths, value);
@@ -353,7 +370,7 @@ export default {
                             path: childName,
                             label: childName
                         };
-                    });
+                    }).filter(x => !!x);
             }
             return [];
         }
