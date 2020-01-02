@@ -22,6 +22,10 @@ A library for providing simple (but configurable) UI for ``@oarepo/invenio-api-v
   * [``OARepoRecordInplaceEditor``](#oareporecordinplaceeditor)
   * [``OARepoRecordFormEditor``](#oareporecordformeditor)
   * [DataRenderer](#datarenderer)
+    + [Overriding elements with slots](#overriding-elements-with-slots)
+    + [Overriding elements with custom components](#overriding-elements-with-custom-components)
+    + [Translating labels](#translating-labels)
+    + [Dynamic definition](#dynamic-definition)
 
 <!-- tocstop -->
 
@@ -517,3 +521,27 @@ initialized or a ``:labelTranslator`` prop containing function with the followin
 
 and returning the translated label or null if the label should not appear. The default implementation adds ':'
 after the label for ``inline`` schema. 
+
+#### Dynamic definition
+
+There might be cases when the definition of the object is not known in advance and
+the data (or a subtree of data) should be rendered as they are. In these cases
+the definition can be created "on-the-fly".
+
+To use this feature, either do not pass ``definition`` at all or pass the known
+part of the definition and annotate the elements to be rendered dynamically
+as ``dynamic: true`` (or use the global ``dynamicDefinition`` option or prop).
+
+It might be useful to have the whole definition or parts dynamic but provide
+custom definition for selected paths. To do this, pass ``:pathDefinitions``
+property.
+
+The value of the property is either:
+
+ * object with keys (same as slot names but without the 'element' prefix) 
+   and value the definition of the object at the given path
+ * function taking ``({context, definition, data, paths})``  
+   and returning 
+   - the definition
+   - ``null`` if the element should not be rendered at all
+   - ``undefined`` to use dynamic rendering on the element

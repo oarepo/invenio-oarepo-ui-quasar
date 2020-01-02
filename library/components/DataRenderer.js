@@ -4,6 +4,10 @@ function isString(obj) {
     return (Object.prototype.toString.call(obj) === '[object String]');
 }
 
+function isObject(obj) {
+    return Object(obj) === obj;
+}
+
 export default {
     props: {
         data: Object,
@@ -19,7 +23,11 @@ export default {
         showEmpty: Boolean,
         nestedChildren: Boolean,
         schema: [String, Object],
-        labelTranslator: Function
+        labelTranslator: Function,
+        dynamicDefinition: Boolean,
+        pathDefinitions: {
+            type: [Function, Object]
+        }
     },
     methods: {
         renderDefinitionList(h, data, definition, key, paths) {
@@ -113,6 +121,16 @@ export default {
                         (value, idx) => childrenWrapper.factory(this.renderDefinitionList(h, value,
                             definition.children || [], `${localKey}{${idx}}.`, paths)))
                         .flat());
+                } else if (this.dynamicRendering || definition.dynamic) {
+                    values.forEach((value, idx) => {
+                        if (isObject(value)) {
+                            childrenWrapperTree.push(...childrenWrapper.factory(
+                                this.renderDefinitionList(h, value,
+                                    this.createDynamicDefinition(data, definition, paths, value),
+                                    `${localKey}{${idx}}.`, paths)
+                            ));
+                        }
+                    });
                 }
             }
             const nestedChildren = this.defunc(definition.nestedChildren, data, definition, paths) || this.defunc(this.nestedChildren, data, definition, paths);
@@ -197,7 +215,7 @@ export default {
             if (component === null) {
                 return {
                     content: []
-                }
+                };
             }
             if (component !== undefined) {
                 return {
@@ -245,6 +263,11 @@ export default {
             };
         },
         findPathInDict(paths, mapper, element) {
+            if (element) {
+                element = `${element}-`;
+            } else {
+                element = '';
+            }
             paths = paths || [];
             if (!paths.length) {
                 return undefined;
@@ -252,20 +275,20 @@ export default {
             if (!mapper || !Object.getOwnPropertyNames(mapper).length) {
                 return undefined;
             }
-            let value = mapper[`-${element}-${paths[0]}$${this.currentSchemaCode}`];
+            let value = mapper[`-${element}${paths[0]}$${this.currentSchemaCode}`];
             if (value !== undefined) {
                 return value;
             }
-            value = mapper[`-${element}-${paths[0]}`];
+            value = mapper[`-${element}${paths[0]}`];
             if (value !== undefined) {
                 return value;
             }
             for (const path of paths) {
-                value = mapper[`${element}-${path}$${this.currentSchemaCode}`];
+                value = mapper[`${element}${path}$${this.currentSchemaCode}`];
                 if (value !== undefined) {
                     return value;
                 }
-                value = mapper[`${element}-${path}`];
+                value = mapper[`${element}${path}`];
                 if (value !== undefined) {
                     return value;
                 }
@@ -298,7 +321,7 @@ export default {
                 if (Array.isArray(value)) {
                     return value.map(x => this.defunc(x, context, definition, paths, recursive));
                 }
-                if (Object(value) === value) {
+                if (isObject(value)) {
                     return Object.getOwnPropertyNames({ ...value })
                         .reduce((prev, current) => {
                             if (current === 'component') {
@@ -311,6 +334,28 @@ export default {
                 }
             }
             return value;
+        },
+        createDynamicDefinition(context, definition, paths, data) {
+            if (isObject(data)) {
+                return Object.getOwnPropertyNames({ ...data })
+                    .map(childName => {
+                        const childPaths = paths.map(path => `${path}/${childName}`);
+                        childPaths.push(childName);
+                        const ret = this.currentPathDefinitions(
+                            {
+                                context,
+                                definition,
+                                data: this.data,
+                                paths: childPaths
+                            });
+                        if (ret !== undefined) return ret;
+                        return {
+                            path: childName,
+                            label: childName
+                        };
+                    });
+            }
+            return [];
         }
     },
     computed: {
@@ -320,6 +365,15 @@ export default {
             }
             return ({ /* context, definition, data, */ paths, element }) => {
                 return this.findPathInDict(paths, this.components, element);
+            };
+        },
+        currentPathDefinitions() {
+            if (this.pathDefinitions instanceof Function) {
+                return this.pathDefinitions;
+            }
+            return ({ /* context, definition, data, */ paths }) => {
+                console.log('looking for', paths, "in", this.pathDefinitions)
+                return this.findPathInDict(paths, this.pathDefinitions || {}, null);
             };
         },
         currentSchema() {
@@ -337,14 +391,27 @@ export default {
                 return this.labelTranslator;
             }
             return this.$oarepo.quasar.labelTranslator;
+        },
+        dynamicRendering() {
+            if (this.definition === undefined) {
+                return true;
+            }
+            if (this.dynamicDefinition !== undefined) {
+                return this.dynamicDefinition;
+            }
+            return this.$oarepo.quasar.dynamicDefinition;
         }
     },
     render(h) {
         let ret;
-        if (Array.isArray(this.definition)) {
-            ret = this.renderDefinitionList(h, this.data, this.definition, `data-${this.$_uid}/`, []);
+        let definition = this.definition;
+        if (definition === undefined) {
+            definition = this.createDynamicDefinition(this.data, {}, [''], this.data);
+        }
+        if (Array.isArray(definition)) {
+            ret = this.renderDefinitionList(h, this.data, definition, `data-${this.$_uid}/`, []);
         } else {
-            ret = this.renderDefinition(h, this.data, this.definition, `data-${this.$_uid}/`, []);
+            ret = this.renderDefinition(h, this.data, definition, `data-${this.$_uid}/`, []);
         }
         const root = this.root ? this.root : this.currentSchema.root;
         return h(root.element, {

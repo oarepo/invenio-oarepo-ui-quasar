@@ -6,25 +6,26 @@ q-page.q-ma-lg
 
     .q-gutter-sm.fixed-top-right.z-max.q-pt-xs.q-pr-lg.text-white
         span Display schema:
-        q-radio(v-model="schema" val="inline" label="inline" color="yellow")
-        q-radio(v-model="schema" val="block" label="block" color="yellow")
-        q-radio(v-model="schema" val="table" label="table" color="yellow")
-        q-radio(v-model="schema" val="flex" label="flex" color="yellow")
+        q-radio(v-model="query.schema" val="inline" label="inline" color="yellow")
+        q-radio(v-model="query.schema" val="block" label="block" color="yellow")
+        q-radio(v-model="query.schema" val="table" label="table" color="yellow")
+        q-radio(v-model="query.schema" val="flex" label="flex" color="yellow")
 
+    h6 Default rendering and slots
     .row.q-col-gutter-sm
         .div.col-4
             .q-card.full-height
                 q-card-section
                     .text-weight-medium Default rendering
                     q-separator.q-mb-md
-                    data-renderer(:data="data" :definition="d1" :url="url" :schema="schema")
+                    data-renderer(:data="data" :definition="d1" :url="url" :schema="query.schema")
 
         .div.col-4
             .q-card.full-height
                 q-card-section
                     .text-weight-medium Rendered with #[code v-slot:value-thumbnail]
                     q-separator.q-mb-md
-                    data-renderer(:data="data" :definition="d2" :url="url" :schema="schema")
+                    data-renderer(:data="data" :definition="d2" :url="url" :schema="query.schema")
                         template(v-slot:value-thumbnail="{value}")
                             div
                                 img(:src="value" style="height: 40px;")
@@ -34,7 +35,7 @@ q-page.q-ma-lg
                 q-card-section
                     .text-weight-medium Rendered with #[code v-slot:-value-thumbnail]
                     q-separator.q-mb-md
-                    data-renderer(:data="data" :definition="d2" :url="url" :schema="schema")
+                    data-renderer(:data="data" :definition="d2" :url="url" :schema="query.schema")
                         template(v-slot:-value-thumbnail="{value}")
                             div
                                 img(:src="value" style="height: 40px;")
@@ -46,7 +47,7 @@ q-page.q-ma-lg
                 q-card-section
                     .text-weight-medium Rendered with #[code v-slot:value-contact]
                     q-separator.q-mb-md
-                    data-renderer(:data="data" :definition="d1" :url="url" :schema="schema")
+                    data-renderer(:data="data" :definition="d1" :url="url" :schema="query.schema")
                         template(v-slot:value-contact="{value}")
                             table(style="border-collapse: collapse;")
                                 tr #[td Phone: ] {{ value.phone }}
@@ -57,15 +58,17 @@ q-page.q-ma-lg
                 q-card-section
                     .text-weight-medium Rendered with tree definition
                     q-separator.q-mb-md
-                    data-renderer(:data="data" :definition="d3" :url="url" :schema="schema")
+                    data-renderer(:data="data" :definition="d3" :url="url" :schema="query.schema")
 
+    h6 Supplying custom component
+    .row.q-col-gutter-sm
         .div.col-4
             .q-card.full-height
                 q-card-section
                     .text-weight-medium Rendered with custom component for Creator
                     q-separator.q-mb-md
                     data-renderer(:data="data" :definition="d1" :url="url"
-                        :schema="schema" :components="creatorCustomComponent")
+                        :schema="query.schema" :components="creatorCustomComponent")
 
         .div.col-4
             .q-card.full-height
@@ -73,7 +76,7 @@ q-page.q-ma-lg
                     .text-weight-medium Rendered with custom component for Creator label
                     q-separator.q-mb-md
                     data-renderer(:data="data" :definition="d1" :url="url"
-                        :schema="schema" :components="creatorLabelCustomComponent")
+                        :schema="query.schema" :components="creatorLabelCustomComponent")
 
         .div.col-4
             .q-card.full-height
@@ -81,7 +84,7 @@ q-page.q-ma-lg
                     .text-weight-medium Rendered with custom component for Creator value
                     q-separator.q-mb-md
                     data-renderer(:data="data" :definition="d1" :url="url"
-                        :schema="schema" :components="creatorValueCustomComponent")
+                        :schema="query.schema" :components="creatorValueCustomComponent")
 
         .div.col-4
             .q-card.full-height
@@ -89,7 +92,7 @@ q-page.q-ma-lg
                     .text-weight-medium Skipping creator with a custom component set to null
                     q-separator.q-mb-md
                     data-renderer(:data="data" :definition="d1" :url="url"
-                        :schema="schema" :components="creatorSkip")
+                        :schema="query.schema" :components="creatorSkip")
 
         .div.col-4
             .q-card.full-height
@@ -97,7 +100,31 @@ q-page.q-ma-lg
                     .text-weight-medium Rendered with custom component in definition
                     q-separator.q-mb-md
                     data-renderer(:data="data" :definition="d4" :url="url"
-                        :schema="schema")
+                        :schema="query.schema")
+    h6 Dynamic definition
+    .row.q-col-gutter-sm
+        .div.col-4
+            .q-card.full-height
+                q-card-section
+                    .text-weight-medium No definition at all
+                    q-separator.q-mb-md
+                    data-renderer(:data="data" :url="url" :schema="query.schema" :nestedChildren="true")
+
+        .div.col-4
+            .q-card.full-height
+                q-card-section
+                    .text-weight-medium Definition with dynamic contact details
+                    q-separator.q-mb-md
+                    data-renderer(:data="data" :url="url" :definition="d5"
+                        :schema="query.schema" :nestedChildren="true")
+
+        .div.col-4
+            .q-card.full-height
+                q-card-section
+                    .text-weight-medium Dynamic definition with custom definition of Contact
+                    q-separator.q-mb-md
+                    data-renderer(:data="data" :url="url" :schema="query.schema"
+                        :nestedChildren="true" :pathDefinitions="contactDefinition")
 
 </template>
 
@@ -121,10 +148,10 @@ const CustomComponent = {
             attrs: {
                 title: 'See console log for details'
             },
-            class: "text-red",
-        },'This is a custom component')
+            class: 'text-red',
+        }, 'This is a custom component');
     }
-}
+};
 
 const CustomTableComponent = {
     props: [
@@ -142,14 +169,17 @@ const CustomTableComponent = {
             attrs: {
                 title: 'See console log for details'
             },
-            class: "text-red",
-        }, 'This is a custom component used only in a table')
+            class: 'text-red',
+        }, 'This is a custom component used only in a table');
     }
-}
+};
 
 export default {
     components: {
         'data-renderer': DataRenderer
+    },
+    props: {
+        query: Object
     },
     data: function () {
         return {
@@ -262,6 +292,27 @@ export default {
                     label: 'Contact'
                 }
             ],
+            d5: [
+                {
+                    path: 'title',
+                    value: {
+                        class: ['text-h6']
+                    }
+                },
+                {
+                    path: 'creator',
+                    label: 'Creator',
+                },
+                {
+                    path: 'thumbnail',
+                    label: 'Thumbnail'
+                },
+                {
+                    path: 'contact',
+                    label: 'Contact',
+                    dynamic: true
+                }
+            ],
             creatorCustomComponent: {
                 'wrapper-creator': CustomComponent
             },
@@ -275,8 +326,27 @@ export default {
             },
             creatorSkip: {
                 'wrapper-creator': null
+            },
+            contactDefinition: {
+                'contact': {
+                    path: 'contact',
+                    label: 'Contact',
+                    wrapper: {
+                        class: ['q-card--bordered']
+                    },
+                    nestedChildren: true,
+                    children: [
+                        {
+                            path: 'email',
+                            label: 'E-mail'
+                        },
+                        {
+                            path: 'phone',
+                            label: 'Phone'
+                        }
+                    ]
+                }
             }
-
         };
     }
 };

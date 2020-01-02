@@ -116,7 +116,8 @@ const routes = [
     {
         name: 'record-renderer',
         path: '/record-renderer',
-        component: RecordRendererPage
+        component: RecordRendererPage,
+        props: query(['schema'])
     }
 ];
 
