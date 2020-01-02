@@ -22,7 +22,13 @@ import {
     QExpansionItem,
     QCard,
     QCardSection,
-    QCardActions
+    QCardActions,
+    QTable,
+    QTd,
+    QTh,
+    QToggle,
+    QSeparator,
+    QRadio,
 } from 'quasar';
 
 Vue.use(Quasar, {
@@ -45,7 +51,13 @@ Vue.use(Quasar, {
         QExpansionItem,
         QCard,
         QCardSection,
-        QCardActions
+        QCardActions,
+        QTable,
+        QTd,
+        QTh,
+        QToggle,
+        QSeparator,
+        QRadio,
     },
     directives: {},
     plugins: {}

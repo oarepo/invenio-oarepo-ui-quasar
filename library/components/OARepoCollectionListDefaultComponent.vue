@@ -15,7 +15,7 @@ q-item(clickable :to="url" exact)
 <script>
 
 import { JSONPath } from 'jsonpath-plus';
-import ItemRenderer from './ItemRenderer';
+import RecordRenderer from './RecordRenderer';
 
 export default {
     props: {
@@ -25,7 +25,7 @@ export default {
         icon: Object,
         renderer: {
             type: Object,
-            default: () => ItemRenderer
+            default: () => RecordRenderer
         }
     },
     computed: {

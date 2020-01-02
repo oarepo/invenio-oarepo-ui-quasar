@@ -9,7 +9,7 @@ q-card(clickable :to="url" exact)
 
 <script>
 
-import ItemRenderer from './ItemRenderer';
+import RecordRenderer from './RecordRenderer';
 
 export default {
     props: {
@@ -19,7 +19,7 @@ export default {
         icon: Object,
         renderer: {
             type: Object,
-            default: () => ItemRenderer
+            default: () => RecordRenderer
         }
     },
     computed: {

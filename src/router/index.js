@@ -15,6 +15,8 @@ import CollectionRecordSlotPage from '../components/lists/CollectionRecordSlotPa
 import CollectionRecordUILinkPage from '../components/lists/CollectionRecordUILinkPage';
 import CollectionCardsPage from '../components/cards/CollectionCardsPage';
 import CollectionCardsGridPage from '../components/cards/CollectionCardsGridPage';
+import CollectionTablePage from '../components/table/CollectionTablePage';
+import RecordRendererPage from '../components/misc/DataRendererPage';
 
 Vue.use(VueRouter);
 
@@ -101,7 +103,21 @@ const routes = [
         component: CollectionRecordUILinkPage,
         props: query([], { collectionId: 'records' })
     }),
-
+    routerCollection({
+        name: 'table-simple',
+        path: '/table-simple',
+        component: CollectionTablePage,
+        props: query([
+            'number:page:1',
+            'number:size:10',
+            'sort'
+        ], { collectionId: 'records' })
+    }),
+    {
+        name: 'record-renderer',
+        path: '/record-renderer',
+        component: RecordRendererPage
+    }
 ];
 
 const router = new VueRouter({

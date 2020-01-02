@@ -20,7 +20,7 @@ export default {
             values: [
                 {
                     path: 'title',
-                    valueClass: 'text-weight-bolder'
+                    valueClass: 'text-weight-medium'
                 },
                 {
                     element: 'table',

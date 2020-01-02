@@ -1,7 +1,7 @@
 <template lang="pug">
 q-page.q-ma-lg
     q-btn.float-right(icon="launch"
-        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/CollectionPage.vue"
+        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/lists/CollectionPage.vue"
         type="a" target="_blank" flat) View source
     oarepo-collection-list(:query="query" :icon="{name: 'launch'}")
 </template>

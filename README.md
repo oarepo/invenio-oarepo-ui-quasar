@@ -21,6 +21,7 @@ A library for providing simple (but configurable) UI for ``@oarepo/invenio-api-v
   * [``OARepoRecord``](#oareporecord)
   * [``OARepoRecordInplaceEditor``](#oareporecordinplaceeditor)
   * [``OARepoRecordFormEditor``](#oareporecordformeditor)
+  * [DataRenderer](#datarenderer)
 
 <!-- tocstop -->
 
@@ -176,6 +177,7 @@ an icon given as a result of a function.
 
 ###### Record properties
 
+This component internally uses [``DataRenderer``](#datarenderer).
 To change the presented data, set the ``:display`` property:
 
 ```jade
@@ -184,53 +186,6 @@ q-page.flex.q-ma-lg
     oarepo-collection-list(:query="query", :display="valuesDefinition")
 </template>
 ```
-
-The ``valuesDefinition`` is a list of ``definitionObject`` or ``definitionContainer``
-or a function accepting record and returning the list
-``valuesDefinition(record, thisVue) -> List[definitionObject|definitionContainer]``:
-
-```javascript
-definitionObject = {
-   element: 'wrapper element name, defaults to div; set to null to not use wrapper',
-   elementClass: 'extra class(es)',
-   elementStyle: 'extra style',
-   elementAttrs: {}, // extra html attrs
-   label: 'the label to be shown',
-   labelElement: 'the label element, defaults to label',
-   labelClass: 'extra label class(es)',
-   labelStyle: 'extra label style',
-   labelAttrs: {},  // extra html attrs
-   valueClass: 'extra value class',
-   valueStyle: 'extra value style',
-   valueAttrs: {},  // extra html attrs
-   valueElement: 'the value element, defaults to span. Set to null to disable value display',
-   path: 'jsonpath to the record metadata that gives the value',
-   component: 'custom component to display the value, if not set valueElement will be used',
-   link: false,    // set to true to wrap the value with an 'a' element pointing to record.links.ui
-   groupValues: '' // if the result of jsonpath is array with multiple values and custom component is used, 
-                   // setting this to true will supply the component with part.value=array.
-                   // Otherwise the component is called multiple times with each value
-}
-
-definitionContainer = {
-   element: 'element name',
-   elementClass: 'extra class(es)',
-   elementStyle: 'extra style',
-   elementAttrs: {}, // extra html attrs
-   label: 'the label to be shown',
-   labelClass: 'extra label class(es)',
-   labelStyle: 'extra label style',
-   labelAttrs: {},  // extra html attrs
-   path: 'jsonpath to the record metadata that gives the base value for children',
-   children: [definitionObject, definitionContainer],   
-   childrenClass: 'extra class(es) to be prepended for each child',
-   childrenStyle: 'extra style to be prepended for each child',
-   childrenAttrs: {}, // extra html attrs
-}
-```
-
-Every property except component can be a function ``func(metadata, definitionObject, record, vue_inst)``
-where metadata are metadata at the actual path
 
 An example of definition object with attrs but without component is at 
 [CollectionValuesNoComponentPage.vue](src/components/lists/CollectionValuesNoComponentPage.vue)
@@ -392,10 +347,41 @@ oarepo-collection-cards(:query="query")
 
 A rendered for a single collection that presents the records as QTable
 
+```pug
+oarepo-collection-table(:query="query" 
+                        :display='displayDefinition'
+                        :grid-display='gridDisplayDefinition'
+                        grid-card-class='q-table__grid-item col-xs-12 col-sm-6 col-md-4 col-lg-3'
+                        card-class=''
+)
+    /* can use any qtable slots here */
+``` 
+
+``displayDefinition`` is a list of ``definitionObjects`` as defined earlier. The ``label`` of the 
+object will be used for the heading of the table. 
+
+``gridDisplay`` is used when the table is displayed in the grid mode (for example on lower resolutions).
+If not set, ``displayDefinition`` is used with the modification that labels are followed by ':'.
+This can be changed by defining ``gridLabel`` property on the column.
+
+Property ``grid-card-class`` gives the class of the wrapper record element in grid layout.
+Property ``card-class`` gives the class of the card element.
+
 ### ``OARepoRecord``
 ``<oarepo-record>``
 
 A renderer for a single record
+
+```pug
+oarepo-collection-table(:query="query" 
+                        :display='displayDefinition'
+                        :grid-display='gridDisplayDefinition'
+                        grid-card-class='q-table__grid-item col-xs-12 col-sm-6 col-md-4 col-lg-3'
+                        card-class=''
+)
+    /* can use any qtable slots here */
+``` 
+
 
 ### ``OARepoRecordInplaceEditor``
 ``<oarepo-record-inplace-editor>``
@@ -407,3 +393,127 @@ A renderer of an in-place single-property record editor
 
 An editor component for a single record
 
+### DataRenderer
+
+``DataRenderer`` is a component that iterates a tree of definitions and converts the definition
+into Vuejs component. Without any settings, the created component tree will look like:
+
+```pug
+wrapper.wrapperClass(:style="wrapperStyle" ...wrapperAttrs)
+    label.labelClass(:style="labelStyle" ...labelAttrs)
+    valueWrapper.valueWrapperClass(:style="valueWrapperStyle" ...valueWrapperAttrs)
+        value.valueClass(:style="valueStyle" ...valueAttrs) {{ valueOnPath }}
+        value.valueClass(:style="valueStyle" ...valueAttrs) {{ valueOnPath }}
+    childWrapper.childWrapperClass(:style="childWrapperStyle" ...childWrapperAttrs)
+        // children rendered in here
+```
+
+This tree is defined via the following definition:
+
+```javascript
+
+elementProperties = {
+   class: {},           // element classes
+   style: '',           // element style
+   attrs: {},           // element attrs
+   visible: true        // set to false to not render the element, just its content        
+}
+
+definition = {
+   wrapper: {
+       element: 'div',      
+       ...elementProperties
+   },
+   label: {
+       element: 'label',
+       value: 'Label to be shown',
+       ...elementProperties
+   },
+   valueWrapper: {
+       element: 'div',      
+       ...elementProperties
+   },
+   value: {
+       element: 'div',      
+       ...elementProperties
+   },
+   childrenWrapper: {
+       element: 'div',      
+       ...elementProperties
+   },
+   path: '',                // json path pointing to the displayed value inside record metadata
+   link: '',                // if true, <router-link> will be rendered around the value
+   showEmpty: false,        // if true, the element will be rendered even if there is no value 
+   nestedChildren: false,   // if true, children are nested inside the valueWrapper element
+   children: []             // any children definitions of this node
+}
+```
+
+Every property can be a function ``func({context, definition, data, vue, paths})`` where context
+points to the actual parts of data being rendered
+
+To apply this definition, add to template:
+
+```pug
+data-renderer(:definition="definition" :data="data" :url="url for a router-link" 
+              schema="block|inline|table|<object with default definition>"
+              :debug="true")
+```
+
+#### Overriding elements with slots
+
+Each part of the definition can be overridden with a template:
+
+```pug
+data-renderer(:definition="definition" :data="data" :url="url for a" :debug="true")
+    template(v-slot:value-thumbnail="{context, definition, data, paths, value}")
+        <img :src="value">
+```
+
+Names of slots are in the form ``<element>-<path>``. 
+
+``path`` 
+
+is json path to the element (without array indices) with '/' replaced by '-'. For example, for path
+``authors[0]/firstName``, the path would be ``authors-firstName``.   
+
+``element`` 
+
+Element is one of ``wrapper``, ``label``, ``value-wrapper``, 
+``value``, ``values``, ``children-wrapper``. 
+All these slots are provided with ``{context, definition, data, paths}``.
+In addition, ``value-wrapper`` and ``values`` are given the array of ``values``.
+ ``value`` is given the current value (and will be called multiple times for each value).
+
+When slots are matched, the best matching slot is used. For example, jsonpath ``people[0]/firstName``
+and element ``wrapper`` the resolution will try the following slots:
+ * ``-wrapper-people-firstName``
+ * ``wrapper-people-firstName``
+ * ``wrapper-firstName``
+ 
+ The difference between the first two is that the first one matches only ``people/firstName`` in the root
+ of data, the second one would match any path ending with ``people/firstName``.
+
+#### Overriding elements with custom components
+
+Alternatively the elements can be overridden with custom components. Each component receives the same props
+as those above for templates. To pass the components, supply ``data-renderer`` with ``components`` property.
+The value of the property is either:
+
+ * object with keys (same as slot names) and value the Component to be rendered
+ * function taking ``({context, definition, data, paths, element})`` (element is 
+   ``wrapper``, ``label``, ``value-wrapper``, ``value``, ``values``, ``children-wrapper``) 
+   and returning 
+   - vue Component
+   - ``null`` if the element should not be rendered at all
+   - ``undefined`` to use default rendering of the element 
+
+#### Translating labels
+
+A function can be registered to create/translate labels. Set either a global labelTranslator when the module is
+initialized or a ``:labelTranslator`` prop containing function with the following definition:
+
+``func({label, context, definition, data, vue, paths, schema})``
+
+and returning the translated label or null if the label should not appear. The default implementation adds ':'
+after the label for ``inline`` schema. 

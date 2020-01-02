@@ -87,6 +87,15 @@ q-layout(view='lHh Lpr lFf')
                                     q-icon(name='view_module')
                                 q-item-section
                                     q-item-label grid of cards
+            q-expansion-item(header='' label="Table")
+                q-card
+                    q-card-section
+                        q-list
+                            q-item(clickable='' :to="{name: 'table-simple'}")
+                                q-item-section(avatar='')
+                                    q-icon(name='view_module')
+                                q-item-section
+                                    q-item-label Table example
             q-expansion-item(header='' label="Miscelaneous")
                 q-card
                     q-card-section
@@ -96,6 +105,11 @@ q-layout(view='lHh Lpr lFf')
                                     q-icon(name='list')
                                 q-item-section
                                     q-item-label Clickable records - using urlGetter
+                            q-item(clickable='' :to="{name: 'record-renderer'}" exact)
+                                q-item-section(avatar='')
+                                    q-icon(name='list')
+                                q-item-section
+                                    q-item-label Internal rendering component test
     q-page-container
         router-view
 </template>
