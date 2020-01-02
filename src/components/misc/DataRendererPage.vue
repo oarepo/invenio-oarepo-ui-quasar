@@ -95,6 +95,7 @@ q-page.q-ma-lg
 
 <script>
 import { DataRenderer } from '@oarepo/invenio-quasar';
+/* eslint no-console:off */
 
 const CustomComponent = {
     props: [
