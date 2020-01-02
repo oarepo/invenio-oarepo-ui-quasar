@@ -235,6 +235,28 @@ export default {
                 };
             }
             if (component !== undefined) {
+                if (component.takesChildren) {
+                    // create the component later with slot filled, so return a factory
+                    return {
+                        factory: (content) => {
+                            return [
+                                h(
+                                    component,
+                                    {
+                                        class: [
+                                            ...(this.defunc(elDefinition.class, data, definition, paths) || []),
+                                            `iqdr-${element}`, `iqdr-${element}-${this.currentSchemaCode}`,
+                                            ...paths.map(path => `iqdr-path-${path.replace('/', '-')}`)
+                                        ],
+                                        style: this.defunc(elDefinition.style, data, definition, paths),
+                                        attrs: this.defunc(elDefinition.attrs, data, definition, paths),
+                                    },
+                                    content
+                                )
+                            ];
+                        }
+                    };
+                }
                 return {
                     content: [
                         h(component, {
@@ -389,7 +411,6 @@ export default {
                 return this.pathDefinitions;
             }
             return ({ /* context, definition, data, */ paths }) => {
-                console.log('looking for', paths, "in", this.pathDefinitions)
                 return this.findPathInDict(paths, this.pathDefinitions || {}, null);
             };
         },

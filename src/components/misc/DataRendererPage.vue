@@ -16,349 +16,186 @@ q-page.q-ma-lg
         .div.col-4
             .q-card.full-height
                 q-card-section
+                    q-btn.float-right(icon="launch"
+                        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/misc/DataRendererDefault.vue"
+                        type="a" target="_blank" flat size="x-small") View source
                     .text-weight-medium Default rendering
-                    q-separator.q-mb-md
-                    data-renderer(:data="data" :definition="d1" :url="url" :schema="query.schema")
+                    q-separator.q-mb-md.q-mt-sm
+                    data-renderer-default(:query="query")
 
         .div.col-4
             .q-card.full-height
                 q-card-section
+                    q-btn.float-right(icon="launch"
+                        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/misc/DataRendererSlotThumbnail.vue"
+                        type="a" target="_blank" flat size="x-small") View source
                     .text-weight-medium Rendered with #[code v-slot:value-thumbnail]
-                    q-separator.q-mb-md
-                    data-renderer(:data="data" :definition="d2" :url="url" :schema="query.schema")
-                        template(v-slot:value-thumbnail="{value}")
-                            div
-                                img(:src="value" style="height: 40px;")
+                    q-separator.q-mb-md.q-mt-sm
+                    data-renderer-slot-thumbnail(:query="query")
+
 
         .div.col-4
             .q-card.full-height
                 q-card-section
+                    q-btn.float-right(icon="launch"
+                        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/misc/DataRendererSlotRootThumbnail.vue"
+                        type="a" target="_blank" flat size="x-small") View source
                     .text-weight-medium Rendered with #[code v-slot:-value-thumbnail]
-                    q-separator.q-mb-md
-                    data-renderer(:data="data" :definition="d2" :url="url" :schema="query.schema")
-                        template(v-slot:-value-thumbnail="{value}")
-                            div
-                                img(:src="value" style="height: 40px;")
-                        template(v-slot:value-thumbnail="{value}")
-                            div should not be used
+                    q-separator.q-mb-md.q-mt-sm
+                    data-renderer-slot-root-thumbnail(:query="query")
 
         .div.col-4
             .q-card.full-height
                 q-card-section
+                    q-btn.float-right(icon="launch"
+                        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/misc/DataRendererSlotValueContact.vue"
+                        type="a" target="_blank" flat size="x-small") View source
                     .text-weight-medium Rendered with #[code v-slot:value-contact]
-                    q-separator.q-mb-md
-                    data-renderer(:data="data" :definition="d1" :url="url" :schema="query.schema")
-                        template(v-slot:value-contact="{value}")
-                            table(style="border-collapse: collapse;")
-                                tr #[td Phone: ] {{ value.phone }}
-                                tr #[td Email: ] {{ value.email }}
+                    q-separator.q-mb-md.q-mt-sm
+                    data-renderer-slot-value-contact(:query="query")
 
         .div.col-4
             .q-card.full-height
                 q-card-section
+                    q-btn.float-right(icon="launch"
+                        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/misc/DataRendererSlotTreeDefinition.vue"
+                        type="a" target="_blank" flat size="x-small") View source
                     .text-weight-medium Rendered with tree definition
-                    q-separator.q-mb-md
-                    data-renderer(:data="data" :definition="d3" :url="url" :schema="query.schema")
+                    q-separator.q-mb-md.q-mt-sm
+                    data-renderer-slot-tree-definition(:query="query")
 
     h6 Supplying custom component
     .row.q-col-gutter-sm
         .div.col-4
             .q-card.full-height
                 q-card-section
+                    q-btn.float-right(icon="launch"
+                        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/misc/DataRendererComponentCreator.vue"
+                        type="a" target="_blank" flat size="x-small") View source
                     .text-weight-medium Rendered with custom component for Creator
-                    q-separator.q-mb-md
-                    data-renderer(:data="data" :definition="d1" :url="url"
-                        :schema="query.schema" :components="creatorCustomComponent")
+                    q-separator.q-mb-md.q-mt-sm
+                    data-renderer-component-creator(:query="query")
 
         .div.col-4
             .q-card.full-height
                 q-card-section
+                    q-btn.float-right(icon="launch"
+                        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/misc/DataRendererComponentCreatorLabel.vue"
+                        type="a" target="_blank" flat size="x-small") View source
                     .text-weight-medium Rendered with custom component for Creator label
-                    q-separator.q-mb-md
-                    data-renderer(:data="data" :definition="d1" :url="url"
-                        :schema="query.schema" :components="creatorLabelCustomComponent")
+                    q-separator.q-mb-md.q-mt-sm
+                    data-renderer-component-creator-label(:query="query")
+
 
         .div.col-4
             .q-card.full-height
                 q-card-section
+                    q-btn.float-right(icon="launch"
+                        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/misc/DataRendererComponentCreatorValue.vue"
+                        type="a" target="_blank" flat size="x-small") View source
                     .text-weight-medium Rendered with custom component for Creator value
-                    q-separator.q-mb-md
-                    data-renderer(:data="data" :definition="d1" :url="url"
-                        :schema="query.schema" :components="creatorValueCustomComponent")
+                    q-separator.q-mb-md.q-mt-sm
+                    data-renderer-component-creator-value(:query="query")
 
         .div.col-4
             .q-card.full-height
                 q-card-section
+                    q-btn.float-right(icon="launch"
+                        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/misc/DataRendererComponentCreatorSkip.vue"
+                        type="a" target="_blank" flat size="x-small") View source
                     .text-weight-medium Skipping creator with a custom component set to null
-                    q-separator.q-mb-md
-                    data-renderer(:data="data" :definition="d1" :url="url"
-                        :schema="query.schema" :components="creatorSkip")
+                    q-separator.q-mb-md.q-mt-sm
+                    data-renderer-component-creator-skip(:query="query")
 
         .div.col-4
             .q-card.full-height
                 q-card-section
+                    q-btn.float-right(icon="launch"
+                        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/misc/DataRendererComponentCreatorDefinition.vue"
+                        type="a" target="_blank" flat size="x-small") View source
                     .text-weight-medium Rendered with custom component in definition
-                    q-separator.q-mb-md
-                    data-renderer(:data="data" :definition="d4" :url="url"
-                        :schema="query.schema")
+                    q-separator.q-mb-md.q-mt-sm
+                    data-renderer-component-creator-definition(:query="query")
+
     h6 Dynamic definition
     .row.q-col-gutter-sm
         .div.col-4
             .q-card.full-height
                 q-card-section
+                    q-btn.float-right(icon="launch"
+                        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/misc/DataRendererDynamic.vue"
+                        type="a" target="_blank" flat size="x-small") View source
                     .text-weight-medium No definition at all
-                    q-separator.q-mb-md
-                    data-renderer(:data="data" :url="url" :schema="query.schema" :nestedChildren="true")
+                    q-separator.q-mb-md.q-mt-sm
+                    data-renderer-dynamic(:query="query")
 
         .div.col-4
             .q-card.full-height
                 q-card-section
+                    q-btn.float-right(icon="launch"
+                        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/misc/DataRendererDynamicContact.vue"
+                        type="a" target="_blank" flat size="x-small") View source
                     .text-weight-medium Definition with dynamic contact details
-                    q-separator.q-mb-md
-                    data-renderer(:data="data" :url="url" :definition="d5"
-                        :schema="query.schema" :nestedChildren="true")
+                    q-separator.q-mb-md.q-mt-sm
+                    data-renderer-dynamic-contact(:query="query")
 
         .div.col-4
             .q-card.full-height
                 q-card-section
+                    q-btn.float-right(icon="launch"
+                        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/misc/DataRendererDynamicContactDefinition.vue"
+                        type="a" target="_blank" flat size="x-small") View source
                     .text-weight-medium Dynamic definition with custom definition of Contact
-                    q-separator.q-mb-md
-                    data-renderer(:data="data" :url="url" :schema="query.schema"
-                        :nestedChildren="true" :pathDefinitions="contactDefinition")
+                    q-separator.q-mb-md.q-mt-sm
+                    data-renderer-dynamic-contact-definition(:query="query")
 
         .div.col-4
             .q-card.full-height
                 q-card-section
+                    q-btn.float-right(icon="launch"
+                        href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/misc/DataRendererDynamicNoContact.vue"
+                        type="a" target="_blank" flat size="x-small") View source
                     .text-weight-medium Dynamic definition with removed Contact
-                    q-separator.q-mb-md
-                    data-renderer(:data="data" :url="url" :schema="query.schema"
-                        :nestedChildren="true" :pathDefinitions="noContactDefinition")
+                    q-separator.q-mb-md.q-mt-sm
+                    data-renderer-dynamic-no-contact(:query="query")
 
 </template>
 
 <script>
-import { DataRenderer } from '@oarepo/invenio-quasar';
-/* eslint no-console:off */
-
-const CustomComponent = {
-    props: [
-        'context',
-        'definition',
-        'data',
-        'paths',
-        'value',
-        'values'
-    ],
-    render(h) {
-        console.log('Custom component props', this.$props);
-        console.log('Custom component attrs', this.$attrs);
-        return h('span', {
-            attrs: {
-                title: 'See console log for details'
-            },
-            class: 'text-red',
-        }, 'This is a custom component');
-    }
-};
-
-const CustomTableComponent = {
-    props: [
-        'context',
-        'definition',
-        'data',
-        'paths',
-        'value',
-        'values'
-    ],
-    render(h) {
-        console.log('Custom table component props', this.$props);
-        console.log('Custom table component attrs', this.$attrs);
-        return h('td', {
-            attrs: {
-                title: 'See console log for details'
-            },
-            class: 'text-red',
-        }, 'This is a custom component used only in a table');
-    }
-};
+import DataRendererDefault from './DataRendererDefault';
+import DataRendererSlotThumbnail from './DataRendererSlotThumbnail';
+import DataRendererSlotRootThumbnail from './DataRendererSlotRootThumbnail';
+import DataRendererSlotValueContact from './DataRendererSlotValueContact';
+import DataRendererSlotTreeDefinition from './DataRendererSlotTreeDefinition';
+import DataRendererComponentCreator from './DataRendererComponentCreator';
+import DataRendererComponentCreatorLabel from './DataRendererComponentCreatorLabel';
+import DataRendererComponentCreatorValue from './DataRendererComponentCreatorValue';
+import DataRendererComponentCreatorSkip from './DataRendererComponentCreatorSkip';
+import DataRendererComponentCreatorDefinition from './DataRendererComponentCreatorDefinition';
+import DataRendererDynamic from './DataRendererDynamic';
+import DataRendererDynamicContact from './DataRendererDynamicContact';
+import DataRendererDynamicContactDefinition from './DataRendererDynamicContactDefinition';
+import DataRendererDynamicNoContact from './DataRendererDynamicNoContact';
 
 export default {
     components: {
-        'data-renderer': DataRenderer
+        'data-renderer-default': DataRendererDefault,
+        'data-renderer-slot-thumbnail': DataRendererSlotThumbnail,
+        'data-renderer-slot-root-thumbnail': DataRendererSlotRootThumbnail,
+        'data-renderer-slot-value-contact': DataRendererSlotValueContact,
+        'data-renderer-slot-tree-definition': DataRendererSlotTreeDefinition,
+        'data-renderer-component-creator': DataRendererComponentCreator,
+        'data-renderer-component-creator-label': DataRendererComponentCreatorLabel,
+        'data-renderer-component-creator-value': DataRendererComponentCreatorValue,
+        'data-renderer-component-creator-skip': DataRendererComponentCreatorSkip,
+        'data-renderer-component-creator-definition': DataRendererComponentCreatorDefinition,
+        'data-renderer-dynamic': DataRendererDynamic,
+        'data-renderer-dynamic-contact': DataRendererDynamicContact,
+        'data-renderer-dynamic-contact-definition': DataRendererDynamicContactDefinition,
+        'data-renderer-dynamic-no-contact': DataRendererDynamicNoContact
     },
     props: {
         query: Object
     },
-    data: function () {
-        return {
-            url: '/',
-            schema: 'inline',
-            data: {
-                '$schema': 'https://restaurovani.vscht.cz/schemas/draft/krokd/restoration-object-v1.0.0.json',
-                'id': '1',
-                'title': 'Object 1',
-                'thumbnail': 'https://cis-login.vscht.cz/static/web/logo_small.png',
-                'creator': 'Mary Black',
-                'contact': {
-                    phone: '+420123123123',
-                    email: 'mary.black@gmail.com'
-                }
-            },
-            d1: [
-                {
-                    path: 'title',
-                    value: {
-                        class: ['text-h6']
-                    }
-                },
-                {
-                    path: 'creator',
-                    label: 'Creator'
-                },
-                {
-                    path: 'thumbnail',
-                    label: 'Thumbnail'
-                },
-                {
-                    path: 'contact',
-                    label: 'Contact'
-                }
-            ],
-            d2: [
-                {
-                    path: 'thumbnail',
-                    wrapper: {
-                        class: ['float-left', 'q-ma-sm q-mr-lg']
-                    }
-                },
-                {
-                    path: 'title',
-                    value: {
-                        class: ['text-h6']
-                    }
-                },
-                {
-                    path: 'creator',
-                    label: 'Creator'
-                },
-                {
-                    path: 'contact',
-                    label: 'Contact'
-                }
-            ],
-            d3: [
-                {
-                    path: 'title',
-                    value: {
-                        class: ['text-h6']
-                    }
-                },
-                {
-                    path: 'creator',
-                    label: 'Creator'
-                },
-                {
-                    path: 'thumbnail',
-                    label: 'Thumbnail'
-                },
-                {
-                    path: 'contact',
-                    label: 'Contact',
-                    nestedChildren: true,
-                    children: [
-                        {
-                            path: 'email',
-                            label: 'E-mail'
-                        },
-                        {
-                            path: 'phone',
-                            label: 'Phone'
-                        }
-                    ]
-                },
-            ],
-            d4: [
-                {
-                    path: 'title',
-                    value: {
-                        class: ['text-h6']
-                    }
-                },
-                {
-                    path: 'creator',
-                    label: 'Creator',
-                    wrapper: {
-                        component: CustomComponent
-                    }
-                },
-                {
-                    path: 'thumbnail',
-                    label: 'Thumbnail'
-                },
-                {
-                    path: 'contact',
-                    label: 'Contact'
-                }
-            ],
-            d5: [
-                {
-                    path: 'title',
-                    value: {
-                        class: ['text-h6']
-                    }
-                },
-                {
-                    path: 'creator',
-                    label: 'Creator',
-                },
-                {
-                    path: 'thumbnail',
-                    label: 'Thumbnail'
-                },
-                {
-                    path: 'contact',
-                    label: 'Contact',
-                    dynamic: true
-                }
-            ],
-            creatorCustomComponent: {
-                'wrapper-creator': CustomComponent
-            },
-            creatorLabelCustomComponent: {
-                'label-creator': CustomComponent,
-                'label-creator$table': CustomTableComponent
-            },
-            creatorValueCustomComponent: {
-                'value-creator': CustomComponent,
-                'value-creator$table': CustomTableComponent
-            },
-            creatorSkip: {
-                'wrapper-creator': null
-            },
-            contactDefinition: {
-                'contact': {
-                    path: 'contact',
-                    label: 'Contact',
-                    wrapper: {
-                        class: ['q-card--bordered']
-                    },
-                    nestedChildren: true,
-                    children: [
-                        {
-                            path: 'email',
-                            label: 'E-mail'
-                        },
-                        {
-                            path: 'phone',
-                            label: 'Phone'
-                        }
-                    ]
-                }
-            },
-            noContactDefinition: {
-                'contact': null
-            }
-        };
-    }
 };
 </script>

@@ -511,6 +511,25 @@ The value of the property is either:
    - vue Component
    - ``null`` if the element should not be rendered at all
    - ``undefined`` to use default rendering of the element 
+   
+Custom component can take the rendered content of the element it is replacing as its
+default slot. To use this functionality, annotate the component with takesChildren set 
+to true:
+
+```vue
+<template>
+<div>
+   <slot></slot>
+</div>
+</template>
+<script>
+export default {
+  // normal component goes here
+  // ...
+  takesChildren: true
+}
+</script>
+```
 
 #### Translating labels
 
