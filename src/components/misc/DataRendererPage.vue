@@ -15,14 +15,14 @@ q-page.q-ma-lg
         .div.col-4
             .q-card.full-height
                 q-card-section
-                    .text-h6 Default rendering
+                    .text-weight-medium Default rendering
                     q-separator.q-mb-md
                     data-renderer(:data="data" :definition="d1" :url="url" :schema="schema")
 
         .div.col-4
             .q-card.full-height
                 q-card-section
-                    .text-h6 Rendered with #[code v-slot:value-thumbnail]
+                    .text-weight-medium Rendered with #[code v-slot:value-thumbnail]
                     q-separator.q-mb-md
                     data-renderer(:data="data" :definition="d2" :url="url" :schema="schema")
                         template(v-slot:value-thumbnail="{value}")
@@ -32,7 +32,7 @@ q-page.q-ma-lg
         .div.col-4
             .q-card.full-height
                 q-card-section
-                    .text-h6 Rendered with #[code v-slot:-value-thumbnail]
+                    .text-weight-medium Rendered with #[code v-slot:-value-thumbnail]
                     q-separator.q-mb-md
                     data-renderer(:data="data" :definition="d2" :url="url" :schema="schema")
                         template(v-slot:-value-thumbnail="{value}")
@@ -44,7 +44,7 @@ q-page.q-ma-lg
         .div.col-4
             .q-card.full-height
                 q-card-section
-                    .text-h6 Rendered with #[code v-slot:value-contact]
+                    .text-weight-medium Rendered with #[code v-slot:value-contact]
                     q-separator.q-mb-md
                     data-renderer(:data="data" :definition="d1" :url="url" :schema="schema")
                         template(v-slot:value-contact="{value}")
@@ -55,14 +55,14 @@ q-page.q-ma-lg
         .div.col-4
             .q-card.full-height
                 q-card-section
-                    .text-h6 Rendered with tree definition
+                    .text-weight-medium Rendered with tree definition
                     q-separator.q-mb-md
                     data-renderer(:data="data" :definition="d3" :url="url" :schema="schema")
 
         .div.col-4
             .q-card.full-height
                 q-card-section
-                    .text-h6 Rendered with custom component for Creator
+                    .text-weight-medium Rendered with custom component for Creator
                     q-separator.q-mb-md
                     data-renderer(:data="data" :definition="d1" :url="url"
                         :schema="schema" :components="creatorCustomComponent")
@@ -70,7 +70,7 @@ q-page.q-ma-lg
         .div.col-4
             .q-card.full-height
                 q-card-section
-                    .text-h6 Rendered with custom component for Creator label
+                    .text-weight-medium Rendered with custom component for Creator label
                     q-separator.q-mb-md
                     data-renderer(:data="data" :definition="d1" :url="url"
                         :schema="schema" :components="creatorLabelCustomComponent")
@@ -78,7 +78,7 @@ q-page.q-ma-lg
         .div.col-4
             .q-card.full-height
                 q-card-section
-                    .text-h6 Rendered with custom component for Creator value
+                    .text-weight-medium Rendered with custom component for Creator value
                     q-separator.q-mb-md
                     data-renderer(:data="data" :definition="d1" :url="url"
                         :schema="schema" :components="creatorValueCustomComponent")
@@ -86,7 +86,15 @@ q-page.q-ma-lg
         .div.col-4
             .q-card.full-height
                 q-card-section
-                    .text-h6 Rendered with custom component in definition
+                    .text-weight-medium Skipping creator with a custom component set to null
+                    q-separator.q-mb-md
+                    data-renderer(:data="data" :definition="d1" :url="url"
+                        :schema="schema" :components="creatorSkip")
+
+        .div.col-4
+            .q-card.full-height
+                q-card-section
+                    .text-weight-medium Rendered with custom component in definition
                     q-separator.q-mb-md
                     data-renderer(:data="data" :definition="d4" :url="url"
                         :schema="schema")
@@ -264,6 +272,9 @@ export default {
             creatorValueCustomComponent: {
                 'value-creator': CustomComponent,
                 'value-creator$table': CustomTableComponent
+            },
+            creatorSkip: {
+                'wrapper-creator': null
             }
 
         };

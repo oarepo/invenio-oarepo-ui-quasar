@@ -194,7 +194,12 @@ export default {
                     paths,
                     element
                 });
-            if (component) {
+            if (component === null) {
+                return {
+                    content: []
+                }
+            }
+            if (component !== undefined) {
                 return {
                     content: [
                         h(component, {
