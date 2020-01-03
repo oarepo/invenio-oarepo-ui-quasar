@@ -804,9 +804,9 @@
     fastq "^1.6.0"
 
 "@oarepo/data-renderer@^1.0.2":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@oarepo/data-renderer/-/data-renderer-1.2.1.tgz#2382a8ec376fdec8ee28efd75e38a49ceb120fe8"
-  integrity sha512-Cbghk8Y/Qc4oeWMjwe66uqKnQRs7t7AAnN0qwlWCmzY+wi2gYeAnPJqgc1hD49ai2MiTy3BnFc16vqbrWdS1ng==
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@oarepo/data-renderer/-/data-renderer-1.2.3.tgz#925054d7f6b9d4bebc38dd1948bc7a6d3522f691"
+  integrity sha512-MvueVcTFAz+LBDqDzU4QRCc0lL1KF2Md1XsmILo7t7RMUPxMKrHMxxpzPAIG0TwTsaQQyvM8m4bDfMtvATwnVQ==
 
 "@oarepo/invenio-api-vuex@^2.1.9":
   version "2.2.1"

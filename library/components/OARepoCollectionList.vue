@@ -7,11 +7,11 @@ q-list
                 :is="recordComponent(record)"
                 :record="record"
                 :url="recordUrl(record)"
-                :display="display"
+                :display="display !== null ? display : undefined"
                 :icon="recordIcon(record)"
                 :class="itemClass"
                 :style="itemStyle",
-                :schema="schema")
+                :options="options")
                 slot(v-for="(_, name) in $slots" :name="name" :slot="name")
                 template(v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData")
                     slot(:name="name" v-bind="slotData")
@@ -55,7 +55,7 @@ export default {
         },
         itemClass: [String, Array, Object],
         itemStyle: String,
-        schema: [String,  Object]
+        options: Object
     },
     computed: {
         records() {

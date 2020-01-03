@@ -3,7 +3,7 @@ q-page.q-ma-lg
     q-btn.float-right(icon="launch"
         href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/lists/CollectionValuesTablePage.vue"
         type="a" target="_blank" flat) View source
-    oarepo-collection-list(:query="query" :display="values" schema="table")
+    oarepo-collection-list(:query="query" :display="values" :options="{'schema': 'table'}")
 </template>
 
 <style>

@@ -32,7 +32,13 @@ module.exports = {
                                     'id': x,
                                     'title': 'Object ' + x,
                                     'thumbnail': 'https://cis-login.vscht.cz/static/web/logo_small.png',
-                                    'creator': ["John", "Mary", "Peter", "Jane"][parseInt(x)%4] + " " + ["Brown", "Black", "White", "Red", "Yellow", "Blue", "Green", "Gray", "Violet"][parseInt(x)%9]
+                                    'creator': ["John", "Mary", "Peter", "Jane"][parseInt(x)%4] + " " + ["Brown", "Black", "White", "Red", "Yellow", "Blue", "Green", "Gray", "Violet"][parseInt(x)%9],
+                                    'location': {
+                                        street: 'Technicka',
+                                        number: x,
+                                        city: 'Prague',
+                                        zipcode: 19000
+                                    }
                                 }
                             }));
                         res

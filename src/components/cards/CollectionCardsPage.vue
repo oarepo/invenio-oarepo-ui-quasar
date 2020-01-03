@@ -3,7 +3,7 @@ q-page.q-ma-lg
     q-btn.float-right(icon="launch"
         href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/cards/CollectionCardsPage.vue"
         type="a" target="_blank" flat) View source
-    oarepo-collection-cards.q-gutter-md(:query="query" :icon="{name: 'launch'}" item-class='full-width')
+    oarepo-collection-cards.q-gutter-md(:query="query" :icon="{name: 'launch'}" item-class='full-width' :display="display" :options="{'schema': 'table'}")
 </template>
 
 <style>
@@ -13,7 +13,31 @@ q-page.q-ma-lg
 export default {
     name: 'CollectionPage',
     props: {
-        query: Object
+        query: Object,
+    },
+    data: function() {
+        return {
+            display: [
+                {
+                    path: 'title',
+                    value: {
+                        class: ['text-weight-medium']
+                    },
+                    link: true
+                },
+                {
+                    path: 'creator'
+                },
+                {
+                    path: 'created'
+                },
+                {
+                    path: 'location',
+                    dynamic: true,
+                    label: "Location"
+                }
+            ]
+        }
     }
 }
 </script>

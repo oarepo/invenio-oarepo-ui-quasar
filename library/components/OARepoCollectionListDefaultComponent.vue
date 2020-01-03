@@ -6,7 +6,7 @@ q-item(clickable :to="url" exact)
         q-img(:src="displayedIcon.url" v-if="displayedIcon.url"
             :class="displayedIcon.imageClass" :style="displayedIcon.imageStyle")
     q-item-section
-        component(:is="renderer" :data="record.metadata" :definition="display" :schema="schema")
+        component(:is="renderer" :data="record.metadata" :definition="display" :schema="schema" v-bind="options")
             slot(v-for="(_, name) in $slots" :name="name" :slot="name")
             template(v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData")
                 slot(:name="name" v-bind="slotData")
@@ -30,7 +30,8 @@ export default {
             type: Object,
             default: () => DataRendererComponent
         },
-        schema: [String,  Object]
+        schema: [String,  Object],
+        options: Object
     },
     computed: {
         md() {

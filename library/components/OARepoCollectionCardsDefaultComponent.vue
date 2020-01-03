@@ -1,7 +1,7 @@
 <template lang="pug">
 q-card(clickable :to="url" exact)
     q-card-section
-        component(:is="renderer" :data="record.metadata" :definition="display" :url="url")
+        component(:is="renderer" :data="record.metadata" :definition="display" :url="url" v-bind="options")
             slot(v-for="(_, name) in $slots" :name="name" :slot="name")
             template(v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData")
                 slot(:name="name" v-bind="slotData")
@@ -23,7 +23,8 @@ export default {
         renderer: {
             type: Object,
             default: () => DataRendererComponent
-        }
+        },
+        options: Object
     },
     computed: {
         md() {
