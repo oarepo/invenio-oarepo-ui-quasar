@@ -17,6 +17,7 @@ import CollectionCardsPage from '../components/cards/CollectionCardsPage';
 import CollectionCardsGridPage from '../components/cards/CollectionCardsGridPage';
 import CollectionTablePage from '../components/table/CollectionTablePage';
 import CollectionValuesTemplatePage from '../components/lists/CollectionValuesTemplatePage';
+import CollectionCardsTemplatePage from '../components/cards/CollectionCardsTemplatePage';
 
 Vue.use(VueRouter);
 
@@ -102,6 +103,12 @@ const routes = [
         name: 'cards-grid',
         path: '/cards-grid',
         component: CollectionCardsGridPage,
+        props: query([], { collectionId: 'records' })
+    }),
+    routerCollection({
+        name: 'cards-template',
+        path: '/cards-template',
+        component: CollectionCardsTemplatePage,
         props: query([], { collectionId: 'records' })
     }),
     routerCollection({

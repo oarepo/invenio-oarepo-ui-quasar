@@ -50,7 +50,7 @@ q-layout(view='lHh Lpr lFf')
                                                 q-item-section(avatar='')
                                                     q-icon(name='list')
                                                 q-item-section
-                                                    q-item-label Using template to render creator value
+                                                    q-item-label Using template slot to render creator value
                                             q-item(clickable='' :to="{name: 'list-prop-value-component'}")
                                                 q-item-section(avatar='')
                                                     q-icon(name='list')
@@ -87,6 +87,11 @@ q-layout(view='lHh Lpr lFf')
                                     q-icon(name='view_day')
                                 q-item-section
                                     q-item-label 1 card in a row
+                            q-item(clickable='' :to="{name: 'cards-template'}")
+                                q-item-section(avatar='')
+                                    q-icon(name='event')
+                                q-item-section
+                                    q-item-label Using template slot to render creator value
                             q-item(clickable='' :to="{name: 'cards-grid', query: {size: 100}}")
                                 q-item-section(avatar='')
                                     q-icon(name='view_module')
