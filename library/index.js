@@ -1,7 +1,6 @@
 import OARepoCollectionList from './components/OARepoCollectionList.vue';
 import OARepoCollectionCards from './components/OARepoCollectionCards';
 import OARepoCollectionTable from './components/OARepoCollectionTable';
-import DataRenderer from './components/DataRenderer';
 
 export default {
     install(Vue, options) {
@@ -10,7 +9,7 @@ export default {
         Vue.component(OARepoCollectionTable.name, OARepoCollectionTable);
 
         options = {
-            labelTranslator: function ({label, schema}) {
+            labelTranslator: function ({ label, schema }) {
                 if (schema === 'inline' && label) {
                     return `${label}: `;
                 }
@@ -100,12 +99,12 @@ export default {
                     value: {},
                     childrenWrapper: {
                         element: 'table',
-                        style: {'border-collapse': 'collapse'},
+                        style: { 'border-collapse': 'collapse' },
                     },
                     root: {
                         element: 'table',
                         class: '',
-                        style: {'border-collapse': 'collapse'},
+                        style: { 'border-collapse': 'collapse' },
                         attrs: ''
                     },
                     layoutCallback: (layout) => {
@@ -123,5 +122,7 @@ export default {
 };
 
 export {
-    DataRenderer
+    OARepoCollectionList,
+    OARepoCollectionCards,
+    OARepoCollectionTable
 };

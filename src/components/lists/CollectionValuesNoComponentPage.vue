@@ -20,45 +20,64 @@ export default {
             values: [
                 {
                     path: 'title',
-                    valueClass: 'text-weight-medium'
+                    value: {
+                        class: ['text-weight-medium']
+                    }
                 },
                 {
                     path: 'creator',
-                    label: 'Creator: '
+                    label: 'Creator'
                 },
                 {
                     label: 'nested padded content: ',
-                    elementStyle: 'background-color: rgba(200,200,200,.5); padding: 10px;',
-                    childrenStyle: 'padding-left: 20px',
+                    element: {
+                        style: {
+                            'background-color': 'rgba(200,200,200,.5)',
+                            'padding': '10px;'
+                        }
+                    },
+                    childrenWrapper: {
+                        style: {
+                            'padding-left': '20px'
+                        }
+                    },
                     children: [
                         {
-                            label: 'Thumbnail: ',
+                            label: 'Thumbnail',
                             path: 'thumbnail',
                         },
                         {
                             // custom element with custom content
-                            label: 'Thumbnail value rendered as image: ',
-                            valueElement: 'img',
-                            valueAttrs: {
-                                src: (md) => {
-                                    return md.thumbnail
-                                },
-                                width: '32'
-                            }
+                            label: 'Thumbnail value rendered as image',
+                            value: {
+                                component: 'img',
+                                attrs: {
+                                    src: ({ context }) => {
+                                        return context.thumbnail;
+                                    },
+                                    width: '32'
+                                }
+                            },
                         },
                         {
-                            label: 'Completely replaced element with q-img: ',
+                            label: 'Completely replaced element with q-img',
                             children: [
                                 {
                                     // custom element with custom content
-                                    element: 'q-img',
-                                    elementStyle: 'margin-top: 20px; width: 32px; height: 32px;',
-                                    elementAttrs: {
-                                        title: 'Whole label + value replaced with an image',
-                                        src: (md) => {
-                                            return md.thumbnail
+                                    wrapper: {
+                                        component: 'q-img',
+                                        style: {
+                                            'margin-top': '20px',
+                                            'width': '32px',
+                                            'height': '32px;'
+                                        },
+                                        attrs: {
+                                            title: 'Whole label + value replaced with an image',
+                                            src: ({ context }) => {
+                                                return context.thumbnail;
+                                            }
                                         }
-                                    }
+                                    },
                                 },
                             ]
                         }

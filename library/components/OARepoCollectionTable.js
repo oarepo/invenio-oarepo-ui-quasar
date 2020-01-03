@@ -1,4 +1,4 @@
-import RecordRenderer from './RecordRenderer';
+import { DataRendererComponent } from '@oarepo/data-renderer';
 import OARepoCollectionCardsDefaultComponent from './OARepoCollectionCardsDefaultComponent';
 
 function toIdentifier(label) {
@@ -142,9 +142,9 @@ export default {
                 } else {
                     return [slotName, (props) => {
                         return h('q-td', [
-                            h(RecordRenderer, {
+                            h(DataRendererComponent, {
                                 props: {
-                                    record: props.row,
+                                    data: props.row.metadata,
                                     definition: [{
                                         ...props.col,
                                         label: undefined

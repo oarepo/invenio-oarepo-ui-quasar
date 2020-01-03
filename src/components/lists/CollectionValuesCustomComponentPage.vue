@@ -25,11 +25,15 @@ export default {
             values: [
                 {
                     path: 'title',
-                    valueClass: 'text-weight-medium'
+                    value: {
+                        class: ['text-weight-medium']
+                    }
                 },
                 {
                     path: 'creator',
-                    component: SampleValueComponent,
+                    value: {
+                        component: SampleValueComponent,
+                    },
                     extra: "value of extra field"
                 },
             ]

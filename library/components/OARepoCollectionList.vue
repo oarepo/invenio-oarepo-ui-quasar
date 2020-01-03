@@ -10,7 +10,12 @@ q-list
                 :display="display"
                 :icon="recordIcon(record)"
                 :class="itemClass"
-                :style="itemStyle")
+                :style="itemStyle",
+                :schema="schema")
+                slot(v-for="(_, name) in $slots" :name="name" :slot="name")
+                template(v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData")
+                    slot(:name="name" v-bind="slotData")
+
 </template>
 
 <style>
@@ -32,7 +37,9 @@ export default {
             default: () => [
                 {
                     path: 'title',
-                    valueClass: 'text-weight-medium'
+                    value: {
+                        class: ['text-weight-medium']
+                    }
                 },
                 {
                     path: 'creator'
@@ -47,7 +54,8 @@ export default {
             default: () => ({ name: 'launch' })
         },
         itemClass: [String, Array, Object],
-        itemStyle: String
+        itemStyle: String,
+        schema: [String,  Object]
     },
     computed: {
         records() {

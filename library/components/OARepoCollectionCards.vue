@@ -10,6 +10,9 @@
                     :url="recordUrl(record)"
                     :display="display"
                     :icon="recordIcon(record)")
+                    slot(v-for="(_, name) in $slots" :name="name" :slot="name")
+                    template(v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData")
+                        slot(:name="name" v-bind="slotData")
 </template>
 
 <style>

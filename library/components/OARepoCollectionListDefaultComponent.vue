@@ -6,7 +6,10 @@ q-item(clickable :to="url" exact)
         q-img(:src="displayedIcon.url" v-if="displayedIcon.url"
             :class="displayedIcon.imageClass" :style="displayedIcon.imageStyle")
     q-item-section
-        component(:is="renderer" :record="record" :definition="display")
+        component(:is="renderer" :data="record.metadata" :definition="display" :schema="schema")
+            slot(v-for="(_, name) in $slots" :name="name" :slot="name")
+            template(v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData")
+                slot(:name="name" v-bind="slotData")
 </template>
 
 <style>
@@ -15,7 +18,7 @@ q-item(clickable :to="url" exact)
 <script>
 
 import { JSONPath } from 'jsonpath-plus';
-import RecordRenderer from './RecordRenderer';
+import { DataRendererComponent } from '@oarepo/data-renderer';
 
 export default {
     props: {
@@ -25,8 +28,9 @@ export default {
         icon: Object,
         renderer: {
             type: Object,
-            default: () => RecordRenderer
-        }
+            default: () => DataRendererComponent
+        },
+        schema: [String,  Object]
     },
     computed: {
         md() {

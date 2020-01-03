@@ -9,6 +9,7 @@ import InvenioQuasar from '@oarepo/invenio-quasar';
 import VueUid from 'vue-uid';
 import VuexPreloader from '@oarepo/vuex-preloader';
 import VueQuerySynchronizer from '@oarepo/vue-query-synchronizer';
+import DataRenderer from '@oarepo/data-renderer';
 
 Vue.config.productionTip = false;
 
@@ -27,6 +28,10 @@ Vue.use(VuexPreloader, {
 Vue.use(VueQuerySynchronizer, {
     passUnknownProperties: true,
     router
+});
+
+Vue.use(DataRenderer, {
+
 });
 
 Vue.use(InvenioQuasar, {});

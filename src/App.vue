@@ -45,17 +45,22 @@ q-layout(view='lHh Lpr lFf')
                                                 q-item-section(avatar='')
                                                     q-icon(name='list')
                                                 q-item-section
-                                                    q-item-label props rendered as table
+                                                    q-item-label Props rendered as table
+                                            q-item(clickable='' :to="{name: 'list-prop-template'}")
+                                                q-item-section(avatar='')
+                                                    q-icon(name='list')
+                                                q-item-section
+                                                    q-item-label Using template to render creator value
                                             q-item(clickable='' :to="{name: 'list-prop-value-component'}")
                                                 q-item-section(avatar='')
                                                     q-icon(name='list')
                                                 q-item-section
-                                                    q-item-label prop value handled by a component
+                                                    q-item-label Prop value handled by a component
                                             q-item(clickable='' :to="{name: 'list-prop-component'}")
                                                 q-item-section(avatar='')
                                                     q-icon(name='list')
                                                 q-item-section
-                                                    q-item-label whole prop handled by a component
+                                                    q-item-label Whole prop handled by a component
                                             q-item-label(header='') Custom component or factory
                                             q-item(clickable='' :to="{name: 'list-component'}" exact)
                                                 q-item-section(avatar='')
@@ -105,11 +110,6 @@ q-layout(view='lHh Lpr lFf')
                                     q-icon(name='list')
                                 q-item-section
                                     q-item-label Clickable records - using urlGetter
-                            q-item(clickable='' :to="{name: 'record-renderer'}" exact)
-                                q-item-section(avatar='')
-                                    q-icon(name='list')
-                                q-item-section
-                                    q-item-label Internal rendering component test
     q-page-container
         router-view
 </template>

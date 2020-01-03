@@ -16,7 +16,7 @@ import CollectionRecordUILinkPage from '../components/lists/CollectionRecordUILi
 import CollectionCardsPage from '../components/cards/CollectionCardsPage';
 import CollectionCardsGridPage from '../components/cards/CollectionCardsGridPage';
 import CollectionTablePage from '../components/table/CollectionTablePage';
-import RecordRendererPage from '../components/misc/DataRendererPage';
+import CollectionValuesTemplatePage from '../components/lists/CollectionValuesTemplatePage';
 
 Vue.use(VueRouter);
 
@@ -68,6 +68,13 @@ const routes = [
         props: query([], { collectionId: 'records' })
     }),
     routerCollection({
+        name: 'list-prop-template',
+        path: '/list-prop-template',
+        component: CollectionValuesTemplatePage,
+        props: query([], { collectionId: 'records' })
+    }),
+
+    routerCollection({
         name: 'list-component',
         path: '/list-component',
         component: CollectionRecordComponentPage,
@@ -113,12 +120,6 @@ const routes = [
             'sort'
         ], { collectionId: 'records' })
     }),
-    {
-        name: 'record-renderer',
-        path: '/record-renderer',
-        component: RecordRendererPage,
-        props: query(['schema'])
-    }
 ];
 
 const router = new VueRouter({
