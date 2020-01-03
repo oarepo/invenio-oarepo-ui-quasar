@@ -25,6 +25,7 @@ module.exports = {
                                 'id': x,
                                 'links': {
                                     'self': 'https://restaurovani.vscht.cz/api/drafts/restorations/objects/' + x,
+                                    'ui': '/records/' + x,
                                 },
                                 'metadata': {
                                     '$schema': 'https://restaurovani.vscht.cz/schemas/draft/krokd/restoration-object-v1.0.0.json',

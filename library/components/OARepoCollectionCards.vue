@@ -34,7 +34,9 @@ export default {
             default: () => [
                 {
                     path: 'title',
-                    valueClass: 'text-weight-medium',
+                    value: {
+                        class: ['text-weight-medium']
+                    },
                     link: true
                 },
                 {
