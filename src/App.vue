@@ -106,6 +106,25 @@ q-layout(view='lHh Lpr lFf')
                                     q-icon(name='view_module')
                                 q-item-section
                                     q-item-label Table example
+            q-expansion-item(header='' label="Record")
+                q-card
+                    q-card-section
+                        q-list
+                            q-item(clickable='' :to="{name: 'record-simple', params: {recordId: 1}}" exact)
+                                q-item-section(avatar='')
+                                    q-icon(name='view_module')
+                                q-item-section
+                                    q-item-label Record example
+                            q-item(clickable='' :to="{name: 'record-partial', params: {recordId: 1}}" exact)
+                                q-item-section(avatar='')
+                                    q-icon(name='view_module')
+                                q-item-section
+                                    q-item-label Record example with partial rendering
+                            q-item(clickable='' :to="{name: 'record-styled', params: {recordId: 1}}" exact)
+                                q-item-section(avatar='')
+                                    q-icon(name='view_module')
+                                q-item-section
+                                    q-item-label Record example styled by data-renderer
             q-expansion-item(header='' label="Miscelaneous")
                 q-card
                     q-card-section

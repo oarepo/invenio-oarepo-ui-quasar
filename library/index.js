@@ -1,12 +1,14 @@
 import OARepoCollectionList from './components/OARepoCollectionList.vue';
 import OARepoCollectionCards from './components/OARepoCollectionCards';
 import OARepoCollectionTable from './components/OARepoCollectionTable';
+import OARepoRecord from './components/OARepoRecord';
 
 export default {
     install(Vue, options) {
         Vue.component(OARepoCollectionList.name, OARepoCollectionList);
         Vue.component(OARepoCollectionCards.name, OARepoCollectionCards);
         Vue.component(OARepoCollectionTable.name, OARepoCollectionTable);
+        Vue.component(OARepoRecord.name, OARepoRecord);
 
         options = {
             labelTranslator: function ({ label, schema }) {

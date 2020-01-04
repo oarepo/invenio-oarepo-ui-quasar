@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import { routerCollection } from '@oarepo/invenio-api-vuex';
+import { routerCollection, routerRecord } from '@oarepo/invenio-api-vuex';
 import { query } from '@oarepo/vue-query-synchronizer';
 import CollectionPage from '../components/lists/CollectionPage';
 import CollectionPageImageIcon from '../components/lists/CollectionPageImageIcon';
@@ -18,6 +18,9 @@ import CollectionCardsGridPage from '../components/cards/CollectionCardsGridPage
 import CollectionTablePage from '../components/table/CollectionTablePage';
 import CollectionValuesTemplatePage from '../components/lists/CollectionValuesTemplatePage';
 import CollectionCardsTemplatePage from '../components/cards/CollectionCardsTemplatePage';
+import RecordPage from '../components/records/RecordPage';
+import RecordPartialPage from '../components/records/RecordPartialPage';
+import RecordStyledPage from '../components/records/RecordStyledPage';
 
 Vue.use(VueRouter);
 
@@ -126,6 +129,51 @@ const routes = [
             'number:size:10',
             'sort'
         ], { collectionId: 'records' })
+    }),
+    routerRecord({
+        name: 'record-simple',
+        path: '/records/:recordId',
+        component: RecordPage,
+        props: query(['string:schema:table'], {
+            collectionId: 'records'
+        }),
+        meta: {
+            preloader: {
+                props: {
+                    collectionId: 'records'
+                }
+            }
+        }
+    }),
+    routerRecord({
+        name: 'record-partial',
+        path: '/records-partial/:recordId',
+        component: RecordPartialPage,
+        props: query(['string:schema:table'], {
+            collectionId: 'records'
+        }),
+        meta: {
+            preloader: {
+                props: {
+                    collectionId: 'records'
+                }
+            }
+        }
+    }),
+    routerRecord({
+        name: 'record-styled',
+        path: '/records-styled/:recordId',
+        component: RecordStyledPage,
+        props: query(['string:schema:table'], {
+            collectionId: 'records'
+        }),
+        meta: {
+            preloader: {
+                props: {
+                    collectionId: 'records'
+                }
+            }
+        }
     }),
 ];
 

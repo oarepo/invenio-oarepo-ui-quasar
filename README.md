@@ -377,13 +377,8 @@ Property ``card-class`` gives the class of the card element.
 A renderer for a single record
 
 ```pug
-oarepo-collection-table(:query="query" 
-                        :display='displayDefinition'
-                        :grid-display='gridDisplayDefinition'
-                        grid-card-class='q-table__grid-item col-xs-12 col-sm-6 col-md-4 col-lg-3'
-                        card-class=''
-)
-    /* can use any qtable slots here */
+oarepo-record(:display='displayDefinition' :options="options")
+    /* can use any data-renderer slots here; :options are any data-renderer options */
 ``` 
 
 
