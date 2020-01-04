@@ -809,9 +809,9 @@
   integrity sha512-MvueVcTFAz+LBDqDzU4QRCc0lL1KF2Md1XsmILo7t7RMUPxMKrHMxxpzPAIG0TwTsaQQyvM8m4bDfMtvATwnVQ==
 
 "@oarepo/invenio-api-vuex@^2.1.9":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@oarepo/invenio-api-vuex/-/invenio-api-vuex-2.2.1.tgz#6216a16411237ce6099f790edb2793cdcb429c69"
-  integrity sha512-8ihNwiIbO4tQpR8/EvujNBegbKS6EOp9rmrAyyDYo+Koq/bV1wP0jDR0x+xr1Qpm2lmOH/MhG4T3Sn0asbQcuQ==
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@oarepo/invenio-api-vuex/-/invenio-api-vuex-2.2.2.tgz#cee04cd28286dd3a8ceb7313f75bd37524f81169"
+  integrity sha512-Sc1RNlu0KcJ7HrwIvAVIKrqciM5+SovV0dzLCOk/nsBMc/P7lQx9q+a4l2Gh6cNyMm3dvHveujZH225rpdxt+A==
 
 "@oarepo/vue-query-synchronizer@^1.1.0":
   version "1.1.0"
