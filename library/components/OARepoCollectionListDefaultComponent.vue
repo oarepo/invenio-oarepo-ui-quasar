@@ -1,12 +1,12 @@
 <template lang="pug">
 q-item(clickable :to="url" exact)
-    q-item-section(avatar :class="displayedIcon.avatarClass" :style="displayedIcon.avatarStyle")
-        q-icon(:name="displayedIcon.name" v-if="displayedIcon.name && !displayedIcon.url"
-            :class="displayedIcon.iconClass" :style="displayedIcon.iconStyle")
-        q-img(:src="displayedIcon.url" v-if="displayedIcon.url"
-            :class="displayedIcon.imageClass" :style="displayedIcon.imageStyle")
+    q-item-section(avatar :class="layoutedIcon.avatarClass" :style="layoutedIcon.avatarStyle")
+        q-icon(:name="layoutedIcon.name" v-if="layoutedIcon.name && !layoutedIcon.url"
+            :class="layoutedIcon.iconClass" :style="layoutedIcon.iconStyle")
+        q-img(:src="layoutedIcon.url" v-if="layoutedIcon.url"
+            :class="layoutedIcon.imageClass" :style="layoutedIcon.imageStyle")
     q-item-section
-        data-renderer(:data="md" :definition="display" :schema="schema" v-bind="options")
+        data-renderer(:data="md" :layout="layout" :schema="schema" v-bind="options")
             slot(v-for="(_, name) in $slots" :name="name" :slot="name")
             template(v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData")
                 slot(:name="name" v-bind="slotData")
@@ -23,7 +23,7 @@ export default {
     props: {
         record: Object,
         url: String,
-        display: Array,
+        layout: Array,
         icon: Object,
         schema: [String,  Object],
         options: Object
@@ -32,7 +32,7 @@ export default {
         md() {
             return this.record.metadata;
         },
-        displayedIcon() {
+        layoutedIcon() {
             const ret = { ...this.icon };
             if (ret.iconPath) {
                 ret.name = JSONPath({

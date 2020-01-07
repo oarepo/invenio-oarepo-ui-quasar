@@ -19,9 +19,15 @@ div
 
 
 import OARepoRecordMixin from './OARepoRecordMixin';
+import OARepoRecordInplaceEditorDefaultComponent from './OARepoRecordInplaceEditorDefaultComponent';
 
 export default {
-    name: 'oarepo-record',
+    name: 'oarepo-record-inplace-editor',
     mixins: [OARepoRecordMixin],
+    data: function () {
+        return {
+            defaultRecordComponent: OARepoRecordInplaceEditorDefaultComponent
+        };
+    }
 };
 </script>

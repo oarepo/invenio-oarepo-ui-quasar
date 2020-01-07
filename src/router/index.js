@@ -21,6 +21,7 @@ import CollectionCardsTemplatePage from '../components/cards/CollectionCardsTemp
 import RecordPage from '../components/records/RecordPage';
 import RecordPartialPage from '../components/records/RecordPartialPage';
 import RecordStyledPage from '../components/records/RecordStyledPage';
+import RecordInPlaceEditorPage from '../components/records/RecordInPlaceEditorPage';
 
 Vue.use(VueRouter);
 
@@ -164,6 +165,21 @@ const routes = [
         name: 'record-styled',
         path: '/records-styled/:recordId',
         component: RecordStyledPage,
+        props: query(['string:schema:table'], {
+            collectionId: 'records'
+        }),
+        meta: {
+            preloader: {
+                props: {
+                    collectionId: 'records'
+                }
+            }
+        }
+    }),
+    routerRecord({
+        name: 'record-inplace-editor',
+        path: '/record-inplace-editor/:recordId',
+        component: RecordInPlaceEditorPage,
         props: query(['string:schema:table'], {
             collectionId: 'records'
         }),

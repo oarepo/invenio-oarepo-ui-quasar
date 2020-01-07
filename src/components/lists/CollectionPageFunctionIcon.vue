@@ -22,7 +22,7 @@ export default {
                     name: 'launch',
                     iconClass: 'test-icon',
                     iconStyle: 'color: red',
-                    avatarStyle: 'display: flex; justify-content: center; align-items: flex-end'
+                    avatarStyle: 'layout: flex; justify-content: center; align-items: flex-end'
                 },
                 {
                     url: 'https://cis-login.vscht.cz/static/web/logo_small.png',

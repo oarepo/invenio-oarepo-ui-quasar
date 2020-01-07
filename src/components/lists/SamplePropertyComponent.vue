@@ -1,8 +1,8 @@
 <template lang="pug">
-span sample value component, path is "{{ paths }}", value "{{ values }}", extra field "{{ definition.extra }}"
+span sample value component, path is "{{ paths }}", value "{{ values }}", extra field "{{ layout.extra }}"
 </template>
 <script>
 export default {
-    props: ['context', 'definition', 'data', 'paths', 'value', 'values']
+    props: ['context', 'layout', 'data', 'paths', 'value', 'values']
 }
 </script>

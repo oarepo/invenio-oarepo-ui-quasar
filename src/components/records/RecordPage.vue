@@ -5,7 +5,7 @@
         type="a" target="_blank" flat) View source
     h6 Rendered record (default rendering, dynamic schema, hidden $schema)
     .q-pt-xs.q-pr-lg
-        span Display options:
+        span Layout options:
         q-radio(v-model="query.schema" val="inline" label="inline")
         q-radio(v-model="query.schema" val="block" label="block")
         q-radio(v-model="query.schema" val="table" label="table")
@@ -28,7 +28,7 @@ export default {
         options() {
             return {
                 schema: this.query.schema,
-                pathDefinitions: {
+                pathLayouts: {
                     '-title': {
                         value: {
                             class: ['text-weight-medium']

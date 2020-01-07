@@ -5,13 +5,13 @@
         type="a" target="_blank" flat) View source
     h6 Rendered record (default rendering, dynamic schema, hidden $schema)
     .q-pt-xs.q-pr-lg
-        span Display options:
+        span Layout options:
         q-radio(v-model="query.schema" val="inline" label="inline")
         q-radio(v-model="query.schema" val="block" label="block")
         q-radio(v-model="query.schema" val="table" label="table")
         q-radio(v-model="query.schema" val="flex" label="flex")
     q-separator
-    oarepo-record(:options="options" :display="definition")
+    oarepo-record(:options="options" :layout="layout")
     div.q-pt-lg See #[a(href="https://github.com/oarepo/data-renderer" target="_blank") @oarepo/data-renderer] for more details on rendering
 </template>
 <script>
@@ -22,9 +22,9 @@ export default {
     data: function () {
         return {
             schema: 'table',
-            definition: [
+            layout: [
                 {
-                    childrenWrapper: {
+                    'children-wrapper': {
                         class: ['row', 'q-mt-lg', 'items-start']
                     },
                     children: [
@@ -34,7 +34,7 @@ export default {
                                 component: "img",
                                 class: ['q-mr-xl'],
                                 attrs: {
-                                    src: ({value}) => value
+                                    src: ({value}) => { console.log(value); return value }
                                 }
                             }
                         },
@@ -51,8 +51,8 @@ export default {
         options() {
             return {
                 schema: this.query.schema,
-                dynamicDefinition: true,
-                pathDefinitions: {
+                dynamic: true,
+                pathLayouts: {
                     '-title': {
                         value: {
                             class: ['text-weight-medium']

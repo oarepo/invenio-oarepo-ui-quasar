@@ -2,6 +2,7 @@ import OARepoCollectionList from './components/OARepoCollectionList.vue';
 import OARepoCollectionCards from './components/OARepoCollectionCards';
 import OARepoCollectionTable from './components/OARepoCollectionTable';
 import OARepoRecord from './components/OARepoRecord';
+import OARepoRecordInplaceEditor from './components/OARepoRecordInplaceEditor';
 
 export default {
     install(Vue, options) {
@@ -9,6 +10,7 @@ export default {
         Vue.component(OARepoCollectionCards.name, OARepoCollectionCards);
         Vue.component(OARepoCollectionTable.name, OARepoCollectionTable);
         Vue.component(OARepoRecord.name, OARepoRecord);
+        Vue.component(OARepoRecordInplaceEditor.name, OARepoRecordInplaceEditor);
 
         options = {
             labelTranslator: function ({ label, schema }) {
@@ -30,10 +32,10 @@ export default {
                     wrapper: {},
                     label: {},
                     valueWrapper: {
-                        style: { display: 'inline' }
+                        style: { layout: 'inline' }
                     },
                     value: {
-                        style: { display: 'inline' }
+                        style: { layout: 'inline' }
                     },
                     childrenWrapper: {},
                     root: {
@@ -51,7 +53,7 @@ export default {
                         style: { 'vertical-align': 'top' }
                     },
                     valueWrapper: {
-                        style: { display: 'block' }
+                        style: { layout: 'block' }
                     },
                     value: {},
                     childrenWrapper: {},
@@ -73,7 +75,7 @@ export default {
                         class: ['col-3']
                     },
                     valueWrapper: {
-                        style: { display: 'block' },
+                        style: { layout: 'block' },
                         class: ['col-9']
                     },
                     value: {},

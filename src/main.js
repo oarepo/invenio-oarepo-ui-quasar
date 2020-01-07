@@ -31,7 +31,14 @@ Vue.use(VueQuerySynchronizer, {
 });
 
 Vue.use(DataRenderer, {
-
+    icon: {
+        component: 'q-icon',
+        attrs: {
+            name: ({layout}) => {
+                return layout.icon && layout.icon.value
+            },
+        }
+    }
 });
 
 Vue.use(InvenioQuasar, {});

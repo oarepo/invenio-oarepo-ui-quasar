@@ -125,6 +125,11 @@ q-layout(view='lHh Lpr lFf')
                                     q-icon(name='view_module')
                                 q-item-section
                                     q-item-label Record example styled by data-renderer
+                            q-item(clickable='' :to="{name: 'record-inplace-editor', params: {recordId: 1}}" exact)
+                                q-item-section(avatar='')
+                                    q-icon(name='view_module')
+                                q-item-section
+                                    q-item-label Inplace record editor
             q-expansion-item(header='' label="Miscelaneous")
                 q-card
                     q-card-section

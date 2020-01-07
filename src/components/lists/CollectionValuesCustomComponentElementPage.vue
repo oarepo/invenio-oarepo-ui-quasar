@@ -7,7 +7,7 @@ q-page.q-ma-lg
         q-btn.block(icon="launch"
             href="https://github.com/oarepo/invenio-oarepo-ui-quasar/tree/invenio-3.2/src/components/lists/SamplePropertyComponent.vue"
             type="a" target="_blank" flat) Component
-    oarepo-collection-list(:query="query" :display="values")
+    oarepo-collection-list(:query="query" :layout="values")
 </template>
 
 <style>

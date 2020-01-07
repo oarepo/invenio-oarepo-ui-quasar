@@ -7,7 +7,7 @@ q-list
                 :is="recordComponent(record)"
                 :record="record"
                 :url="recordUrl(record)"
-                :display="display !== null ? display : undefined"
+                :layout="layout !== null ? layout : undefined"
                 :icon="recordIcon(record)"
                 :class="itemClass"
                 :style="itemStyle",
@@ -32,7 +32,7 @@ export default {
         component: [Object, Promise],
         componentFactory: Function,
         urlGetter: Function,
-        display: {
+        layout: {
             type: [Array, Function],
             default: () => [
                 {

@@ -8,7 +8,7 @@ function toIdentifier(label) {
 export default {
     props: {
         query: Object,
-        display: {
+        layout: {
             type: [Array, Function],
             default: () => [
                 {
@@ -31,7 +31,7 @@ export default {
                 }
             ]
         },
-        gridDisplay: {
+        gridLayout: {
             type: [Array, Function],
         },
         gridCardClass: {
@@ -47,7 +47,7 @@ export default {
     },
     name: 'oarepo-collection-table',
     render(h) {
-        const columns = this.display.map(x => ({
+        const columns = this.layout.map(x => ({
             ...x,
             name: x.name || toIdentifier(x.label || x.path),
             label: x.label || x.name || x.path,
@@ -75,7 +75,7 @@ export default {
                             key: props.key,
                             props: {
                                 record: props.row,
-                                display: this.currentCardColumns,
+                                layout: this.currentCardColumns,
                                 icon: this.$attrs.icon,
                                 renderer: this.$attrs.renderer,
                                 url: this.recordUrl(props.row)
@@ -101,7 +101,7 @@ export default {
     },
     computed: {
         currentCardColumns() {
-            return this.gridDisplay || this.display.map(x => ({
+            return this.gridLayout || this.layout.map(x => ({
                 ...x,
                 label: x.gridLabel || `${x.label || x.name || x.path}: `
             }));
@@ -145,7 +145,7 @@ export default {
                             h(DataRendererComponent, {
                                 props: {
                                     data: props.row.metadata,
-                                    definition: [{
+                                    layout: [{
                                         ...props.col,
                                         label: undefined
                                     }],
