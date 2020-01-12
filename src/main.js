@@ -16,11 +16,12 @@ Vue.config.productionTip = false;
 Vue.use(InvenioApi, {
     store,
     router,
-    apiURL: '/demo-invenio-quasar/api'
+    apiURL: '/demo-invenio-quasar/api',
 });
 Vue.use(VueUid);
 
 Vue.use(VuexPreloader, {
+    injection: true,
     router,
     store
 });

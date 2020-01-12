@@ -804,37 +804,37 @@
     fastq "^1.6.0"
 
 "@oarepo/data-renderer@^1.0.2":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@oarepo/data-renderer/-/data-renderer-1.7.0.tgz#4c86ad70d43d25a0486bda641d2ebb600d621bfc"
-  integrity sha512-jdCo+0yRHrNxm3oZJlK2p5G7VdbPgAPxWu4/f9xKTahX0+4d/cYsOusCzBX8JitkRE8TugYiaJb0dc9Mq+mCnQ==
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@oarepo/data-renderer/-/data-renderer-1.10.0.tgz#c05a9432eb0fb777b58585d580573506ece4cfd9"
+  integrity sha512-FFyLkMMsEQv/29W8pRC0s4LXRS1HtJhzlwHIOhNp8qWwcR/jQA0ZEORifwNgce2N3t8heLiBbOAyNL+cMtV9xw==
 
 "@oarepo/invenio-api-vuex@^2.1.9":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@oarepo/invenio-api-vuex/-/invenio-api-vuex-2.2.2.tgz#cee04cd28286dd3a8ceb7313f75bd37524f81169"
-  integrity sha512-Sc1RNlu0KcJ7HrwIvAVIKrqciM5+SovV0dzLCOk/nsBMc/P7lQx9q+a4l2Gh6cNyMm3dvHveujZH225rpdxt+A==
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@oarepo/invenio-api-vuex/-/invenio-api-vuex-2.3.0.tgz#6f1a2641f00f51d7669990050bf5c34b20e8fab2"
+  integrity sha512-7tnw8HAp5STvP3jKjKGmgiEwsZ9uaYOsVbewhwrUSMrIfGMcGqB6xSq4JEG4gXOcb5FyP/y1FbcDgXZ1bScH3w==
 
 "@oarepo/vue-query-synchronizer@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@oarepo/vue-query-synchronizer/-/vue-query-synchronizer-1.1.0.tgz#d690d6850d0b0a72cdb0dad403705a8044738129"
-  integrity sha512-F7azxWpPIHqp2FgOhShHNHBbORTRsg6XYV2jhlIklaE78LbC9Gr7Fui0mqyEC2IrQHp8MRoCQA17Vk2HAaKYmA==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@oarepo/vue-query-synchronizer/-/vue-query-synchronizer-1.2.0.tgz#da484fa3722175b1a57605734d31c439a6973f1d"
+  integrity sha512-0IRX2QZBY/cxo51FADkHgiDuGwHPvpz3QjSF4P1R3m2MaJrdUTI3ioe6NRrrLayZNfmlISW48v/d+yDophyOVQ==
   dependencies:
     flatted "^2.0.1"
     vue "^2.6.10"
     vue-router "^3.1.3"
 
 "@oarepo/vuex-preloader@^1.2.2":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@oarepo/vuex-preloader/-/vuex-preloader-1.3.1.tgz#1beb9deed0b43659dff94241692502c1a6f5efa6"
-  integrity sha512-gErQHXB3QvL787W1qZSex4z5rsJqMheC12D+KUy996L/xleAKGMqHOpzOAXXLi3w8ZUI3n4LtnA0NoxZbdjNFg==
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/@oarepo/vuex-preloader/-/vuex-preloader-1.3.2.tgz#352e0861d93179a2bacd6aea0ff49d9a2a7e68bc"
+  integrity sha512-Fn97vPxYl2v1IbLQa0WNsAXKqwIO37icp2RiRpLUZmIhsNAMs+p34NUWBYGFfhqCIVpAAhHmEU9elGwQtthv5w==
   dependencies:
     vue "^2.6.10"
     vue-router "^3.1.3"
     vuex "^3.1.2"
 
 "@quasar/extras@^1.0.0":
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.3.3.tgz#4eade1e9ad4087ec05bee676d2e2cfb5c30c1810"
-  integrity sha512-xRXoIl0ZtRjQbTt6iLsvLMMOy8nyroeh2bahDlQmF14dkIU+gKQqKH7pMyn5as9xJq+Vubyw6957rbyasa8WOQ==
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.4.0.tgz#e273e0610f4f22482ac49934ce4426260c08e49d"
+  integrity sha512-ouhk4dWkPYWCjBZU+xN9/55O3Bszn1MDpFSFCtcGQXVe6VrmIvE/wE09YD+cp4PZdzsQZZiiTftziyoCzdy2Qg==
 
 "@soda/friendly-errors-webpack-plugin@^1.7.1":
   version "1.7.1"
@@ -2703,9 +2703,9 @@ core-js@^2.4.0:
   integrity sha512-5wjnpaT/3dV+XB4borEsnAYQchn00XSgTAWKDkEqv+K8KevjbzmofK6hfJ9TZIlpj2N0xQpazy7PiRQiWHqzWg==
 
 core-js@^3.4.4:
-  version "3.6.2"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.2.tgz#2799ea1a59050f0acf50dfe89b916d6503b16caa"
-  integrity sha512-hIE5dXkRzRvnZ5vhkRfQxUvDxQZmD9oueA08jDYRBKJHx+VIl/Pne/e0A4x9LObEEthC/TqiZybUoNM4tRgnKg==
+  version "3.6.3"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.3.tgz#cebda69dd069bf90066414d2b2425ffd1f3dcd79"
+  integrity sha512-DOO9b18YHR+Wk5kJ/c5YFbXuUETreD4TrvXb6edzqZE3aAEd0eJIAWghZ9HttMuiON8SVCnU3fqA4rPxRDD1HQ==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -3946,6 +3946,11 @@ fast-glob@^3.0.3:
     glob-parent "^5.1.0"
     merge2 "^1.3.0"
     micromatch "^4.0.2"
+
+fast-json-patch@^3.0.0-1:
+  version "3.0.0-1"
+  resolved "https://registry.yarnpkg.com/fast-json-patch/-/fast-json-patch-3.0.0-1.tgz#4c68f2e7acfbab6d29d1719c44be51899c93dabb"
+  integrity sha512-6pdFb07cknxvPzCeLsFHStEy+MysPJPgZQ9LbQ/2O67unQF93SNqfdSqnPPl71YMHX+AD8gbl7iuoGFzHEdDuw==
 
 fast-json-stable-stringify@^2.0.0:
   version "2.1.0"
@@ -7630,9 +7635,9 @@ qs@~6.5.2:
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
 quasar@^1.0.0:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.6.1.tgz#401bb4f80e2333f1b0747fc0b38e9b76895dcb59"
-  integrity sha512-0FHNK6vzozboFcnonwjFO8pvxUncPxXX+tcV8P1vi8hlzxgeKkYgKTkCb7rWDH/ip1T8nxjYsD0+2w4IkCiW0w==
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.7.0.tgz#d0601938620eb072117392724cb4fafc3a0c89f6"
+  integrity sha512-xZ11IEhWzcLfvzeNaz4atZ1TrF4X4Zydw1GbF3U/kPMs3FNzdWRop375VHeau2yXkpKIttWYTb5zcGf1tvGV5A==
 
 query-string@^4.1.0:
   version "4.3.4"

@@ -6,7 +6,7 @@ div
             :is="recordComponent"
             :record="record"
             :layout="layout !== null ? layout : undefined"
-            :options="options")
+            :options="currentOptions")
             slot(v-for="(_, name) in $slots" :name="name" :slot="name")
             template(v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData")
                 slot(:name="name" v-bind="slotData")

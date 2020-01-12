@@ -130,6 +130,11 @@ q-layout(view='lHh Lpr lFf')
                                     q-icon(name='view_module')
                                 q-item-section
                                     q-item-label Inplace record editor
+                            q-item(clickable='' :to="{name: 'record-inplace-editor-empty', params: {recordId: 1}}" exact)
+                                q-item-section(avatar='')
+                                    q-icon(name='view_module')
+                                q-item-section
+                                    q-item-label Inplace record editor with missing values
             q-expansion-item(header='' label="Miscelaneous")
                 q-card
                     q-card-section

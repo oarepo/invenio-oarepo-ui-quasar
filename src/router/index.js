@@ -22,6 +22,7 @@ import RecordPage from '../components/records/RecordPage';
 import RecordPartialPage from '../components/records/RecordPartialPage';
 import RecordStyledPage from '../components/records/RecordStyledPage';
 import RecordInPlaceEditorPage from '../components/records/RecordInPlaceEditorPage';
+import RecordInPlaceEditorEmptyPage from '../components/records/RecordInPlaceEditorEmptyPage';
 
 Vue.use(VueRouter);
 
@@ -34,92 +35,92 @@ const routes = [
         name: 'list-simple',
         path: '/list-simple',
         component: CollectionPage,
-        props: query([], { collectionId: 'records' })
+        props: query([], { collectionId: 'records' }, { passParams: true })
     }),
     routerCollection({
         name: 'list-image-icon',
         path: '/list-image-icon',
         component: CollectionPageImageIcon,
-        props: query([], { collectionId: 'records' })
+        props: query([], { collectionId: 'records' }, { passParams: true })
     }),
     routerCollection({
         name: 'list-function-icon',
         path: '/list-function-icon',
         component: CollectionPageFunctionIcon,
-        props: query([], { collectionId: 'records' })
+        props: query([], { collectionId: 'records' }, { passParams: true })
     }),
     routerCollection({
         name: 'list-no-component',
         path: '/list-no-component',
         component: CollectionValuesNoComponentPage,
-        props: query([], { collectionId: 'records' })
+        props: query([], { collectionId: 'records' }, { passParams: true })
     }),
     routerCollection({
         name: 'list-table',
         path: '/list-table',
         component: CollectionValuesTablePage,
-        props: query([], { collectionId: 'records' })
+        props: query([], { collectionId: 'records' }, { passParams: true })
     }),
     routerCollection({
         name: 'list-prop-value-component',
         path: '/list-prop-value-component',
         component: CollectionValuesCustomComponentPage,
-        props: query([], { collectionId: 'records' })
+        props: query([], { collectionId: 'records' }, { passParams: true })
     }),
     routerCollection({
         name: 'list-prop-component',
         path: '/list-prop-component',
         component: CollectionValuesCustomComponentElementPage,
-        props: query([], { collectionId: 'records' })
+        props: query([], { collectionId: 'records' }, { passParams: true })
     }),
     routerCollection({
         name: 'list-prop-template',
         path: '/list-prop-template',
         component: CollectionValuesTemplatePage,
-        props: query([], { collectionId: 'records' })
+        props: query([], { collectionId: 'records' }, { passParams: true })
     }),
 
     routerCollection({
         name: 'list-component',
         path: '/list-component',
         component: CollectionRecordComponentPage,
-        props: query([], { collectionId: 'records' })
+        props: query([], { collectionId: 'records' }, { passParams: true })
     }),
     routerCollection({
         name: 'list-component-factory',
         path: '/list-component-factory',
         component: CollectionRecordComponentFactoryPage,
-        props: query([], { collectionId: 'records' })
+        props: query([], { collectionId: 'records' }, { passParams: true })
     }),
     routerCollection({
         name: 'list-slot',
         path: '/list-slot',
         component: CollectionRecordSlotPage,
-        props: query([], { collectionId: 'records' })
+        props: query([], { collectionId: 'records' }, { passParams: true })
     }),
     routerCollection({
         name: 'cards-simple',
         path: '/cards-simple',
         component: CollectionCardsPage,
-        props: query([], { collectionId: 'records' })
+        props: query([], { collectionId: 'records' }, { passParams: true })
     }),
     routerCollection({
         name: 'cards-grid',
         path: '/cards-grid',
         component: CollectionCardsGridPage,
-        props: query([], { collectionId: 'records' })
+        props: query([], { collectionId: 'records' }, { passParams: true })
     }),
     routerCollection({
         name: 'cards-template',
         path: '/cards-template',
         component: CollectionCardsTemplatePage,
-        props: query([], { collectionId: 'records' })
+        props: query([], { collectionId: 'records' }, { passParams: true })
     }),
     routerCollection({
         name: 'list-ui-link',
         path: '/list-ui-link',
         component: CollectionRecordUILinkPage,
-        props: query([], { collectionId: 'records' })
+        props: query([], { collectionId: 'records' }, { passParams: true })
     }),
     routerCollection({
         name: 'table-simple',
@@ -129,7 +130,7 @@ const routes = [
             'number:page:1',
             'number:size:10',
             'sort'
-        ], { collectionId: 'records' })
+        ], { collectionId: 'records' }, { passParams: true })
     }),
     routerRecord({
         name: 'record-simple',
@@ -137,7 +138,7 @@ const routes = [
         component: RecordPage,
         props: query(['string:schema:table'], {
             collectionId: 'records'
-        }),
+        }, { passParams: true }),
         meta: {
             preloader: {
                 props: {
@@ -152,7 +153,7 @@ const routes = [
         component: RecordPartialPage,
         props: query(['string:schema:table'], {
             collectionId: 'records'
-        }),
+        }, { passParams: true }),
         meta: {
             preloader: {
                 props: {
@@ -167,7 +168,7 @@ const routes = [
         component: RecordStyledPage,
         props: query(['string:schema:table'], {
             collectionId: 'records'
-        }),
+        }, { passParams: true }),
         meta: {
             preloader: {
                 props: {
@@ -182,7 +183,22 @@ const routes = [
         component: RecordInPlaceEditorPage,
         props: query(['string:schema:table'], {
             collectionId: 'records'
-        }),
+        }, { passParams: true }),
+        meta: {
+            preloader: {
+                props: {
+                    collectionId: 'records'
+                }
+            }
+        }
+    }),
+    routerRecord({
+        name: 'record-inplace-editor-empty',
+        path: '/record-inplace-editor-empty/:recordId',
+        component: RecordInPlaceEditorEmptyPage,
+        props: query(['string:schema:table'], {
+            collectionId: 'records'
+        }, { passParams: true }),
         meta: {
             preloader: {
                 props: {

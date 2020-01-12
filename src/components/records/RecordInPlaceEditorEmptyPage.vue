@@ -11,7 +11,7 @@
         q-radio(v-model="query.schema" val="table" label="table")
         q-radio(v-model="query.schema" val="flex" label="flex")
     q-separator
-    oarepo-record-inplace-editor(:options="options" :storeModule="storeModule")
+    oarepo-record-inplace-editor(:options="options" :storeModule="storeModule" :layout="layout")
     div.q-pt-lg See #[a(href="https://github.com/oarepo/data-renderer" target="_blank") @oarepo/data-renderer] for more details on rendering
 </template>
 <script>
@@ -23,22 +23,39 @@ export default {
     data: function () {
         return {
             schema: 'table'
-        }
+        };
     },
     computed: {
+        layout() {
+            return [
+                'title',
+                'creator',
+                'created',
+                {
+                    path: 'location',
+                    label: 'Location',
+                    children: [
+                        'street',
+                        'number',
+                        'city',
+                        'zipcode'
+                    ]
+                }
+            ];
+        },
         options() {
             return {
                 schema: this.query.schema,
+                showEmpty: true,
                 pathLayouts: {
                     '-title': {
                         value: {
                             class: ['text-weight-medium']
                         }
                     },
-                    '$schema': null
                 }
-            }
+            };
         }
     }
-}
+};
 </script>
