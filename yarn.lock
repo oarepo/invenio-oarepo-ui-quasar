@@ -804,9 +804,9 @@
     fastq "^1.6.0"
 
 "@oarepo/data-renderer@^1.0.2":
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/@oarepo/data-renderer/-/data-renderer-1.10.0.tgz#c05a9432eb0fb777b58585d580573506ece4cfd9"
-  integrity sha512-FFyLkMMsEQv/29W8pRC0s4LXRS1HtJhzlwHIOhNp8qWwcR/jQA0ZEORifwNgce2N3t8heLiBbOAyNL+cMtV9xw==
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/@oarepo/data-renderer/-/data-renderer-1.12.0.tgz#8788636d7dbbdb5e459183e29566c6c875565a13"
+  integrity sha512-r5+U6lrk5DgehED9Ogc4MkdQpLZnNub8RSuXs5dXyJ21RJUzT+qRu5+H6/IoHLiBE6Ta6ToK9dDpvqLKV+Sq+w==
 
 "@oarepo/invenio-api-vuex@^2.1.9":
   version "2.3.0"
@@ -5782,6 +5782,11 @@ lodash.sortby@^4.7.0:
   resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
   integrity sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=
 
+lodash.startcase@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.startcase/-/lodash.startcase-4.4.0.tgz#9436e34ed26093ed7ffae1936144350915d9add8"
+  integrity sha1-lDbjTtJgk+1/+uGTYUQ1CRXZrdg=
+
 lodash.template@^4.4.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.template/-/lodash.template-4.5.0.tgz#f976195cf3f347d0d5f52483569fe8031ccce8ab"
@@ -7635,9 +7640,9 @@ qs@~6.5.2:
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
 quasar@^1.0.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.7.0.tgz#d0601938620eb072117392724cb4fafc3a0c89f6"
-  integrity sha512-xZ11IEhWzcLfvzeNaz4atZ1TrF4X4Zydw1GbF3U/kPMs3FNzdWRop375VHeau2yXkpKIttWYTb5zcGf1tvGV5A==
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.7.1.tgz#06c22f833e02bbc766aab22f9958e9229e509b21"
+  integrity sha512-Qq9VvgO43DuHNpeqqeybVqHh7BMIWkp/+9yix0IWkqSuZB+HWowqWNCQgZW6D9R4RzaKwcqFQBsLxz0jbFBN8g==
 
 query-string@^4.1.0:
   version "4.3.4"

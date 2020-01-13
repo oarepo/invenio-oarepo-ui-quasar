@@ -426,7 +426,27 @@ const  layout = [
       ]
     }
   ]
+```
 
+#### Arrays
+
+To be able to work with arrays of values, the component needs to know if a value is supposed
+to be a scalar or an array.
+
+If the array is present in the data, the component will pick it up and allow adding/removing
+values from the array.
+
+If the array might not be initially present, add ``array: true`` into the layout definition.
+
+For example:
+
+```javascript
+const  layout = [
+    { 
+        path: 'keywords',
+        array: true
+    }
+  ]
 ```
 
 #### Validation rules

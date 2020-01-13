@@ -40,7 +40,10 @@ export default {
                         'city',
                         'zipcode'
                     ]
-                }
+                },
+                'keywords',
+                'undefinedKeywords',
+                'extraKeywords'
             ];
         },
         options() {
@@ -53,6 +56,12 @@ export default {
                             class: ['text-weight-medium']
                         }
                     },
+                    'undefinedKeywords': {
+                        array: true
+                    },
+                    'extraKeywords': {
+                        array: true
+                    }
                 }
             };
         }

@@ -23,7 +23,8 @@ function generateRecord(recordId) {
                 number: recordId,
                 city: 'Prague',
                 zipcode: 19000
-            }
+            },
+            'keywords': []
         }
     };
 }

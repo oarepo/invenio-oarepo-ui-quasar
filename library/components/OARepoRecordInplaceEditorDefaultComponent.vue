@@ -24,9 +24,13 @@ export default {
     name: 'oarepo-record-inplace-editor-default-component',
     methods: {
         layoutTranslator(layout, options) {
+            if (layout.inplaceEditorTranslated) {
+                return layout;
+            }
             if (options.nextLayoutTranslator) {
                 layout = options.nextLayoutTranslator(layout, options);
             }
+            layout = { ...layout };
             layout['value-viewer'] = layout.value;
             layout['value-editor'] = {
                 component: 'q-input'
@@ -43,6 +47,7 @@ export default {
                     'element': options.editorValuesWrapperComponent || OARepoEditorValuesWrapperComponent,
                 };
             }
+            layout.inplaceEditorTranslated = true;
             return layout;
         }
     },

@@ -2,6 +2,7 @@
 div
     div.row(v-if="!editing")
         view-renderer.col(:def="layout" :props="this.$props" code="value-viewer" @dblclick.native="startEditing" ref="viewer")
+        q-btn(icon="remove" color="primary" size="x-small" dense flat v-if="isArray" @click="remove")
         q-btn(icon="edit" color="primary" size="x-small" dense flat v-if="layout && !layout.disabled" @click="startEditing")
     div.row(v-else)
         edit-renderer(:def="layout" :props="this.$props" code="value-editor" ref="editor")
@@ -75,7 +76,7 @@ const EditRenderer = {
     computed: {
         currentSchemaCode() {
             return this.props.schema;
-        }
+        },
     },
     methods: {
         valueInput(value) {
@@ -86,7 +87,7 @@ const EditRenderer = {
 
 export default {
     props: {
-        context: Object,
+        context: [Object, Array],
         layout: Object,
         data: Object,
         paths: Array,
@@ -102,18 +103,26 @@ export default {
         patchOperation: {
             type: String,
             default: 'replace'
-        }
+        },
+        jsonPointer: String,
+        patchTransformer: Function
     },
     components: {
         'view-renderer': ViewRenderer,
         'edit-renderer': EditRenderer
     },
     computed: {
-        jsonPointer() {
+        currentJsonPointer() {
+            if (this.jsonPointer) {
+                return this.jsonPointer
+            }
             if (this.valueIndex) {
                 return this.pathValues[this.valueIndex];
             }
             return `${this.parentJSONPointer}/${this.layout.path}`
+        },
+        isArray() {
+            return Array.isArray(this.context)
         }
     },
     data: function () {
@@ -123,19 +132,36 @@ export default {
     },
     methods: {
         startEditing() {
-            console.log(this.jsonPointer);
             this.editing = true;
         },
         cancel() {
             this.editing = false;
+            this.$emit('stop-editing', {saved: false})
         },
         async save() {
-            await this.$store.dispatch(`${this.storeModule}/patch`, [{
-                path: this.jsonPointer,
+            let patch = [{
+                path: this.currentJsonPointer,
                 value: this.$refs.editor.editedValue,
                 op: this.patchOperation
-            }]);
+            }]
+            if (this.patchTransformer) {
+                patch = this.patchTransformer(patch)
+            }
+            const result = await this.$store.dispatch(`${this.storeModule}/patch`, patch);
             this.editing = false;
+            this.$emit('stop-editing', {saved: true, result})
+        },
+        async remove() {
+            let patch = [{
+                path: this.currentJsonPointer,
+                op: 'remove'
+            }]
+            if (this.patchTransformer) {
+                patch = this.patchTransformer(patch)
+            }
+            const result = await this.$store.dispatch(`${this.storeModule}/patch`, patch);
+            this.editing = false;
+            this.$emit('stop-editing', {saved: true, result})
         }
     }
 };
