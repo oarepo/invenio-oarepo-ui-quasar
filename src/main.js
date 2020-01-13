@@ -13,6 +13,17 @@ import DataRenderer from '@oarepo/data-renderer';
 
 Vue.config.productionTip = false;
 
+Vue.use(DataRenderer, {
+    icon: {
+        component: 'q-icon',
+        attrs: {
+            name: ({layout}) => {
+                return layout.icon && layout.icon.value
+            },
+        }
+    }
+});
+
 Vue.use(InvenioApi, {
     store,
     router,
@@ -29,17 +40,6 @@ Vue.use(VuexPreloader, {
 Vue.use(VueQuerySynchronizer, {
     passUnknownProperties: true,
     router
-});
-
-Vue.use(DataRenderer, {
-    icon: {
-        component: 'q-icon',
-        attrs: {
-            name: ({layout}) => {
-                return layout.icon && layout.icon.value
-            },
-        }
-    }
 });
 
 Vue.use(InvenioQuasar, {});

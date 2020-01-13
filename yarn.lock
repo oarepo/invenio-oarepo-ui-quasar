@@ -803,10 +803,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@oarepo/data-renderer@^1.0.2":
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/@oarepo/data-renderer/-/data-renderer-1.12.0.tgz#8788636d7dbbdb5e459183e29566c6c875565a13"
-  integrity sha512-r5+U6lrk5DgehED9Ogc4MkdQpLZnNub8RSuXs5dXyJ21RJUzT+qRu5+H6/IoHLiBE6Ta6ToK9dDpvqLKV+Sq+w==
+"@oarepo/data-renderer@^1.13.0":
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/@oarepo/data-renderer/-/data-renderer-1.13.0.tgz#b1d7ec0999452353600df9fbeabda8d866c3f4d8"
+  integrity sha512-3ThAqlxkxH96QcdcSMRYrq87tJADgA6CLv1xMPl/ywIpQtnUXH+o4OK9s6iY6c4YQsJ3qU54xvbLtZqxM+OEdw==
 
 "@oarepo/invenio-api-vuex@^2.1.9":
   version "2.3.0"

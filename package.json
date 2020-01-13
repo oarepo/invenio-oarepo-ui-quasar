@@ -12,7 +12,7 @@
     "toc": "markdown-toc --maxdepth 5 -i README.md"
   },
   "dependencies": {
-    "@oarepo/data-renderer": "^1.0.2",
+    "@oarepo/data-renderer": "^1.13.0",
     "@oarepo/invenio-api-vuex": "^2.1.9",
     "@oarepo/vue-query-synchronizer": "^1.1.0",
     "@oarepo/vuex-preloader": "^1.2.2",

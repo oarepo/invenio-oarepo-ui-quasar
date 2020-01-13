@@ -25,6 +25,13 @@ export default {
         if (Vue.prototype.$oarepo === undefined) {
             Vue.prototype.$oarepo = {};
         }
+
+        if (Vue.prototype.$oarepo.dataRenderer === undefined) {
+            throw new Error('Initialize @oarepo/data-renderer first');
+        }
+
+        Vue.prototype.$oarepo.dataRenderer.untranslatedLayoutValues.push('default');
+
         Vue.prototype.$oarepo.quasar = {
             ...options,
             schemas: {

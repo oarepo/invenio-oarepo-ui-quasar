@@ -57,10 +57,14 @@ export default {
                         }
                     },
                     'undefinedKeywords': {
-                        array: true
+                        array: true,
+                        default: 'defaultKeyword'
                     },
                     'extraKeywords': {
                         array: true
+                    },
+                    'created': {
+                        default: () => new Date().toISOString()
                     }
                 }
             };

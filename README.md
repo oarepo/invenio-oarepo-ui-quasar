@@ -51,9 +51,21 @@ import InvenioQuasar from '@oarepo/invenio-quasar'
 import VueUid from 'vue-uid';
 import VuexPreloader from '@oarepo/vuex-preloader'
 import VueQuerySynchronizer from '@oarepo/vue-query-synchronizer'
+import DataRenderer from '@oarepo/data-renderer'
 
 
 export default async ({ Vue, store, router }) => {
+    Vue.use(DataRenderer, {
+        icon: {
+            component: 'q-icon',
+            attrs: {
+                name: ({layout}) => {
+                    return layout.icon && layout.icon.value
+                },
+            }
+        }
+    });
+    
     Vue.use(InvenioApi, {
         store,
         router,

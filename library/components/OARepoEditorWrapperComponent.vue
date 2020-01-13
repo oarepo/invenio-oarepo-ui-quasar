@@ -49,11 +49,28 @@ const EditRenderer = {
     },
     data: function () {
         return {
-            editedValue: null
+            editedValue: null,
         };
     },
     mounted() {
         this.editedValue = this.props.value;
+        if (this.editedValue === undefined) {
+            if (this.def.default !== undefined) {
+                if (this.def.default instanceof Function) {
+                    this.editedValue = this.def.default(this.props);
+                } else {
+                    this.editedValue = this.def.default;
+                }
+            }
+        }
+        if (this.$children[0]) {
+            if (this.$children[0].focus) {
+                this.$children[0].focus()
+            }
+            if (this.$children[0].select) {
+                this.$children[0].select()
+            }
+        }
     },
     render(h) {
         const vue = this;
@@ -69,6 +86,8 @@ const EditRenderer = {
                 on: {
                     input: vue.valueInput,
                 }
+            }, {
+                ref: 'editor'
             });
 
         return els[0];
@@ -114,15 +133,15 @@ export default {
     computed: {
         currentJsonPointer() {
             if (this.jsonPointer) {
-                return this.jsonPointer
+                return this.jsonPointer;
             }
             if (this.valueIndex) {
                 return this.pathValues[this.valueIndex];
             }
-            return `${this.parentJSONPointer}/${this.layout.path}`
+            return `${this.parentJSONPointer}/${this.layout.path}`;
         },
         isArray() {
-            return Array.isArray(this.context)
+            return Array.isArray(this.context);
         }
     },
     data: function () {
@@ -136,32 +155,38 @@ export default {
         },
         cancel() {
             this.editing = false;
-            this.$emit('stop-editing', {saved: false})
+            this.$emit('stop-editing', { saved: false });
         },
         async save() {
             let patch = [{
                 path: this.currentJsonPointer,
                 value: this.$refs.editor.editedValue,
                 op: this.patchOperation
-            }]
+            }];
             if (this.patchTransformer) {
-                patch = this.patchTransformer(patch)
+                patch = this.patchTransformer(patch);
             }
             const result = await this.$store.dispatch(`${this.storeModule}/patch`, patch);
             this.editing = false;
-            this.$emit('stop-editing', {saved: true, result})
+            this.$emit('stop-editing', {
+                saved: true,
+                result
+            });
         },
         async remove() {
             let patch = [{
                 path: this.currentJsonPointer,
                 op: 'remove'
-            }]
+            }];
             if (this.patchTransformer) {
-                patch = this.patchTransformer(patch)
+                patch = this.patchTransformer(patch);
             }
             const result = await this.$store.dispatch(`${this.storeModule}/patch`, patch);
             this.editing = false;
-            this.$emit('stop-editing', {saved: true, result})
+            this.$emit('stop-editing', {
+                saved: true,
+                result
+            });
         }
     }
 };
