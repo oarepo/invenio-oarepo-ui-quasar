@@ -29,7 +29,8 @@ import {
     QToggle,
     QSeparator,
     QRadio,
-    QInput
+    QInput,
+    QDate
 } from 'quasar';
 
 Vue.use(Quasar, {
@@ -59,7 +60,8 @@ Vue.use(Quasar, {
         QToggle,
         QSeparator,
         QRadio,
-        QInput
+        QInput,
+        QDate,
     },
     directives: {},
     plugins: {}

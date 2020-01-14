@@ -32,9 +32,11 @@ export default {
             }
             layout = { ...layout };
             layout['value-viewer'] = layout.value;
-            layout['value-editor'] = {
-                component: 'q-input'
-            };
+            if (layout['value-editor'] === undefined) {
+                layout['value-editor'] = {
+                    component: 'q-input'
+                };
+            }
             layout.value = {
                 ...layout['value-viewer'],
                 'component': options.editorWrapperComponent || OARepoEditorWrapperComponent,

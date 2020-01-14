@@ -15,6 +15,8 @@
     div.q-pt-lg See #[a(href="https://github.com/oarepo/data-renderer" target="_blank") @oarepo/data-renderer] for more details on rendering
 </template>
 <script>
+import { QDate } from 'quasar';
+
 export default {
     props: {
         query: Object,
@@ -64,7 +66,10 @@ export default {
                         array: true
                     },
                     'created': {
-                        default: () => new Date().toISOString()
+                        default: () => new Date().toISOString(),
+                        'value-editor': {
+                            component: () => QDate
+                        }
                     }
                 }
             };
