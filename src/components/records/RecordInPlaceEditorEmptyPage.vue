@@ -68,7 +68,7 @@ export default {
                     'created': {
                         default: () => new Date().toISOString(),
                         'value-editor': {
-                            component: () => QDate
+                            component: QDate
                         }
                     }
                 }

@@ -30,8 +30,6 @@ export default {
             throw new Error('Initialize @oarepo/data-renderer first');
         }
 
-        Vue.prototype.$oarepo.dataRenderer.untranslatedLayoutValues.push('default');
-
         Vue.prototype.$oarepo.quasar = {
             ...options,
             schemas: {
