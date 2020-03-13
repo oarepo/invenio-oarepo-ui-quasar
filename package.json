@@ -6,7 +6,7 @@
     "build": "rm -rf dist; bili --babelrc --verbose --plugins.vue --format esm && cp package.json dist/"
   },
   "dependencies": {
-    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
     "quasar-extras": "^2.0.4",
     "quasar-framework": "^0.17.0",
     "sanitize-html": "^1.20.0",
